@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+			
+	//cookie => key  = value
+		//alert("hello world");
+
+		//console.log(document.cookie);
+
+		//document.cookie = "hello world";
+
+		// document.cookie = "key=value";
+		// document.cookie = "key2=value";
+
+		//console.log(document.cookie);
+
+		//过期时间；
+		// var d = new Date();
+
+		// d.setDate(d.getDate() + 10)
+
+		// document.cookie = "key=value;expires="+d;
+
+		// console.log(document.cookie);	
+
+		//有效路径; cookie 存在了浏览器之中所以，任何页面都可以访问;
+
+
+		// document.cookie = "key=helloworld2;path=/cookie/";
+
+		// //只要路径不通那么就是两条cookie;
+
+		// console.log(document.cookie);
+
+
+		//封装cookie;
+
+		//增删改查;
+
+
+		//增 | 改;
+
+		function setCookie(name,value,expires,path){
+			var d = new Date();
+			d.setDate(d.getDate() + expires);
+			value = encodeURIComponent(String(value));
+			document.cookie = name + "=" + value + ";expires="+d + "; path=" + path;
+		}
+		setCookie("userName","你好 y()angh{}uaizhi",19,"/")
+		// setCookie("userName2","yanghuaizhi",19,"/")
+
+		// 查;
+		function getCookie(name){
+			//console.log(document.cookie)		
+			var item = document.cookie.split("; ");
+			//console.log(item);
+			for(var i = 0 ; i < item.length ; i++){
+				//console.log(item[i].split("="));
+				//cookie 名 是第0项;
+				//cookie 值 是第1项;
+				if(name == item[i].split("=")[0]){
+					return decodeURIComponent(item[i].split("=")[1]);
+				}
+			}
+			return "";
+		}
+		// 删除;
+		function removeCookie(name,path){
+			setCookie(name,null,-1,path)
+		}
+		console.log(getCookie("userName3333"));
+
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

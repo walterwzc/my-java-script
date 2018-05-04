@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>透明度也是运动</title>
+	<style>
+		#box{
+			width: 300px;
+			height: 300px;
+			background: #000;
+			opacity: 0.3;
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		
+	</div>
+</body>
+<script>
+	
+
+	// var timer = null;
+	// function move(target){
+	// 	// var speed = 5;
+	// 	// if(oBox.offsetLeft < target){
+	// 	// 	speed = speed;
+	// 	// }else{
+	// 	// 	speed = - speed;
+	// 	// }
+	// 	//1 判断速度;
+	// 	var speed = oBox.offsetLeft < target ? 5 : -5;
+	// 	//2. 关闭开启定时器;
+	// 	clearInterval(timer);
+	// 	timer = setInterval(function(){
+	// 		// 3. 判定终止条件;
+	// 		if(Math.abs(oBox.offsetLeft - target) <= Math.abs(speed)){
+	// 			clearInterval(timer);
+	// 			oBox.style.left = target + "px";
+	// 		}else{
+	// 			//4.运动;
+	// 			oBox.style.left = oBox.offsetLeft + speed + "px";
+	// 		}
+	// 	},30)
+	// }
+
+	var oBox = document.getElementById("box");
+
+	oBox.onmouseover = function(){
+		move(100) //opacigt 100 == 1;
+	}
+	oBox.onmouseout = function(){
+		move(30) //opacigt 100 == 1;
+	}
+	//1.判断速度;
+	//2.关闭开启定时器;
+	//3.判定终止条件;
+	//4.运动;
+
+	var timer = null;
+
+	function move(target){
+		//var speed = oBox. < target ? 5 : -5;
+		var iNow = getStyle(oBox,"opacity") * 100;//元素当前位置; => 用来判定速度是正还是负;
+		var speed = iNow < target ? 5 : -5;
+		clearInterval(timer);
+		timer = setInterval(function(){
+			var opacity = getStyle(oBox,"opacity") * 100;
+			if(opacity == target){
+				clearInterval(timer)
+			}else{
+				oBox.style.opacity =  (opacity + speed) / 100 ;
+			}
+		},30)
+	}
+
+	function getStyle(dom,attr){
+		return getComputedStyle(dom,false)[attr];
+	}
+
+	console.log(getStyle(oBox,"opacity"))
+
+
+</script>
+</html>

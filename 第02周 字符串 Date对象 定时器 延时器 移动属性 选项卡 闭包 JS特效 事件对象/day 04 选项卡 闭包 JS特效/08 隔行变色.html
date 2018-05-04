@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+
+	<style>
+*{
+	margin: 0;
+	padding: 0;
+	list-style-type: none;	
+}
+li{
+	width: 500px;
+	height: 30px;
+	text-align: center;
+	line-height: 30px;
+	border-radius: 4px;
+	box-shadow: 0 2px 3px #ddd;
+	margin: 10px 0;
+}
+
+ul{	
+	width: 500px;
+	margin: 100px auto;
+}
+#btn1{
+	display: block;
+	background: none;
+	border: 1px solid #b6b6b6;
+	width: 80px;
+	height: 30px;
+	margin: 40px auto;
+}
+
+	</style>
+</head>
+<body>
+	<ul id="list">
+		<li>我是行</li>
+		<li>我是行</li>
+		<li>我是行</li>
+		<li>我是行</li>
+		<li>我是行</li>
+		<li>我是行</li>
+	</ul>
+</body>
+<script>
+	var oList = document.getElementById("list");
+	var aLi = oList.getElementsByTagName("li");
+	var bg = null;
+	for(var i = 0 ; i < aLi.length ; i++){
+		if(i % 2 == 0){
+			aLi[i].style.background = "#b6b6b6";
+		}
+		aLi[i].onmouseover = function(){
+			bg = this.style.background;
+			this.style.background = "#ddd";
+		}
+		aLi[i].onmouseout = function(){
+			this.style.background = bg;
+		}
+	}
+
+</script>
+</html>

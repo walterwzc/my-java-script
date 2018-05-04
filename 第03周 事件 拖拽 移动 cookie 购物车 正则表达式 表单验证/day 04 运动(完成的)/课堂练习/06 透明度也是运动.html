@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>透明度也是运动</title>
+    <style>
+        #box {
+            width: 300px;
+            height: 300px;
+            background: #000;
+            opacity: 0.3;
+        }
+    </style>
+</head>
+<body>
+    <div id="box"></div>
+</body>
+<script>
+    var box = document.getElementById("box");
+    var timer = null;
+    box.onmouseover = function() {
+        // clearInterval(timer);
+        // timer = setInterval(function() {
+        //     var nowOpacity = getStyle(box, "opacity") * 100;
+        //     console.log("nowOpacity: " + nowOpacity);
+        //     if (nowOpacity == target) {
+        //         clearInterval(timer);
+        //     } else {
+        //         // console.log((parseInt(nowOpacity)) / 100);
+        //         box.style.opacity = (nowOpacity + 5) / 100;
+        //     }
+        // }, 30);
+        move(100);
+    }
+
+    box.onmouseout = function() {
+        // clearInterval(timer);
+        // timer = setInterval(function() {
+        //     var nowOpacity = getStyle(box, "opacity") * 100;
+        //     console.log("nowOpacity: " + nowOpacity);
+        //     if (nowOpacity == 30) {
+        //         clearInterval(timer);
+        //     } else {
+        //         // console.log((parseInt(nowOpacity)) / 100);
+        //         box.style.opacity = (nowOpacity - 5) / 100;
+        //     }
+        // }, 30);
+        move(30);
+    }
+
+    function move(target) {
+        clearInterval(timer);
+        timer = setInterval(function() {
+            var nowOpacity = getStyle(box, "opacity") * 100;
+            var speed = 0;
+            if (nowOpacity < target) {
+                speed = 5;
+            } else {
+                speed = -5;
+            }
+            
+            console.log("nowOpacity: " + nowOpacity);
+            if (nowOpacity == target) {
+                clearInterval(timer);
+            } else {
+                box.style.opacity = (nowOpacity + speed) / 100;
+            }
+        }, 30);
+    }
+
+    function getStyle (dom, attr) {
+        return getComputedStyle(dom, false)[attr];
+    }
+</script>
+</html>

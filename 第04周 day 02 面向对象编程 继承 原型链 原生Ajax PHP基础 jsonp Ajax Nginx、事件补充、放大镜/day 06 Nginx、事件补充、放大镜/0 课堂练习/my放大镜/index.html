@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="style/style.css">
+</head>
+<body>
+	
+	<div class="small">
+		<div class="wrap">
+		</div>
+		<img src="images/timg.jpg" alt="">
+		<span class="grayBox"></span>
+	</div>
+
+	<div class="big">
+		<img src="images/timg.jpg" alt="" class="big_img">
+	</div>
+</body>
+<script>
+	
+	//1. 显示;
+	//2. 跟随;
+    
+
+    var big = $("big")[0];
+
+    function Magnifier() {
+        var $ = document.querySelector.bind(document);
+        var small = $(".small")[0];
+        var grayBox = $(".grayBox")[0];
+        this.init();
+    }
+
+    Magnifier.prototype = {
+        constructor = Magnifier,
+
+        small.onmouseover
+    }
+
+    new Magnifier();
+</script>
+</html>

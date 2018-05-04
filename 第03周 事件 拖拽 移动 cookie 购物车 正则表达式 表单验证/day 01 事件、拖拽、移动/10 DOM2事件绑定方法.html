@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<button id="btn"> 按钮 </button>
+</body>
+<script>
+	// document.onclick = function(){
+	// 	alert("hello world");
+	// }
+	// document.onclick = function(){
+	// 	alert("向世界问好!");
+	// }
+
+	// var obj = {
+	// }
+
+	// obj.a = 10;
+	// obj.a = 20;
+
+	// var a = 10;
+	// var a = 20;
+	// console.log(a);
+
+
+	// DOM 0 事件绑定方式 => 对象之中添加方法的绑定事件方式;
+	//上面的事件会被下边的事件覆盖掉;
+
+	// var oBox = document.getElementById("box");
+	// oBox.onclick = function(){
+	// }
+
+	//事件非常容易删除;
+
+	// DOM 2; 事件绑定方式;
+
+	// 事件监听;
+
+	// 按照事件绑定顺序去执行事件处理函数;
+	// var oBtn = document.getElementById("btn");
+	// oBtn.addEventListener("click",fn1)
+	// function fn1(){
+	// 	alert("hello world");
+	// 	//console.log(this) ; // this => 指向当前dom对象;
+	// }
+	// oBtn.addEventListener("click",function(){
+	// 	alert("你好世界!");
+	// })
+
+	// //错误示例!;
+	// //oBtn.addEventListener("click",null)
+
+	// //删除;
+	// oBtn.removeEventListener("click",fn1)
+	// var oBtn = document.getElementById("btn");
+
+	// //事件绑定简写; => jQuery API;
+
+	// Element.prototype.on = Element.prototype.addEventListener;
+	// Element.prototype.off = Element.prototype.removeEventListener;
+
+	// oBtn.on("click",fn1);
+	// function fn1(){
+	// 	alert("你好啊，我是on绑定的函数!");
+	// }
+
+	// oBtn.off("click",fn1);
+
+
+	// if(oBtn.addEventListener){
+	// 	oBtn.addEventListener("click",fn1);
+	// }else{
+	// 	oBtn.attachEvent("onclick",fn1);
+	// }
+
+	function on(dom,evtName,callback){ 
+		//evtName == click；
+		if(dom.addEventListener){
+			dom.addEventListener(evtName,callback);
+		}else if(dom.attachEvent){
+			dom.attachEvent("on" + evtName,callback);
+		}else{
+			//DOM0事件绑定;
+			dom["on"+evtName] = callback;
+		}
+	}
+
+	//dom.detachEvent(evtName,callback);
+
+	function off(dom,evtName,callback){
+		if(dom.removeEventListener){
+			dom.removeEventListener(evtName,callback)
+		}else if(dom.detachEvent){
+			dom.detachEvent("on"+ evtName,callback)
+		}else{
+			dom["on"+evtName] = callback;
+		}
+	}
+
+	// onmouseover onkeydown onkeypress ;
+
+	// mosueover keydown keypress;
+
+
+
+
+
+</script>
+</html>

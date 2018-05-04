@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		li{
+			width:80%;
+			margin: 0 auto;
+			overflow: hidden;
+			display: flex;
+		}
+		li img{
+			width: 100%;
+			height: 100%;
+		}
+		.btn span{
+			padding: 3px 7px;
+			line-height: 20px;
+			background: #ddd;
+		}
+	</style>
+</head>
+<body>
+	
+	<div class="container">
+			
+		<div class="btn">
+			<span>1</span>
+			<span>2</span>
+			<span>3</span>
+			<span>4</span>
+		</div>
+
+		<div class="content">
+			<ul>
+				<li>
+					<img src="http://f.hiphotos.baidu.com/image/h%3D300/sign=d04061e9dbc8a786a12a4c0e5709c9c7/5bafa40f4bfbfbed5e3bf76c72f0f736afc31f47.jpg" alt="">
+					<img src="http://e.hiphotos.baidu.com/image/h%3D300/sign=103193ca8a0a19d8d403820503fb82c9/34fae6cd7b899e51d33df06f48a7d933c8950d1e.jpg" alt="">
+					<img src="http://d.hiphotos.baidu.com/image/h%3D300/sign=b35573b9a44bd1131bcdb1326aada488/7af40ad162d9f2d32cecb325a0ec8a136227cc7f.jpg" alt="">
+					<img src="http://e.hiphotos.baidu.com/image/h%3D300/sign=d63a7f1727738bd4db21b431918a876c/f7246b600c338744e7762fb6580fd9f9d62aa04c.jpg" alt="">
+					<img src="http://d.hiphotos.baidu.com/image/h%3D300/sign=6df8749fb91c8701c9b6b4e6177e9e6e/0d338744ebf81a4c128426b2dd2a6059252da613.jpg" alt="">
+				</li>
+			</ul>
+		</div>
+	</div>
+
+</body>
+<script src="ajax.js"></script>
+<script>
+	ajaxGet("pagination.php",callback);
+	function callback(res){
+		//console.log(res);
+		var aRes = JSON.parse(res);
+		console.log(JSON.stringify(aRes.data));
+		// aRes.data.forEach(function(item){
+		// 	console.log(item.thumbURL)
+		// })
+	}
+
+	var aLi = document.getElementsByTagName("li");
+
+	var img = aLi[0].children;
+	var parentWidth = aLi[0].offsetWidth;
+
+	var imgWidthSum = 0;
+	for(var i = 0 ; i < img.length ; i++){
+		console.log(img[i].offsetWidth);
+		imgWidthSum += img[i].offsetWidth
+	}
+	var prop = parseInt(parentWidth / imgWidthSum * 100) / 100;
+	console.log(prop);
+
+	for(var i = 0 ; i < img.length ; i++){
+		img[i].style.width = img[i].offsetWidth * prop + "px";
+	}
+
+
+</script>
+</html>

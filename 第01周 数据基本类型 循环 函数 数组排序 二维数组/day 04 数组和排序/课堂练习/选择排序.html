@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>选择排序</title>
+</head>
+<body>
+    
+</body>
+<script>
+    var array = [96, 45, 75, 12, 23, 25, 64, 85, 24];
+
+    for (var j = 0; j < array.length; j++) {
+        // 假定一个最小值
+        var minNumber = array[j];
+        var minIndex = j;
+
+
+        // 寻找一个最小值
+        for (var i = j + 1; i < array.length; i++) {
+            if (minNumber > array[i]) {
+                minNumber = array[i];
+                minIndex = i;
+            }
+        }
+
+        // 将找到的最小值进行排序。
+        var temp;
+        temp = array[j];
+        array[j] = array[minIndex];
+        array[minIndex] = temp;
+    }
+    console.log(array);
+
+</script>
+</html>

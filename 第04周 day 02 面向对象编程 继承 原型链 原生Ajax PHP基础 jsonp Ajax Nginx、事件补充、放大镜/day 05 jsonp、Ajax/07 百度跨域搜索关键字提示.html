@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+		//http://suggestion.baidu.com/?cb=test&wd=hello
+
+	</script>
+</head>
+<body>
+	<input type="text" id="search">
+	<ul id="list"></ul>
+</body>
+<script src="ajax.js"></script>
+<script>
+	var oSearch = document.getElementById("search");
+	var oList = document.getElementById("list");
+	var timer = null;
+	oSearch.oninput = function(){
+		clearTimeout(timer)
+		//console.log(this.value);
+		var question = this.value;
+		timer = setTimeout(function(){
+			jsonp("http://suggestion.baidu.com/","cb",function(res){
+				//console.log(res.s);
+				var html = "";
+				res.s.forEach(function(item){
+					html += "<li>" +item + "</li>"
+				})	
+				oList.innerHTML = html;
+			},"wd="+question)	
+		},500)
+	}	
+
+</script>
+</html>

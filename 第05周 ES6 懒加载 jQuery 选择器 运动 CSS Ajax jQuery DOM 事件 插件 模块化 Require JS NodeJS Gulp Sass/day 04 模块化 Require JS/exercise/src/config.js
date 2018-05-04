@@ -1,0 +1,11 @@
+/*配置文件*/
+requirejs.config({
+	paths:{
+		"jquery":"src/jquery",
+		"supperBanner":"src/jquery.supperBanner",
+		"pop":"src/pop",
+		"shopping":"src/shoppingcar",
+		"loadLi":"src/loadLi",
+		"cookie":"src/jquery.cookie"
+	}
+})

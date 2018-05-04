@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+		//replace 的高级用法;
+
+		// 字符串方法;
+
+		// 参数 => 1 规则 2. 要替换成什么;
+
+		// 返回值 => 处理之后的字符串;
+
+		//关键词标红 => world;
+
+		//var reg = new RegExp(arg,"g");
+
+		var str = "hello world world 你好";
+		var reg = /world|hello|你/g;
+		//str = str.replace(reg,"<strong>wrold<strong>")
+		// str = str.replace(reg,function(ar1,ar2,ar3){
+		// 	//console.log(1);
+		// 	console.log(ar1,ar2,ar3);// ar1匹配结果, ar2 匹配到的下标 ar3 在哪个字符串中匹配;
+		// })
+
+		// str = str.replace(reg,function(res,index,str){
+		// 	return "<strong>"+res+"<strong>";
+		// })
+		// console.log(str);
+
+	</script>
+	<style>
+		strong{
+			color: red;
+		}
+	</style>
+</head>
+<body>
+	<article>
+		“囚徒困境”是1950年美国兰德公司的梅里尔·弗勒德（Merrill Flood）和梅尔文·德雷希尔（Melvin Dresher）拟定出相关困境的理论，后来由顾问艾伯特·塔克（Albert Tucker）以囚徒方式阐述，并命名为“囚徒困境”。两个共谋犯罪的人被关入监狱，不能互相沟通情况。如果两个人都不揭发对方，则由于证据不确定，每个人都坐牢一年；若一人揭发，而另一人沉默，则揭发者因为立功而立即获释，沉默者因不合作而入狱十年；若互相揭发，则因证据确实，二者都判刑八年。由于囚徒无法信任对方，因此倾向于互相揭发，而不是同守沉默。最终导致纳什均衡仅落在非合作点上的博弈模型
+	</article>
+	<button id="btn">关键字加粗</button>
+</body>
+<script>
+	
+	var oBtn = document.getElementById("btn")
+	var oArt = document.getElementsByTagName("article")[0];
+
+	oBtn.onclick = function(){
+		var str = oArt.innerHTML;
+		var reg = /[a-z]+/gi;
+		str = str.replace(reg,function(res){
+			return "<strong>"+res +"</strong>"
+		})
+		oArt.innerHTML = str;
+	}
+
+
+</script>
+</html>

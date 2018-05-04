@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+		//JS之中的作用域;
+		//var a = 10;//全局作用域;
+
+		// function fn(){
+		// 	var a = 20;
+		// 	//console.log(a);
+		// }
+		// fn();
+		// console.log(a);
+
+
+		//变量的生命周期;
+
+		// 1.永生不死; => 全局变量;
+
+		//var a = 10;//慎重使用全局变量;
+
+		// 2.蜉蝣(朝生暮死); =>  局部变量;
+
+		// function fn(){
+		// 	var a = 20;
+		// }
+		// console.log(a);
+		// fn();
+
+		//JS声明提升;
+
+		// function fn(){var a;
+		// 	// var b = 1;
+		// 	// var c = 2;
+		// 	console.log(a);
+		// 	a = 10;
+		// }
+		// fn();
+
+		// var a = 10;
+		// fn();
+		// var fn = function(){
+		// }
+
+		//作用域 === 活动对象;
+
+		var a = 10;
+		function fn(){
+			console.log(a)
+		}
+		fn();
+
+
+
+	</script>
+	<script>
+		//console.log(a);
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

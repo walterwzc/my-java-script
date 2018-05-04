@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>插入排序</title>
+</head>
+<body>
+    
+</body>
+<script>
+    var array = [53, 21, 66, 78, 12, 5, 54, 26, 86];
+    for (var i = 0; i< array.length; i++) {
+        var index = i;
+        var temp;
+        while (array[index] < array[index - 1] && index >= 0) {
+            temp = array[index - 1] 
+            array[index - 1] = array[index];
+            array[index] = temp;
+
+            index--;
+        }
+    }
+
+    console.log(array);
+</script>
+</html>

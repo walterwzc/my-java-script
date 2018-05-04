@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>深克隆</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    function Person(name, age) {
+        this.name = name;
+        this.age = age;
+        this.property = "fatherProperty";
+    }
+
+    Person.prototype.species = "human";
+    Person.prototype.relatives = ["father", "mother", "uncle"];
+    Person.prototype.floor = { "A": 11, "B": 22, "C": 33 };
+    Person.prototype.sayHi = function() {
+        console.log(this.name + " say hi.");
+    }
+
+    function Student(name, age) {
+        Person.apply(this, arguments);
+    }
+
+    console.log("----------------------------------------");
+    for (var attr in Person) {
+        console.log("run");
+        console.log(Person);
+    }
+
+    // deepClone(Person, Student);
+
+    var person1 = new Person("Lily", 20);
+
+    Person.prototype.sayHi = function() {
+        console.log(this.name + ":" + this.age + ":" +  this.property);
+    }
+    // var person1 = new Person();
+    console.log(person1.name, person1.age, person1.property, person1.species, person1.relatives, person1.floor);
+    person1.sayHi();
+
+    console.log("--------------------------------------------");
+
+    // var student1 = new Student();
+    var student1 = new Student("Zach", 21);
+    var student1= deepClone(person1, student1);
+
+    // student1.sayHi = function() {
+    //     console.log(this.name + ":" + this.age + ":" +  this.property);
+    // }
+    
+    console.log(student1.name, student1.age, student1.property, student1.species, student1.relatives, student1.floor);
+    student1.sayHi();
+
+    console.log("--------------------------------------------");
+
+    console.log(person1, student1);
+
+    console.log("--------------------------------------------");
+
+    console.log(person1.constructor);
+    console.log(student1.constructor);
+    // console.log(person1.__proto__, student1.__proto__);
+    // console.log(person1.prototype, student1.prototype);
+
+    console.log("--------------------------------------------");
+
+    // function deepClone(fatherObject, sonObject) {
+    //     var sonObject = sonObject || {};
+    //     for (var attr in fatherObject) {
+    //         if (typeof fatherObject[attr] == "object") {
+    //             sonObject[attr] = (fatherObject[attr]  === "array") ? [] : {};
+    //             deepClone(fatherObject[attr], sonObject[attr]);
+    //         } else {
+    //             sonObject[attr] = fatherObject[attr];
+    //         }
+    //     }
+
+    //     return sonObject;
+    // }
+
+    
+
+    function deepClone(fatherObject, sonObject) {
+        var sonObject = sonObject || {};
+
+        for (var i in fatherObject) {
+            if (typeof fatherObject[i] === 'object') {
+                // console.log(typeof fatherObject[i]);
+                sonObject[i] = (fatherObject[i].constructor === Array) ? [] : {};
+                deepClone(fatherObject[i], sonObject[i]);
+            } else {
+                // console.log(typeof fatherObject[i]);
+                sonObject[i] = fatherObject[i];
+            }
+        }
+        return sonObject;
+    }
+
+    console.log("--------------------------------------------");
+
+
+</script>
+
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>快速排序</title>
+</head>
+<body>
+    
+</body>
+<script>
+    var array = [8, 3, 9, 1, 6, 4, 5];
+
+    function quickSort(array) {
+        if (array.length <= 1) {
+            return array;
+        }
+    
+        var pivot = parseInt(array.length / 2);
+        var middle = array[pivot];
+
+        var left = [];
+        var right = [];
+
+        for (var i = 0; i < array.length; i++) {
+            if (array[i] == middle) {
+                continue;
+            }
+
+            if (array[i] > middle) {
+                right.push(array[i]);
+            } else {
+                left.push(array[i]);
+            }
+        }
+        
+        return quickSort(left).concat([middle], quickSort(right));
+    }
+
+    console.log(quickSort(array));
+</script>
+</html>

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+		
+		/*
+
+		问题0:为什么一写页面感觉JS和没有学一样?页面的布局好凌乱,求一个比较有效的,规范的,能有效果的布局方案.
+
+		问题1.怎么理解window == BOM;?他们的本质是一样的吗?还是有一定的区别,但是区别不是很大.
+
+		问题2：如何调用闭包之中的方法？  返回出去;
+
+
+		var a = (function() {
+		    var array = [1, 2, 3, 4, 5, 6, 7, 8];
+
+		    function selectAnswer() {
+		    	for (var i = 0; i < array.length; i++) {
+		    		console.log(array[i]);
+		    	}
+		    }
+
+		    // selectAnswer();
+
+		    return selectAnswer;
+		})();
+		a();
+		比如说考试系统，页面中的提交按钮可以判断用户的答案，该判断方法又是在闭包之中，页面中的元素又如何调用该判断方法呢？
+
+		function a(){
+			// c => 20;
+		}
+
+		问题3：什么是闭包？  
+
+		函数套函数;
+		
+		利用垃圾回收机制的变量保存方案;
+
+		function outter() {
+			var num = 100;
+			function inner() {
+				console.log(num);
+			}
+			return inner;
+		}
+
+		var result = outter();
+		result();
+			
+		闭包遇上for循环的问题,求详解
+		function createFunctions() {
+		    var result = [];
+		    for (var i = 0; i < 10; i++) {
+		        result[i] = function() {
+		            return i;
+		   };
+		}
+		return result;
+
+		}
+		var funcs = createFunctions();
+		for (var i = 0; i < funcs.length; i++) {
+		    console.log(funcs[i]());
+		}
+
+
+		问题4：闭包的生命周期？
+
+		闭包和立即执行的匿名函数在一起有些混淆，当解析器解析完成匿名函数，该匿名函数已经被垃圾回收器回收，如果说自由变量在垃圾回收器中可以找到的话，但是匿名函数中的方法已经被回收了，又如何去获得自由变量呢？ 而且匿名函数中的方法又不能被外部调用，如何获得自由变量呢？
+			
+
+		//作用域;
+
+		(function(){
+			var a = 10;	
+			function fn(){
+				console.log(a);
+			}
+			fn();
+
+			return fn
+		})()
+
+		// a => 10;
+
+
+
+		问题5： this关键字问题：
+
+		var name = "The Window";
+	    var object = {
+	        pointer : this,//window;
+	        name : "My Object",
+	        getNameFunc : function(){
+	            console.log(this); //getNameFunc =>  object;
+	            return function(){
+	                console.log(this); // window;
+	                return this.name;
+	            };
+	        }
+	　　};
+
+		问题6： 闭包选项卡
+
+		在做布局时，如何能差不多的做到在写js的时候不会影响页面的布局---------
+
+	
+		遇到个面试题，未能理解第二个Object的输出
+
+		//1.事件委托原理没懂；
+		//2.站酷右下角的楼梯特效；实现不出来，不太懂
+
+		*/
+ 
+		function createFunctions() {     //  AO =>  i = > 10
+		    var result = [function(){return i;}];
+		    for (var i = 0; i < 10; i++) {
+		        result[i] = function() { // result[i] =>  AO  => i => AO === 10
+		            return i;
+				};
+			}
+			return result;
+		}
+		var funcs = createFunctions();
+		for (var i = 0; i < funcs.length; i++) {
+		    console.log(funcs[i]());
+		}
+
+		// var name = "The Window";
+	 	//  var object = {
+		//         pointer : this,
+		//         name : "My Object",
+		//         getNameFunc : function(){
+		//             console.log(this); // object;
+		//             return function(){
+		//                 console.log(this); //window;
+		//                 return this.name; // The Window;
+		//             };
+		//         }
+		// 	};
+		// console.log(object.getNameFunc()());
+
+		// var obj = {
+		// 	    getName:function(){
+		// 	        console.log(this)
+		// 	    }
+		}
+		// obj.getName();//obj
+		// (obj.getName)();//obj
+		// (obj.getName = obj.getName)()//window
+
+
+	</script>
+</head>
+<body>
+
+	<div class="header">
+		
+		<div class="top">
+				
+				<ul class="city">
+					<li></li>				
+				</ul>
+
+				<ul>
+					<li></li>
+				</ul>
+
+		</div>
+		<div class="search"></div>
+		<div class="nav"></div>
+
+	</div>
+
+	<div class="content">
+		
+		<div class="nav-lit"></div>
+
+		<div class="banner">
+			
+		</div>
+		<div class="user-detail">
+			
+		</div>
+	</div>
+
+	
+</body>
+</html>

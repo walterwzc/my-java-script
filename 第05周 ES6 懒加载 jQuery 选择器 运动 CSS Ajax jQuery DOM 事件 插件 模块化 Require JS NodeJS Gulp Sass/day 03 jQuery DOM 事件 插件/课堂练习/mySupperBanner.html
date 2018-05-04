@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+
+		li {
+			list-style: none;
+		}
+
+		.container {
+			width: 1400px;
+			height: 400px;
+			margin: 0 auto;
+		}
+
+		.supperbanner_btn_wrap {
+			width: 100%;
+			z-index: 999;
+			height: 20px;
+			position: absolute;
+			top: 90%;
+			text-align: center;
+			margin-left: -20px;
+		}
+
+		.supperbanner_btn_wrap span {
+			display: inline-block;
+			width: 20px;
+			height: 20px;
+			border-radius: 50%;
+			background: rgba(0, 100, 100, .6);
+			color: rgba(0, 0, 0, .6);
+			margin-left: 20px;
+			transition: all .5s;
+		}
+
+		.supperbanner_btn_wrap span.supperbanner_active {
+			background: rgba(0, 0, 0, 1);
+		}
+	</style>
+</head>
+
+<body>
+	<div class="container">
+	</div>
+</body>
+<script src="libs/jquery-3.2.1.js"></script>
+<script src="libs/jquery.supperBanner.js"></script>
+<script>
+
+	$(function () {
+		var res = $(".container").supperBanner({
+			src: [
+				"http://img.zcool.cn/community/016bcb5a556cd9a8012113c760304c.jpg@1380w",
+				"http://img.zcool.cn/community/017da25a558a4ba8012113c7a8124e.jpg@1380w",
+				"http://img.zcool.cn/community/0158d95a557984a8012113c773241d.jpg@1380w",
+				"http://img.zcool.cn/community/01ba7b5a558a5ca80120121f320a51.jpg@1380w"
+			],
+			movement_mode: "fade",
+			autoplay: true
+		});
+
+	})
+
+</script>
+
+</html>

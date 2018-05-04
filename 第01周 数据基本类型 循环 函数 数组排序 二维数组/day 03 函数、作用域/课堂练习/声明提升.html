@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>声明提升Test</title>
+</head>
+<body>
+	
+</body>
+<script>
+	// var a ;
+	// console.log(a);
+	// var a = 2;
+
+	// a = 3;
+
+	// print();
+	// print2();
+
+	// function print() {
+	// 	console.log('aaa');
+	// }
+
+	// var print2 = function() {
+	// 	console.log('bbb');
+	// }
+
+	var a = 20;
+	function fn() {
+		console.log(a);
+		var a = 10
+	}
+	fn()
+</script>
+</html>

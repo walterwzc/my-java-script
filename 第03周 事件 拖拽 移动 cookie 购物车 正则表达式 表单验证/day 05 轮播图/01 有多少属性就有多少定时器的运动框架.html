@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		#box{
+			width: 100px;
+			height: 200px;
+			background: #ddd;
+		}
+	</style>
+</head>
+<body>
+	<div id="box"></div>
+</body>
+<script src="move.js"></script>
+<script>
+	
+	var oBox = document.getElementById("box");
+	oBox.onmouseenter = function(){
+		// move(oBox,{
+		// 	width:300,
+		// 	height:300,
+		// 	opacity:30
+		// },function(){
+		// 	alert("hello world")
+		// });
+
+		// 取到当前函数，递归调用
+		var arg = arguments.callee;
+
+		move(oBox,{
+			width:300,
+			height:300,
+			opacity:30
+		},function(){
+			move(oBox,{
+				width:100,
+				height:200,
+				opacity:100
+			},arg);
+		});
+	}
+
+
+</script>
+</html>

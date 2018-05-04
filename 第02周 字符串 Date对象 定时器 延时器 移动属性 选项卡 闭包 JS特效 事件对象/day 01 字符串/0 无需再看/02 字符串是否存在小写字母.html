@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+		/*
+			// 1.有没有小写英文字母;
+			// 2.有多少个小写英文字母;
+		*/
+	</script>
+</head>
+<body>
+	<input type="text" id="txt">
+	<button id="btn">按钮</button>
+</body>
+<script>
+	// 点击按钮开始执行整个事件;
+	// 1. 获取 输入的文本框内容;
+	// 2. 判定 所有字符;
+	btn.onclick = function(){
+		var sTxt = txt.value;
+		//console.log(sTxt);
+		//计数器;
+		var count = 0;
+		var flag = false;//不存在小写字母;
+		//循环执行的目的 : 遍历字符进行判断; 
+		for(var i = 0 ; i < sTxt.length ; i++){
+			// console.log(sTxt[i]); //字符
+			// console.log(sTxt.charCodeAt(i));//万国码;
+			// 1.有没有小写英文字母;
+			var asCode = sTxt.charCodeAt(i);
+			if(asCode >= 97 && asCode <= 122){
+				flag = true;
+				count++;
+			}
+			//2.有多少个小写英文字母;
+		}
+		if(flag == false){
+			console.log("不存在小写英文字母");
+		}else{
+			console.log('存在小写英文字母');
+		}
+
+		console.log("存在"+count+"个小写英文字母");
+	}
+
+
+</script>
+</html>

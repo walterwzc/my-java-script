@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		#box{
+			width: 100px;
+			height: 100px;
+			padding: 10px;
+			border:10px solid #ddd;
+		}
+	</style>
+</head>
+<body>
+	<div id="box"></div>
+</body>
+<script>
+	var oBox = document.getElementById("box");
+	console.log("offsetWidth: " + oBox.offsetWidth);
+	//获取css样式的属性 => offsetWidth 靠谱;
+	console.log("ComputedStyle width: " + getComputedStyle(oBox,false).width);
+	console.log("ComputedStyle height: " + getComputedStyle(oBox,false)["height"]);
+</script>
+</html>

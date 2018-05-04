@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.list{
+			width: 1200px;
+			margin: 0 auto;
+		}
+		.list li{
+			list-style-type:none;
+			width: 20%;
+			box-sizing: border-box;
+			border: 1px solid #ddd;
+			border-right: none;
+			float: left;
+			text-align: center;
+			padding-bottom: 10px;
+		}
+		.list li button{
+			background: #ddd;
+			border: none;
+			padding: 5px;
+		}
+		.box{
+			width: 300px;
+			height: 100px;
+			position: fixed;
+			left:0;
+			bottom: 100px;
+			box-shadow: 0 0 5px #ddd;
+			text-align: center;
+			transition: all .5s;
+		}
+		.box span{
+			background: #f90;
+			color: #fff;
+			line-height: 100px;
+			padding: 5px;
+			border-radius: 50%;	
+		}
+	</style>
+</head>
+<body>
+	<ul class="list" id="list">
+		
+	</ul>
+
+	<div class="box">
+		<span>0</span>
+	</div>
+</body>
+<script src="../cookie.js"></script>
+<script>
+	var json = [
+					{
+						img:"https://img11.360buyimg.com/n7/jfs/t15421/228/555228749/141132/d4ddde47/5a30c78dN018428b5.jpg",
+						id:"0"
+					},
+					{
+						img:"https://img14.360buyimg.com/n7/jfs/t2476/110/1122439844/250338/754d8b19/56420025Nb84d4759.jpg",
+						id:"1"
+					},
+					{
+						img:"https://img14.360buyimg.com/n7/jfs/t14491/266/639428541/159455/fb741af0/5a337c7dN75cd772d.jpg",
+						id:"2"
+					},
+					{
+						img:"https://img11.360buyimg.com/n7/jfs/t12328/25/2395367143/292095/fe07e376/5a3e21b8Ne546dcdb.jpg",
+						id:"3"
+					},
+					{
+						img:"https://img11.360buyimg.com/n7/jfs/t4831/320/201860317/58438/5f25552f/58dc83cdNa84b1802.jpg",
+						id:"4"
+					}
+				]
+		var html = "";
+		for(var i = 0 ; i < json.length ; i++){
+			html += "<li>"+
+						'<img src="'+json[i].img+'" alt="">'+
+						'<p>这是一个商品标题</p>'+
+						'<button data='+json[i].id+'>加入购物车</button>'+
+					"</li>" 
+		}
+		var oList = document.getElementById("list");
+		var oBox = document.getElementsByClassName("box")[0];
+		oList.innerHTML = html;
+		// 1. 点击加入购物车的时候，把 id放进 cookie里面;
+		// 2. 进行页面跳转;
+		// 3. 在新的页面中 根据 cookie 之中的 id  获取 商品信息; 放入到页面中;
+		var aBtn = document.getElementsByTagName("button");
+		//console.log(aBtn);
+		for(var i = 0 ; i < aBtn.length ; i++){
+			aBtn[i].onclick = function(){
+				if(getCookie("goodsList")){
+					var sCookie = getCookie("goodsList");
+					var aCookie = JSON.parse(sCookie);//JSON.parse 要求 key值必须为双引号的字符串; 否则报错;
+					//分成两种情况
+					// 1.原数组里已经有要添加的商品了 让该商品的num ++
+					// 2.原数组里没有要添加的商品  建立结构 push 进数组;
+					var id = this.getAttribute("data");
+					/*	
+						id : 7;
+						[{id:10,num:1},{id:8,num:2},{id:7,num:3},{id:7,num:1},{id:7,num:1},]
+					*/
+					var flag = false;
+					for(var i = 0 ; i < aCookie.length ; i++){
+						if(aCookie[i].id == id){
+							flag = true;
+							break;
+						}
+					}
+					if(flag){
+						aCookie[i].num++;
+					}else{
+						aCookie.push({
+							"id":id,
+							"num":1
+						})
+					}
+					//console.log(aCookie);
+					setCookie("goodsList",JSON.stringify(aCookie));
+					//计算购物总数;
+					//aCookie
+					oBox.children[0].innerHTML = getCarSum()
+				}else{
+					var sCookie = '[{"id":'+this.getAttribute("data")+',"num":1}]';
+					//console.log(sCookie)
+					setCookie("goodsList",sCookie);
+				}	
+				console.log(getCookie("goodsList"));
+			}
+		}
+		oBox.children[0].innerHTML = getCarSum()
+		function getCarSum(){
+			if(!getCookie("goodsList")){
+				return 0;
+			}
+			var aCookie = JSON.parse(getCookie("goodsList"));
+			var sum = 0;
+			for(var i in aCookie){
+				sum += aCookie[i].num;						
+			}
+			return sum;
+		}		
+		//防误操作; 降低操作流畅性;
+		var timer = null;
+ 		oBox.onmouseover = function(){
+ 			clearTimeout(timer);
+ 			this.style.background = "#ddd"
+ 			timer = setTimeout(function(){
+ 				oBox.onclick = function(){
+ 					location.href = "购物车-detail.html";
+ 				}
+ 				oBox.style.background = "#0f0";
+ 			}, 500)
+		}
+
+		oBox.onmouseout = function(){
+			clearTimeout(timer);
+ 			oBox.onclick = null;
+ 			oBox.style.background = "";
+		}
+
+</script>
+</html>	

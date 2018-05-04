@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		p{
+			text-align: center;
+			font-size: 80px;
+			line-height: 80px;
+			color: rgba(0,0,0,.8);
+			background: rgba(255,255,255,.3);
+
+		}
+		body{
+			background: url(https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1513661992651&di=7bd1e041f269a376391bb1236ba0a5b5&imgtype=0&src=http%3A%2F%2Fn1.itc.cn%2Fimg8%2Fwb%2Fsmccloud%2F2015%2F05%2F03%2F143061672699115258.JPEG);
+		}
+	</style>
+</head>
+<body>
+	<p>
+		<span id="hour">00</span><b>&nbsp;:</b>
+		<span id="minute">00</span><b>&nbsp;:</b>
+		<span id="second">00</span>
+	</p>
+</body>
+<script>
+		
+		
+
+	//定时器 ; 
+	setInterval(function(){
+		var d = new Date();
+		var shour = d.getHours();
+		var sMin = d.getMinutes();
+		var sSec = d.getSeconds();
+
+		hour.innerHTML = bl(shour);
+		minute.innerHTML = bl(sMin);
+		second.innerHTML = bl(sSec);
+	}, 1000)
+
+	function bl(num){//补零方法;
+		if(num < 10){
+			num = "0"+ num;
+		}
+		return num;
+	}
+
+</script>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>插入排序</title>
+	<script>
+		var arr = [3,7,22,5,44,65,32,79,50];
+
+		for(var i = 0 ; i < arr.length ; i++){//组织规模; =>组织的规模在扩大;
+			// 0 1 2 3 4 5 6 7 8 
+			var n = i;//阻止扩张到了哪里(下标)
+			// 3 
+			// arr[1] => 7 arr[0] => 3  => false;
+			// arr[2] => 22 arr[1] => 7  => false;
+			// arr[3] => 5 arr[2] => 22  => true; n - 1 >= 0;
+			// [3,7,5,22,44,65,32,79,50];
+			// n-- 
+			// arr[2] => 5  => arr[1]=> 7; => true; 2 - 1>= 0 true;
+			// [3,5,7,22,44,65,32,79,50];
+			// n--;
+			// arr[1] => 5  arr[0] => 3  =>false 
+			while(arr[n] < arr[n - 1] && n - 1 >= 0){//换位条件;
+				//换位;
+				var temp = arr[n];
+				arr[n] = arr[n - 1];
+				arr[n - 1] = temp;
+				n--;
+			}	
+		}
+
+
+		console.log(arr);
+
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

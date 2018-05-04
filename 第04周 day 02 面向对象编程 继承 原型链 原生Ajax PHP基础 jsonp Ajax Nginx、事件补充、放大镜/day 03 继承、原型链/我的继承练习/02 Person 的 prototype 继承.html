@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Person prototype 继承</title>
+</head>
+<body>
+    
+</body>
+<script>
+    function Person(name, age) {
+        this.name = name;
+        this.age = age;
+        this.property = "fatherProperty";
+    }
+
+    Person.prototype.species = "human";
+    Person.prototype.relatives = ["father", "mother", "uncle"];
+    Person.prototype.floor = {"A": 11, "B": 22, "C": 33};
+    Person.prototype.sayHi = function() {
+        console.log(this.name + " say hi.");
+    }
+
+
+    function Student(name, age) {
+        Person.apply(this, arguments);
+    }
+
+    Student.prototype = new Person();
+    Student.prototype.constructor = Student;
+
+    var person1 = new Person("Lily", 20);
+    // var person1 = new Person();
+    console.log(person1.name, person1.age, person1.property, person1.species, person1.relatives, person1.floor);
+    person1.sayHi();
+
+    console.log("--------------------------------------------");
+
+    var student1 = new Student("Zach", 21);
+    student1.relatives[0] = "AAAAA"
+    // var student1 = new Student();
+    console.log(student1.name, student1.age, student1.property,  student1.species, student1.relatives, student1.floor);
+    student1.sayHi();
+
+    console.log("--------------------------------------------");
+
+    console.log(person1, student1);
+
+    console.log("--------------------------------------------");
+
+    console.log(person1.constructor, student1.constructor);
+    console.log(person1.__proto__, student1.__proto__);
+</script>
+</html>

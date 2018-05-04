@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		#box{
+			width: 100px;
+			height: 100px;
+			position: absolute;
+			background: #ddd;
+			left: 400px;
+			top: 300px;
+		}
+	</style>
+</head>
+<body>
+	<div id="box"></div>
+</body>
+<script>
+	var x = 0; //左右平移;
+	var y = 0; //上下平移;
+	var speedX = 0; //x轴速度;
+	var speedY = 0; //x轴速度;
+	var oBox = document.getElementById("box");
+	var timer = null;
+	timer = setInterval(function(){
+		x = x  + speedX ;
+		y = y  + speedY ;
+		oBox.style.left = x + "px";
+		oBox.style.top = y + "px";
+	}, 500);
+	// 上;   speedX = 0 , speedY - 
+	// 下;   speedX = 0 , speedY +
+	// 左;   speedX - , speedY = 0
+	// 右;	 speedX + , speedY = 0
+	document.onkeypress = function(event){
+		var evt = event || window.event;
+		// console.log(evt.keyCode);
+		// console.log(evt.which);
+		var code = evt.keyCode|| evt.which;
+		console.log(code);
+		// 119 =>  上;
+		// 97  =>  左;
+		// 115 =>  下;
+		// 100 =>  右;
+		switch(code){
+			case 119 : speedX = 0 , speedY = -100;break;
+			case 115 : speedX = 0 , speedY =  100;break;
+			case 97 : speedX = -100 , speedY =  0;break;
+			case 100 : speedX = 100 , speedY =  0;break;
+		}
+	}
+</script>
+</html>

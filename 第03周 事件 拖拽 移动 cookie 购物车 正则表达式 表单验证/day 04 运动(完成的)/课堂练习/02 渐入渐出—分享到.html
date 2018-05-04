@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>渐入渐出—分享到</title>
+    <style>
+        * {margin: 0; padding: 0;}
+        #div {
+            height: 200px; 
+            width: 100px; 
+            background: #ddd; 
+            position: absolute; 
+            left: -100px;
+        }
+
+        #shareTo {
+            display: table-cell;
+            height: 100px; 
+            width: 30px; 
+            background: #ddd; 
+            position: relative; 
+            top: 45px; 
+            left: 100px; 
+            line-height: 25px; 
+            font-size: 18px; 
+            padding: 5px 2px; 
+            text-align: center;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+    <div id="div">
+        <div id="shareTo">分享到</div>
+    </div>
+</body>
+<script>
+    var oDiv = document.getElementById("div");
+    var oShare = document.getElementById("shareTo");
+
+    var timer = null;
+    oDiv.onmouseover = function() {
+        // clearInterval(timer);
+        // timer = setInterval(function() {
+        //     if (oDiv.offsetLeft >= 0) {
+        //         clearInterval(timer);
+        //     } else if (oDiv.offsetLeft < 0){
+        //         oDiv.style.left = oDiv.offsetLeft + 5 + "px";
+        //     }
+        // }, 30);
+        move(0);
+    }
+
+    oDiv.onmouseout = function() {
+        // clearInterval(timer);
+        // timer = setInterval(function() {
+        //     if (oDiv.offsetLeft <= -100) {
+        //         clearInterval(timer);
+        //     } else if (oDiv.offsetLeft > -100){
+        //         oDiv.style.left = oDiv.offsetLeft - 5 + "px";
+        //     }
+        // }, 30);
+        move(-100);
+    }
+
+    function move(target) {
+        var speed;
+        if (oDiv.offsetLeft < target) {
+            speed = 5;
+        } else {
+            speed = -5;
+        }
+        // console.log(speed);
+        clearInterval(timer);
+
+        timer = setInterval(function() {
+            if (oDiv.offsetLeft == target) {
+                clearInterval(timer);
+            } else {
+                oDiv.style.left = oDiv.offsetLeft + speed + "px";
+            }
+        }, 30);
+    }
+</script>
+</html>

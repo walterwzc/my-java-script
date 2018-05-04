@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+		
+		//关键字;
+		// function a(){
+		// 	"use strict" //ES5的严格模式;
+		// 	//this;
+		// 	console.log(this);//谁调用他那么就指向谁;
+		// 	// 当前方法所属对象; 
+		// 	//但凡是 this指向 window 的时候，基本上都出事了;
+		// }
+		
+		// a();
+
+		function a(){
+			console.log(this);
+		}
+		//函数的第一种调用方式;
+		//window.a(); //对象.函数名 + ();
+		//函数的第二种调用方式;
+		//a.call(window); // 函数名.调用(对象);
+
+		var arr = [9,7,5,6,8,10,123,444,565];
+
+		//console.log(arr.sort());
+		// var sortRes = arr.sort(function(x,y){
+		// 	console.log(x,y);
+		// 	return y - x ;
+		// })
+		// console.log(sortRes);
+
+		//console.log(arr.slice());
+
+
+
+	</script>
+</head>
+<body>
+	<div id="box"></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+</body>
+
+<script>
+	//document 表示全局查找; =>  get => 获取 
+	// 							Elements => 元素们;
+	//                          By => 通过;
+	//                          tagName => 标签名;
+	var aDiv = document.getElementsByTagName("div");
+
+	//但凡是选择器选择的一组元素 都是伪数组;  属于 1.nodeList  2.HTMLCollection
+
+	// console.log(aDiv);
+
+	// for(var i = 0 ; i < aDiv.length ; i++){
+	// 	console.log(aDiv[i])
+	// }
+
+	//aDiv.slice();
+
+	//改变伪数组;
+	
+	// console.log(aDiv);
+	// var arr = [].slice.call(aDiv);// [].slice.call(伪数组)
+	// console.log(arr.join("-"));
+
+
+</script>
+</html>

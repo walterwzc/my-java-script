@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="libs/jquery-3.2.1.js"></script>
+	<script>
+		//html;
+		//attr();
+		//removeAttr();
+		$(function () {
+
+			// 示例： 创建节点，添加或移除属性
+			// var $div = $("<div></div>");
+			// $div.html("hello world i'm new div")
+			// // $div.attr("class","acitve")
+			// // $div.attr("id","acitve")
+			// $div.attr({
+			// 	id: "active",
+			// 	class: "active"
+			// });
+			// console.log($div.attr("class"));
+			// $div.removeAttr("class");
+
+			// var $input = $("<input type=text>");
+			// $input.val("123"); //设置值;
+			// $input.val();      //获取值;
+
+			// console.log($input[0]);
+
+			// $("body").append($input);
+			// $input.appendTo($("body"));
+			//$("body").prepend($input)
+
+			//$("body").after($input); //元素插入到兄弟级别的后面;
+			//$("body").before($input); //元素插入到兄弟级别的后面;
+			//$("body").insertBefore($input)
+
+			// $input.wrap("<div class='wrap'></div>");
+
+			// $("body").before($input);
+
+			//$(".hello").wrap("<strong></strong>")
+			//$(".hello").replaceWith("<strong></strong>")
+			//$(".hello").remove();
+
+			// console.log(clone);
+
+			$(".hello").click(function(){
+				alert("hello world");
+			})
+			var clone = $(".hello").clone(true);
+
+			$("body").append(clone);
+
+			// 通过改变被复制的元素的内容，而复制的元素没有变化，证明$.clone(true) 是深克隆。
+			$("div").eq(0).html("divdivdiv")
+			// console.log($("body").width());
+			// console.log($("body").width(1000));
+			// console.log($("html").width());
+		})
+
+	</script>
+</head>
+
+<body>
+	<div class="hello">hello world i'm div1</div>
+	<div>hello world i'm div2</div>
+	<div>hello world i'm div3</div>
+</body>
+
+</html>

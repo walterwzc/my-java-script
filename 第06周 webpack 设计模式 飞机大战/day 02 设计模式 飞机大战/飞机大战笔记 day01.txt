@@ -1,0 +1,32 @@
+
+$("li", options)
+类似于element.getElementsByTagName();
+options 为执行上下文。
+
+
+$("li" ,options).on("click", $.proxy(this.chose_hard, this))
+=> 能够在chose_hard的方法，使用this的时候，总是指向Engine对象。
+
+
+
+问题单体模式也有_proto_，为什么不能够用原型链继承？
+
+
+单体模式：
+1. 高效封装
+2. 减少全局变量。
+3. 没法继承，如果需要多个实例，那么需要使用克隆。
+
+
+将一个模块，比如说飞机，将与其有关的属性和方法，封装在一个类之中
+
+
+单例模式：
+对于一个构造方法，第一次创建，将一个该构造方法的原型放在该属性之中，之后每一次创建该对象，则返回该对象的该属性。
+
+if(Pop.instance instanceof Object){
+	return Pop.instance;
+}else{
+	return Pop.instance = Pop.prototype;
+}
+

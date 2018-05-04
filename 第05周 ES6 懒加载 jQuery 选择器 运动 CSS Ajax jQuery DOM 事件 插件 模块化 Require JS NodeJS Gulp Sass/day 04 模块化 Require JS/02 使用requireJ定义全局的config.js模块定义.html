@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script src="src/require.js"></script>
+<script>
+	// require(["src/config.js"], function(){ //先加载配置文件,然后在加载相应路径;
+	// 	require(["jquery"],function(jq){
+	// 		console.log(jq);
+	// 	})
+	// })
+	// console.log(jQuery);
+
+	// 在require函数之后，带js后缀的，表示加载的时候执行，不带后缀，表示加载模块
+	require(["src/config.js"], function () { //先加载配置文件,然后在加载相应路径;
+		require(["model2"], function (model) {
+			console.log(model);
+			model.mix();
+			// model.change();
+		})
+	})
+
+
+</script>
+
+</html>

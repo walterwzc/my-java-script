@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+		
+		// function CreatePeople(name,age){
+		// 	//因为是偷偷的创建 没有名字，没法调用，所以在面向对象中提供了一个指针指向了这个的对象;
+		// 	this.name = name;
+		// 	this.age = age;
+		// 	this.show = function(){
+		// 		alert("hello 大家好 我是"+ this.name + "我今年"+ this.age +"岁了，新年快乐!")
+		// 	}
+		// }
+		// var people1 = new CreatePeople("杨怀智","18");
+		// var people2 = new CreatePeople("杨怀智","18");
+		
+		// // console.log(people1 == people2);
+		// // console.log(people1.name == people2.name);
+		// console.log(people1.show == people2.show);
+
+		//原型;
+		// 每个函数都有一个自己的原型;
+		// 几乎所有的对象 都有其构造函数;
+		// 为什么 几乎所有对象都有 构造函数 => 原型;
+
+
+		// var arr = [];
+
+		// // console.log(arr);
+		// // __proto__ => 当前函数所属于的构造函数;
+		// Array.prototype.yanghuaizhi = function(){
+		// 	console.log("这曾是朕的江山");
+		// }
+		// arr.yanghuaizhi();
+
+		// console.log(arr.__proto__);
+		// console.log(Array.prototype);
+		// console.log(arr.__proto__ === Array.prototype);
+
+		//什么时候原型被创见;
+
+		// function fn(){
+
+		// }
+		// constructor => 表明当前原型属于那个(构造)函数;
+
+		// 原型里存在几个东西;
+
+		// 1. constructor;
+		// 2. __proto__
+		// console.log(fn.prototype);
+
+		//当函数被创建的时候，原型也被创建 ; => 他们只被声明|创建了一次；
+
+
+
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

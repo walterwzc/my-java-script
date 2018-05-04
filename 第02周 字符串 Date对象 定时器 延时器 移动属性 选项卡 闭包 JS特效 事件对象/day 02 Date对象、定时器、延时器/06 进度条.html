@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		#box{
+			width: 600px;
+			height: 30px;
+			box-shadow: 0 0 5px #ddd;
+			margin: 100px auto;
+			border:1px solid #000;
+			position: relative;
+			overflow: hidden;
+		}
+		#progress{
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			margin-left: -20px;
+			margin-top: -10px;
+		}
+		#bar{
+			width: 10px;
+			height:30px;
+			background: #f99;
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<div id="bar"></div>
+		<span id="progress">100%</span>
+	</div>
+<script>
+
+	//1.不断增加bar 的宽度
+	//2.设置终止条件;
+
+	var prop = 20;
+
+	// var timer = setInterval(function(){
+	// 	//bar.parentNode => bar 的父元素; 
+	// 	// 让条的宽度 === 父级元素的宽度;
+	// 	if(bar.offsetWidth == bar.parentNode.offsetWidth){
+	// 		clearInterval(timer)
+	// 	}else{
+	// 		bar.style.width = bar.offsetWidth + 2 + "px";
+	// 		//3.每一次宽度的改变 => 进度条的进度都会发生改变;
+	// 		console.log(parseInt(bar.offsetWidth / box.offsetWidth * 100) + "%");
+	// 		progress.innerHTML = parseInt(bar.offsetWidth / box.offsetWidth * 100) + "%";
+	// 	}
+	// }, 30)
+
+	// var timer = setInterval(jdt, 30)
+
+	// function jdt(prop){
+
+	// 	//bar.parentNode => bar 的父元素; 
+	// 	// 让条的宽度 === 父级元素的宽度;
+	// 	if(bar.offsetWidth == bar.parentNode.offsetWidth * prop / 100){
+	// 		clearInterval(timer)
+	// 	}else{
+	// 		bar.style.width = bar.offsetWidth + 2 + "px";
+	// 		//3.每一次宽度的改变 => 进度条的进度都会发生改变;
+	// 		console.log(parseInt(bar.offsetWidth / box.offsetWidth * 100) + "%");
+	// 		progress.innerHTML = parseInt(bar.offsetWidth / box.offsetWidth * 100) + "%";
+	// 	}
+	// }
+
+	var timer = setInterval(function(){
+		jdt(40);
+	}, 30)
+
+	function jdt(prop){
+		//bar.parentNode => bar 的父元素; 
+		// 让条的宽度 === 父级元素的宽度;
+		if(bar.offsetWidth == parseInt(bar.parentNode.offsetWidth * prop / 100)){
+			clearInterval(timer);
+			progress.innerHTML = prop + "%";
+		}else{
+			bar.style.width = bar.offsetWidth + 2 + "px";
+			//3.每一次宽度的改变 => 进度条的进度都会发生改变;
+			console.log(parseInt(bar.offsetWidth / box.offsetWidth * 100) + "%");
+			progress.innerHTML = parseInt(bar.offsetWidth / box.offsetWidth * 100) + "%";
+		}
+	}
+
+</script>
+
+</body>
+</html>

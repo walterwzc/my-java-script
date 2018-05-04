@@ -1,0 +1,1 @@
+alert("this is text String from a text a file.");

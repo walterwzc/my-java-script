@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>clientWidth和clientHeight</title>
+    <style>
+        .box{
+            width: 200px;
+            height: 200px;
+            background: red;
+            border: 1px solid #000000;
+            overflow: auto;
+            overflow-x: scroll;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        javascript高级应用javascript高级应用<br>
+        javascript高级应用javascript高级应用<br>
+        javascript高级应用javascript高级应用<br>
+        javascript高级应用javascript高级应用<br>
+        javascript高级应用javascript高级应用<br>
+        javascript高级应用javascript高级应用<br>
+        javascript高级应用javascript高级应用<br>
+        javascript高级应用javascript高级应用<br>
+        javascript高级应用javascript高级应用<br>
+        javascript高级应用javascript高级应用<br>
+        javascript高级应用javascript高级应用<br>
+        javascript高级应用javascript高级应用<br>
+        javascript高级应用javascript高级应用<br>
+        javascript高级应用javascript高级应用<br>
+        javascript高级应用javascript高级应用<br>
+        javascript高级应用javascript高级应用<br>
+        javascript高级应用javascript高级应用<br>
+        javascript高级应用javascript高级应用<br>
+    </div>
+</body>
+
+<script>
+    window.onload=function(){
+        var oDiv = document.getElementsByTagName('div')[0];
+        console.log("client width and height: " + oDiv.clientWidth+" : "+oDiv.clientHeight);
+        console.log("offset width and height: " + oDiv.offsetHeight+" : "+oDiv.offsetWidth);
+        console.log("scroll width and height: " + oDiv.scrollWidth+" : "+oDiv.scrollHeight);
+    }
+</script>
+</html>

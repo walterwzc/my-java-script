@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        <div>
+            <div>
+                北国风光，千里冰封，万里雪飘。
+                <div>望长城内外，惟余莽莽；大河上下，顿失滔滔。</div>
+                <p>山舞银蛇，原驰蜡象，欲与天公试比高。</p>
+                <p>须晴日，看红装素裹，分外妖娆。</p>
+            </div>
+        </div>
+        <p id="mp">江山如此多娇，引无数英雄竞折腰。</p>
+    </div>
+    <p class="c1">惜秦皇汉武，略输文采；唐宗宋祖，稍逊风骚。</p>
+    <p class="c1">一代天骄，成吉思汗，只识弯弓射大雕。</p>
+    <p>俱往矣，数风流人物，还看今朝。</p>
+</body>
+<script src="jquery-3.2.1.js"></script>
+<h1>沁园春·雪</h1>
+<h2>毛泽东</h2>
+
+
+<script>
+// 让id为mp的元素文字大小变成30px
+    $("#mp").css({"font-size":"30px", "background-color" : "#ddd"});
+// 让class名为.c1的元素背景为#CCFF99
+    $(".c1").css("background", "#CCFF99");
+// 将所有的div和p，统一显示间距
+    $("div,p").css("line-height", "20px");
+// 将所有的div增加 2像素 实线 红色
+    $("div").css({"font-size": "+=2px", "font-weight": "bold", "color": "red"});
+// 将div下的所有子div中文字变蓝色blue
+    $("div div").css("color", "blue");
+// 将div中包含的div颜色变成#FF99FF
+    $("div > div").css("color", "#FF99FF");
+// 将div的所有兄弟标签p的字体颜色变成蓝色
+    $("div ~ p").css("color", "blue");
+// 将紧跟着div的p标签的边框设为2像素 实线 #009900
+    $("div + p").css("border", "solid 2px #009900");
+</script>
+
+</html>

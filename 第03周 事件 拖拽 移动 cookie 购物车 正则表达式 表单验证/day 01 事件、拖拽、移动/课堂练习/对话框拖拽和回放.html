@@ -1,0 +1,87 @@
+<!DOCTYPE>
+<html >
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>完美拖拽</title>
+<style type="text/css">
+    html,body{overflow:hidden;}
+    body,div,h2,p{margin:0;padding:0;}
+    body{color:#fff;background:#000;font:12px/2 Arial;}
+    p{padding:0 10px;margin-top:10px;}
+    span{color:#ff0;padding-left:5px;}
+    #box{position:absolute;width:300px;height:150px;background:#333;border:2px solid #ccc;top:50%;left:50%;margin:-75px 0 0 -150px;}
+    #box h2{height:25px;cursor:move;background:#222;border-bottom:2px solid #ccc;text-align:right;padding:0 10px;}
+    #box h2 a{color:#fff;font:12px/25px Arial;text-decoration:none;outline:none;}
+</style>
+<script type="text/javascript">
+
+</script>
+</head>
+<body>
+<div id="box" style="margin-left: 0px; margin-top: 0px; left: 533px; top: 231px;">
+    <h2><a href="javascript:;">点击回放拖动轨迹</a></h2>
+    <p><strong>Drag:</strong><span>false</span></p>
+    <p><strong>offsetTop:</strong><span>231</span></p>
+    <p><strong>offsetLeft:</strong><span>533</span></p>
+</div>
+
+</body>
+<script>
+    var oBox = document.getElementById("box");
+    var oH2 = oBox.children[0];
+    var goBack = oH2.children[0];
+    var whetherDrag = oBox.children[1].children[1];
+    var offsetTopValue = oBox.children[2].children[1];
+    var offsetLeftValue = oBox.children[3].children[1];
+    var positionArray = [];
+
+    oH2.onmousedown = function(evt) {
+        var event = evt || window.event;
+        var offsetX = event.offsetX;
+        var offsetY = event.offsetY;
+        whetherDrag.innerHTML = true;
+        positionArray.push({
+            left: oBox.offsetLeft, 
+            top: oBox.offsetTop
+        });
+        
+        document.onmousemove = function (evt) {
+            var event = evt || window.event;
+            var boxOffsetX = event.clientX - offsetX;
+            var boxOffsetY = event.clientY - offsetY;
+            oBox.style.left = boxOffsetX + "px";
+            oBox.style.top = boxOffsetY + "px";
+
+            offsetTopValue.innerHTML = boxOffsetX;
+            offsetLeftValue.innerHTML = boxOffsetY;
+
+            positionArray.push({
+                left: boxOffsetX, 
+                top: boxOffsetY
+            });
+        }
+
+        document.onmouseup = function() {
+            document.onmousemove = null;
+            whetherDrag.innerHTML = false;
+        }
+    }
+
+    var timer= null;
+    goBack.onclick = function() {
+        console.log(positionArray);
+        var count = positionArray.length - 1;
+
+        timer = setInterval(function() {
+            if (count == -1) {
+                clearInterval(timer);
+                positionArray = [];
+            } else {
+                oBox.style.left = positionArray[count].left + "px";
+                oBox.style.top = positionArray[count].top + "px";
+            }
+            count--;
+        }, 50);
+    }
+</script>
+</html>

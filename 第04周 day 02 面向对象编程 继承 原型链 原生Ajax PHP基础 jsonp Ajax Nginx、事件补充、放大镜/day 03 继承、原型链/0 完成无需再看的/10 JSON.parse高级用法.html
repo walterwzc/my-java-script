@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script></script>
+</head>
+<body>
+<script>
+		
+	var str = '["{{name}}","{{yanghuaizhi}}","{{你好}}","{{alert}}"]'
+	var arr = JSON.parse(str,function(index, item){
+		//console.log(index);
+		//console.log(b);
+		if(typeof item == "string"){
+			if(item.length > 5){
+				item = item.slice(0,5) + "..."
+			}
+		}
+		console.log(item);
+		return item;
+	})
+
+	console.log(arr);
+
+	
+</script>
+</body>
+</html>

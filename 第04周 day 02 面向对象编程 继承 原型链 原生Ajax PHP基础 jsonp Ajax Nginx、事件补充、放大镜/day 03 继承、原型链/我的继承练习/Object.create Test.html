@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Object Create Test</title>
+</head>
+<body>
+    
+</body>
+<script>
+    function Person(name, age) {
+        this.name = name;
+        this.age = age;
+        this.property = "fatherProperty";
+    }
+
+    Person.prototype.species = "human";
+    Person.prototype.relatives = ["father", "mother", "uncle"];
+    Person.prototype.floor = {"A": 11, "B": 22, "C": 33};
+    Person.prototype.sayHi = function() {
+        console.log(this.name + " say hi.");
+    }
+
+    var obj1 = Object.create(Person);
+    var obj2 = Object.create(new Person());
+    var obj3 = Object.create(Person.prototype);
+    var obj4 = new Person();
+    var obj5 = Person.prototype;
+    // console.log(obj1, obj2, obj3, obj4, ojb5);
+
+    console.log(obj3, obj5);
+</script>
+</html>

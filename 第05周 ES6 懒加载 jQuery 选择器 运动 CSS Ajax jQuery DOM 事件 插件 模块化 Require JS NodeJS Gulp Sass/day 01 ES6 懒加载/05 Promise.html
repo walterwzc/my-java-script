@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+		
+		var promise = new Promise(function(success, failed){
+			//console.log(1);
+			//success();
+			// success("success");
+			// failed("failed"); //传入参数作为报错信息;
+			console.dir(success, failed);
+
+		});
+
+		console.log(promise);
+
+		promise.then(function(res){
+			console.log("then");
+			console.log(res);
+		})
+
+		promise.catch(function(e){ //弹出报错信息，并且阻止promise向浏览器报告错误;
+			console.log("catch");
+			console.log(e);
+		})
+
+		console.log("--------------------------------------");
+		
+
+		// 进行中 => pending; 还没有结果;
+
+		// 解决 => resolved;
+		// 失败 => rejected;
+
+		// 状态一旦由pending发生改变，那么代表状态不可逆转;
+		console.log(promise);
+
+		var promise2 = new Promise(promiseCallback);
+
+		function promiseCallback(success, failed) {
+			failed("failed");
+		};
+
+		promise2.catch(function(e) {
+			console.log("promise2 catch");
+			console.log(e);
+		});
+
+
+
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

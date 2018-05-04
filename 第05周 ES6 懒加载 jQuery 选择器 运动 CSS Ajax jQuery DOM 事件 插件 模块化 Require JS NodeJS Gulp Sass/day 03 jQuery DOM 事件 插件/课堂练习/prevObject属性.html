@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>prevObject属性</title>
+    <style>
+        div{
+            width:100px;
+            height:100px;
+            background-color: antiquewhite;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div></div>
+<div></div>
+<script src="jquery-3.2.1.js"></script>
+<script>
+    console.log($('div').eq(0));   // 第二个div元素
+    console.log($('div').eq(0).end());  // $('div)
+    
+</script>
+</body>
+</html>

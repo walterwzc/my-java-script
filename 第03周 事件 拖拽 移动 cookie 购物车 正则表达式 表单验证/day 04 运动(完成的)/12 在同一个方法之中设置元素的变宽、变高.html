@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		#box1,#box2{
+			width: 200px;
+			height: 200px;
+			border: 10px solid #ddd;
+			background: #990;
+			line-height: 200px;
+			text-align: center;
+			color: #fff;
+			font-size: 80px;
+			float: left;
+			margin-left: 20px;
+		}
+	</style>
+</head>
+<body>
+	
+	<div id="box1">变高</div>
+	<div id="box2">变宽</div>
+
+</body>
+<script>
+	
+	var oBox1 = document.getElementById('box1');
+	var oBox2 = document.getElementById('box2');
+
+	oBox1.onmouseover = function(){
+		move(this,"600","height")
+	}
+	oBox2.onmouseover = function(){
+		move(this,"600","width")
+	}
+
+	function move(dom,target,attr){
+		clearInterval(dom.timer);
+		dom.timer = setInterval(function(){
+			var iNow = parseInt(getStyle(dom,attr))
+			var speed = (target - iNow) /6;
+			speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+			if(iNow == target){
+				clearInterval(dom.timer);
+			}else{
+				dom.style[attr] = iNow + speed + "px";
+			}
+		},30)
+	}
+
+	function getStyle(dom,attr){
+		return getComputedStyle(dom,false)[attr];
+	}
+
+</script>
+</html>

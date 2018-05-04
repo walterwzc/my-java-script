@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>基础拖拽</title>
+	<style>
+		#box{
+			width: 100px;
+			height: 100px;
+			background: #ddd;
+			position: absolute;
+			left: 0;
+			top: 0;
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		
+	</div>
+</body>
+<script>
+	//拖拽三剑客;
+
+	// onmousedown => 拖拽开始；
+
+	// onmousemove = > 拖拽进行中;
+
+	// onmouseup => 拖拽结束;
+
+	var oBox = document.getElementById("box");
+	oBox.onmousedown = function(event){
+		//拖拽开始; => 3 获取鼠标根据元素的定位;
+		//console.log("拖拽开始");
+		var evt = event || window.event;
+		//console.log(evt.offsetX,evt.offsetY);
+		var offsetX = evt.offsetX;
+		var offsetY = evt.offsetY;
+		document.onmousemove = function(event){
+			//拖拽进行; =>2  让元素跟着鼠标动;
+			//console.log("拖拽进行");
+			var evt = event || window.event;
+			oBox.style.left = evt.clientX - offsetX + "px";
+			oBox.style.top = evt.clientY - offsetY + "px";
+		}
+		oBox.onmouseup = function(){
+			//拖拽结束; => 1 删除拖拽进行事件;
+			//console.log("拖拽结束");
+			document.onmousemove = null;
+		}
+	}
+
+	
+
+	
+
+
+</script>
+</html>

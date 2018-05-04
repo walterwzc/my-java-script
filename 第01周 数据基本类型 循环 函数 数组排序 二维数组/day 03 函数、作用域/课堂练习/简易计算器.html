@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>简易计算器</title>
+</head>
+<body>
+	<h2>简易计算器</h2>
+</body>
+<script>
+	document.write(calculate(1, 2, '//'));
+	
+	function calculate (num1, num2, opration) {
+		switch(opration) {
+			case '+':
+				return num1 + num2;
+			case '-':
+				return num1 - num2;
+			case '*':
+				return num1 * num2;
+			case '/':
+				return num1 / num2;
+			default:
+				throw new Error('Opration error');
+		} 
+	}
+</script>
+</html>

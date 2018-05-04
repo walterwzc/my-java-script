@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+		//递归; 
+
+		// function foo(){//Uncaught RangeError: Maximum call stack size exceeded 范围错误:内存溢出;
+		// 	// arguments.length  === arguments["length"];
+		// 	//代表当前函数的本身;
+		// 	//console.log(arguments.callee);
+		// 	foo();
+		// }
+
+		// foo();
+
+		//函数自己调用自己; => 递归;
+
+		//打印 从参数到 0 的所有数字;
+
+		// 10 - 0;
+
+		// function foo(n){
+		// 	if( n == 0 ){ return 0; } //终止条件;
+		// 	console.log(n);
+		// 	return foo(n - 1);//计算规则;
+		// }
+		// foo(5)	
+
+		//最大公约数;
+		// function common(m,n){ 
+		// 	var r = m % n; //运算规则;
+		// 	m = n; 
+		// 	n = r;
+		// 	if( r == 0){ //终止条件;
+		// 		return m;
+		// 	}
+		// 	return common(m,n);
+		// }
+
+		// console.log(common(10,25));
+
+
+		// 阶乘;
+
+		// function jiecheng(n){
+		// 	if(n == 1){ // 1.找终止条件;
+		// 		return 1;
+		// 	}
+		// 	return jiecheng(n - 1) * n;//2.return 运算规则;
+		// }
+
+		// console.log(jiecheng(1));//1
+		// console.log(jiecheng(2));//2
+		// console.log(jiecheng(3));//6
+		// console.log(jiecheng(4));//24
+
+		//斐波那契数列;
+
+		//1 1 2 3 5 8 13 21 34 55
+
+		// var count = 0;
+		// function fib(n){
+		// 	count++;
+		// 	if(n == 1 || n == 2){//1.找到终止条件;
+		// 		return 1;
+		// 	}
+		// 	return fib(n - 1) + fib(n - 2); //2.return 运算规则;
+		// }
+
+		// fib(1)// 1
+		// fib(2)// 1
+		// fib(3)// 2
+		// fib(4)// 3
+		//console.log(fib(50));
+
+		// fib(32);
+
+		// console.log(count);
+		// 性能消耗极大; 
+
+		// //更相减损法;	
+		// var count = 0;
+		function divisor(x,y,z){
+			if(!z) { z = 0};
+			//如果 x 和 y 都能被2整除;
+			if( x % 2 == 0 && y % 2 == 0){
+				z ++;
+				//是;
+				x = x / 2;
+				y = y / 2;
+				return divisor(x,y,z);
+			}else{
+				//否;
+				//差值 = 较大数 - 较小数;
+				//判断谁是最大值，谁是最小值;
+				var max,min;
+				if(x > y){	
+					max = x;
+					min = y;
+				}else{	
+					max = y;
+					min = x;
+				}
+				var difference = max - min;
+				//差值等于较小数;
+				if(difference == min){
+					//输出差值;
+					return difference * 2 ** z;
+				}else{
+					//差值 和较小数; 
+					return divisor(difference,min);
+				}
+			}
+		}
+		console.log(divisor(30,60));
+
+		// (function(n){
+		// 	if(n == 0){return }
+		// 	console.log(n);
+		// 	return arguments.callee(n-1);
+		// })(10)
+
+		//
+		// function add(n){
+
+		// }
+
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="jquery-3.2.1.js"></script>
+</head>
+<body>
+    <div>
+        <h4>论语</h4>
+        <p>这是一个上面的P这是一个上面的P这是一个上面的P这是一个上面的P</p>
+        <div class="div1">子在川上曰：</div>
+        <p id="p1">“逝者如斯夫！</p>
+        <span>阿里斯顿会计分录收快递费</span>
+        <p>second upsecond upsecond upsecond upsecond up</p>
+        <div>this is second divdiv</div>
+        <p>second downsecond downsecond downsecond down</p>
+        <p>不舍昼夜。”</p>
+    </div>
+</body>
+<script>
+    $(function() {
+        console.log($("#p1 ~ p"))
+    });
+</script>
+</html>

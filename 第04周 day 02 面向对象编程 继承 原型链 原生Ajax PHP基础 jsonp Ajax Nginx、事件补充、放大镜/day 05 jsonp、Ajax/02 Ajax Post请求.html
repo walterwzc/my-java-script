@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+		
+		var xhr = new XMLHttpRequest();
+		xhr.open("POST","interface/post.php");		
+		xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded")
+		xhr.send("test=10");
+		xhr.onreadystatechange = function(){
+			if(xhr.readyState == 4 && xhr.status == 200){
+				callback(xhr.responseText);
+			}
+		}
+
+		function callback(res){
+			console.log(res);
+		}
+
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

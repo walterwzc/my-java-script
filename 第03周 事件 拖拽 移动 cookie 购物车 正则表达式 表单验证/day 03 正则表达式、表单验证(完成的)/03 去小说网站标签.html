@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>去标签</title>
+</head>
+<body>
+	<textarea id="in" cols="30" rows="10"></textarea>
+	<button id="btn">去标签</button>
+	<textarea id="out" cols="30" rows="10"></textarea>
+</body>
+	
+<script>
+	var oBtn = document.getElementById("btn");
+	var oIn = document.getElementById("in");
+	var oOut = document.getElementById("out");
+
+	oBtn.onclick = function(){
+		var str = oIn.value;	
+		// replace();
+		var reg = /<[^<>]+>/g;
+		str = str.replace(reg,"");
+		oOut.value = str;
+	}
+	// 正则有一个贪婪特性;
+
+
+	// 怎么去描述 ?
+	// 以 < 开头  任意位的除了 < > 的 字符  以 > 结尾;
+
+	// /<[^<>]+>/
+
+</script>
+
+</html>

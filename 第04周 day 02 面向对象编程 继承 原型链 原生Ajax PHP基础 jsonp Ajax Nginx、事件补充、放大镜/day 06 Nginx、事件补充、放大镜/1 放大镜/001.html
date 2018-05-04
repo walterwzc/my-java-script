@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="style/style.css">
+</head>
+
+<body>
+
+	<div class="small">
+		<div class="wrap"></div>
+		<img src="images/timg.jpg" alt="" class="small_img">
+		<span class="grayBox"></span>
+	</div>
+
+	<div class="big">
+		<img src="images/timg.jpg" alt="" class="big_img">
+	</div>
+</body>
+<script>
+
+	//1. 显示;
+	//2. 跟随;
+	function Magnifier() {
+		this.init();
+	}
+
+	Magnifier.prototype = {
+		constructor: Magnifier,
+		init: function () {
+			var $ = document.querySelectorAll.bind(document);
+			this.big = $(".big")[0];
+			this.small = $(".small")[0];
+			this.big_img = $(".big_img")[0];
+			this.grayBox = $(".grayBox")[0];
+			this.small_img = $(".small_img")[0];
+
+			// 鼠标划入、划出
+			this.small.onmouseover = this.showhide.bind(this, "block");
+			this.small.onmouseout = this.showhide.bind(this, "none");
+
+			this.small.onmousemove = this.move_focus.bind(this);
+
+			/* 滚轮功能 */
+
+			this.small.onmousewheel = this.move_wheel.bind(this);
+			this.small.addEventListener("DOMMouseScroll", this.move_wheel.bind(this))
+		},
+
+		showhide: function (status) {
+			this.grayBox.style.display = status;
+			this.big.style.display = status;
+
+			//计算比例
+			this.propX = this.big.offsetWidth / this.grayBox.offsetWidth;
+			this.propY = this.big.offsetHeight / this.grayBox.offsetHeight;
+
+			// console.log(this.propX, this.propY);
+
+			//等比例缩放大图;
+			this.big_img.style.width = this.small_img.offsetWidth * this.propX + "px";
+			this.big_img.style.height = this.small_img.offsetHeight * this.propY + "px";
+
+			//鼠标移入移除效果;
+			if (status == "block") {
+				this.small_img.style.opacity = 0.3;
+			}
+		},
+
+		move_focus: function (event) {
+			var e = event || window.event;
+
+			// grayBox 的 左、上值
+			var left = e.offsetX - this.grayBox.offsetWidth / 2;
+			var sTop = e.offsetY - this.grayBox.offsetHeight / 2;
+
+			/*边界检测 -start， 左侧、上侧*/
+			left = left <= 0 ? 0 : left;
+			sTop = sTop <= 0 ? 0 : sTop;
+
+			/*边界检测 -start， 右侧、下侧*/
+			var maxLeft = this.small.offsetWidth - this.grayBox.offsetWidth;
+			var maxTop = this.small.offsetHeight - this.grayBox.offsetHeight;
+			left = left >= maxLeft ? maxLeft : left;
+			sTop = sTop >= maxTop ? maxTop : sTop;
+			/*边界检测 -end*/
+
+			this.grayBox.style.left = left + "px";
+			this.grayBox.style.top = sTop + "px";
+
+			//大图运动;
+
+			// 如果没有放大比例就返回
+			if (!this.propX || !this.propY) {
+				return 0;
+			}
+
+			var bigLeft = left * this.propX;
+			var bigTop = sTop * this.propY;
+
+			//console.log(left, this.propX)
+
+			this.big_img.style.left = -bigLeft + "px";
+			this.big_img.style.top = -bigTop + "px";
+
+			/*grayBox 框背景定位*/
+			this.grayBox.style.backgroundPosition = -left + "px " + -sTop + "px";
+		},
+
+		move_wheel: function (event) {
+			var e = event || window.event;
+			var turn = "";
+			if (e.wheelDelta) {
+				if (e.wheelDelta > 0) {
+					//向上
+					turn = "up"
+				} else {
+					turn = "down"
+				}
+			} else if (e.detail) {
+				if (e.detail > 0) {
+					turn = "down"
+				} else {
+					turn = "up";
+				}
+			}
+
+			//console.log(turn);
+
+			//向上;变大;	
+
+			if (turn == "up") {
+				var speed = 5;
+			} else if (turn == "down") {
+				var speed = -5;
+			}
+
+			var sWidth = this.grayBox.offsetWidth + speed;
+			var sHeight = this.grayBox.offsetHeight + speed;
+
+			sWidth = sWidth < 40 ? 40 : sWidth;
+			sHeight = sHeight < 40 ? 40 : sHeight;
+			sWidth = sWidth > 300 ? 300 : sWidth;
+			sHeight = sHeight > 300 ? 300 : sHeight;
+
+
+			//设置宽和left
+			this.grayBox.style.width = sWidth + "px";
+			this.grayBox.style.height = sHeight + "px";
+			var left = this.grayBox.offsetLeft - speed / 2;
+			var sTop = this.grayBox.offsetTop - speed / 2;
+
+			//小图背景;
+
+			this.grayBox.style.left = left + "px";
+			this.grayBox.style.top = sTop + "px";
+			this.grayBox.style.backgroundPosition = -left + "px " + -sTop + "px";
+			//重新计算比例;
+			this.propX = this.big.offsetWidth / this.grayBox.offsetWidth;
+			this.propY = this.big.offsetHeight / this.grayBox.offsetHeight;
+			//大图大小及定位+
+
+			this.big_img.style.width = this.small_img.offsetWidth * this.propX + "px";
+			this.big_img.style.height = this.small_img.offsetHeight * this.propY + "px";
+			this.big_img.style.left = -left * this.propX + "px"
+			this.big_img.style.top = -sTop * this.propY + "px"
+
+		}
+
+	}
+	new Magnifier();
+
+</script>
+
+</html>

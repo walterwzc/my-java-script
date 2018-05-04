@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>观察者模式对象烟花</title>
+
+	<script>
+
+
+	</script>
+	<style>
+		.container {
+			width: 80%;
+			height: 600px;
+			border: 2px solid red;
+			background: #000;
+			margin: 20px auto;
+			cursor: pointer;
+			position: relative;
+			left: 0;
+			top: 0;
+			overflow: hidden;
+		}
+
+		.fire {
+			width: 10px;
+			height: 10px;
+			position: absolute;
+			bottom: 0;
+		}
+
+		.small-fire {
+			width: 10px;
+			height: 10px;
+			position: absolute;
+			border-radius: 50%;
+
+		}
+	</style>
+
+</head>
+
+<body>
+
+	<div class="container">
+
+	</div>
+
+</body>
+<script src="move.js"></script>
+<script>
+
+	// init => 选择元素绑定事件;
+
+	// createFire => 创建烟花;
+
+	// fireRaise =>  烟花上升;
+
+	// blast => 烟花爆炸 
+
+	function FireWorks(select_ele) {
+		this.init(select_ele);
+	}
+
+	FireWorks.prototype.init = function (select_ele) {
+		this.fireList = []; //烟花名单;
+		this.container = document.querySelector(select_ele);
+
+		// 这里的三个bind都指向是当前对象，等号右边先执行，只是在onclick事件里面的this指向的是绑定的事件的元素。
+		this.container.onclick = this.renderingFire.bind(this);
+	}
+
+	// 为了防止点击过快，而导致第一个烟花还没有爆炸，第二个就升天的情况，这里将每一次点击生成的元素，都放入烟花队列之中。
+	FireWorks.prototype.renderingFire = function (event) {
+		// 订阅器 === reading
+		var evt = event || window.event;
+		var fire = new Fire(this.container, evt);
+		fire.raise();
+		// 向订阅名单之中插入元素
+		// this.fireList.push(fire);
+		// this.publishRaise();
+	}
+
+	// 这里的逻辑有问题，因为订阅者名单之中，永远只有一个烟花
+	// FireWorks.prototype.publishRaise = function () {
+	// 	var fire = this.fireList;
+	// 	// console.log(this.fireList.length);
+	// 	for (var i = 0; i < fire.length; i++) {
+	// 		// console.log(this.fireList === fire);
+	// 		fire[i].raise();
+	// 		this.fireList.shift();
+	// 	}
+	// }
+	/*烟花   === 订阅者;  
+		{	
+			fire:div,//烟花元素
+			top:evt.offsetY
+		}
+	*/
+	function Fire(container, evt) {
+		this.init(container, evt);
+	}
+
+	Fire.prototype.init = function (container, evt) {
+		this.container = container;
+		this.fire = document.createElement("div");
+		this.fire.style.cssText = "position: absolute; width: 3px; height: 15px; bottom: 0; border-radius: 50%; background: #fff";
+		// left top;
+		//随机颜色;
+		this.fire.style.left = evt.offsetX + "px";
+		this.fire.style.background = this.randomColor();
+		this.top = evt.offsetY;
+		this.left = evt.offsetX;
+		this.container.appendChild(this.fire);
+	}
+
+	Fire.prototype.raise = function () {
+		var _this = this;
+		move(this.fire, {
+			top: this.top
+		}, function () {
+			_this.fire.remove();
+			_this.blast();
+		})
+	}
+
+	Fire.prototype.randomColor = function () {
+		var color = "#";
+		for (var i = 0; i < 6; i++) {
+			if (i == 0 || i == 1) {
+				color += (Math.round(Math.random() * 7) + 8).toString(16);
+			} else {
+				color += Math.round(Math.random() * 7).toString(16);
+			}
+		}
+		return color;
+	}
+
+	Fire.prototype.blast = function () {
+		var radius = Math.round(Math.random() * 100) + 100;
+		var left, top;
+
+		// 爆炸的时候一共产生多少个烟花 
+		var num = Math.round(Math.random() * 10) + 10;
+		for (var i = 0; i < num; i++) {
+			// 爆炸之后，每一个烟花，需要从爆炸点，运动到的left 和 top 的值。
+			left = Math.sin(Math.PI / 180 * i * (360 / num)) * radius + this.left;
+			top = Math.cos(Math.PI / 180 * i * (360 / num)) * radius + this.top;
+			var _this = this;
+
+			// 这里防止生成的div被前面的覆盖，所以使用了闭包，使每一个div在垃圾回收器之中。使每一个Div在使用的时候能够从作用域链中找到之前对应的DIV。
+			(function () {
+				// 这里嵌套一个立即执行函数，是就为了创建一个活动对象，使move之中div对象，向上找寻的时候，能找到该层的活动对象之中的div；而不是在从blast函数开始的地方找寻div，这样的话，只能够找到一个div，因为for循环生成的div，都被最后一个div覆盖了。只有从当前的活动匿名函数的活动对象之中，才能够找寻到爆炸之后，生成的每一个div。
+				var div = document.createElement("div");
+				div.style.cssText = "width: 10px; height: 10px; border-radius: 50%; position: absolute;";
+				div.style.background = _this.randomColor();
+				div.style.left = _this.left + "px";
+				div.style.top = _this.top + "px";
+
+				// 因为是立即执行函数，所以this指向了window，所以这里需要使用前面保存的指向当前对象的this的引用
+				_this.container.appendChild(div);
+				move(div, {
+					top: Math.round(top),
+					left: Math.round(left)
+				}, function () {
+					div.remove();
+				});
+			})();
+		}
+	}
+
+	new FireWorks(".container");
+
+	// obj.fn = function(){
+
+	// }
+</script>
+
+</html>

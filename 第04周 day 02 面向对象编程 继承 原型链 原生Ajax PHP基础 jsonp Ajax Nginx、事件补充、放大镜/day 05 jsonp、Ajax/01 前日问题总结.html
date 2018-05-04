@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+		var xhr = new XMLHttpRequest();
+		xhr.open("GET","interface/login.php");
+		xhr.send(null);
+
+		xhr.onreadystatechange = function(){
+			if(xhr.readyState == 4 && xhr.status == 200){
+				callback(xhr.responseText);
+			}
+		}
+
+		function callback(res){
+			console.log(res);
+		}
+	</script>
+
+</head>
+<body>
+	<button class="btn">1</button>
+	<button class="btn">2</button>
+	<button class="btn">3</button>
+	<button class="btn">4</button>
+
+	<div class="box"></div>
+</body>
+<script>
+	var aBtn = document.querySelectorAll(".btn");
+	var oBox = document.querySelectorAll(".box")[0];
+	for(var i = 0 ; i < aBtn.length ; i++){
+		(function(index){
+			aBtn[i].onclick = function(){
+				ajaxGet("interface/login.php", function(res){
+					oBox.innerHTML = res;
+				}, "page=" + index);
+			}
+		})(i);
+	}
+
+	function ajaxGet(url,callback,data){
+		//是否有数据传入;
+		if(data && typeof data == "string"){
+			url = url + "?" + data;
+		}
+		var xhr = new XMLHttpRequest();
+		xhr.open("GET",url);
+		xhr.send(null);
+		xhr.onreadystatechange = function(){
+			if(xhr.readyState == 4 && xhr.status == 200){
+				callback(xhr.responseText);
+			}
+		}
+	}
+</script>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Document</title>
+	<script>
+		
+		// var arr = ["hello ",123,{},function(){
+		// 	return [1,function(){
+		// 		alert("hello")
+		// 	}]
+		// },[],,];
+
+		// console.log(arr[3]);
+
+		// console.log(arr[3]());
+		// console.log(arr[3]()[1]);
+
+		// arr[3]()[1]();
+
+		// function fn(){
+		// 	// return 
+		// 	// {};
+		// 	var arr = [1,2,3,34,5];
+		// 	return arr[4];
+		// }
+
+		// console.log(fn());
+
+		// var arr = [
+		// 	[1,2,3,45],
+		// 	[1,2,3,4]
+		// ]
+
+		// console.log(arr[0][3]);
+
+
+		// 通过循环生成顺序为一个5×5的二维数组a 赋1到25的自然数。
+
+		var arr = [];
+		for(var i = 0 ; i < 5 ; i++){
+			var newArr = [];
+			for(var j = 0 ; j < 5 ;j ++){
+				// 0 * 5 + j + 1;
+				// 1 * 5 + j + 1;
+				// 2 * 5 + j + 1;
+				newArr.push(i * 5 + j + 1);
+			}
+			arr.push(newArr);
+		}
+
+		
+
+		console.log(arr);
+
+
+
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

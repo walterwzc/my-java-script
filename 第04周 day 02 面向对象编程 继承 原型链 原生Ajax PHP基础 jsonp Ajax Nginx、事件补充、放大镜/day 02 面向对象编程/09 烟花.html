@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+
+	<script>
+		
+
+	</script>
+	<style>
+		.container{
+			width: 80%;
+			height: 600px;
+			border: 2px solid red;
+			background: #000;
+			margin:20px auto;
+			cursor: pointer;
+			position: relative;
+			left: 0;
+			top: 0;
+			overflow: hidden;
+		}
+		.fire{
+			width: 10px;
+			height:10px;
+			position: absolute;
+			bottom: 0;
+		}
+		.small-fire{
+	
+			width: 10px;
+			height: 10px;
+			position: absolute;
+			border-radius: 50%;
+
+		}
+	</style>
+
+</head>
+<body>
+	
+	<div class="container">
+		
+	</div>
+
+</body>
+<script src="move.js"></script>
+<script>
+	
+	// init => 选择元素绑定事件;
+
+	// createFire => 创建烟花;
+
+	// fireRaise =>  烟花上升;
+
+	// blast => 烟花爆炸 
+
+	function FireWorks(select_ele){
+		this.init(select_ele);
+	}
+	FireWorks.prototype.init = function(select_ele){
+		this.ele = document.querySelector(select_ele);
+		this.ele.onclick = this.createFire.bind(this);
+	}
+	FireWorks.prototype.createFire = function(event){
+		var evt = event || window.event;
+		this.fire = document.createElement("div");
+		this.fire.style.cssText = "position:absolute;width:3px;height:15px;bottom:0;border-radius:50%;background:#fff";
+		// left top;
+		this.fire.style.left = evt.offsetX + "px";
+		//随机颜色;
+		this.fire.style.background = this.randomColor();
+		this.ele.appendChild(this.fire);
+		this.top = evt.offsetY;
+		this.fireRaise();
+	}
+	FireWorks.prototype.randomColor = function(){
+		var color = "#";
+		for(var i = 0 ; i < 6 ; i++){
+			if(i == 0 || i == 1){
+				color += (Math.round(Math.random() * 7) + 8).toString(16);
+			}else{
+				color += Math.round(Math.random() * 7).toString(16);
+			}
+		}
+		return color;
+	}
+	FireWorks.prototype.fireRaise = function(){
+		//找到firework的目标点;
+		var _this = this;
+		move(this.fire,{
+			top:this.top
+		},function(){
+			_this.fire.remove();
+		})
+	}
+
+	new FireWorks(".container");
+</script>
+
+</html>	

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>target和currentTarget</title>
+    <style>
+        #outter {width: 200px; height: 200px; background: #f00;}
+        #inner {width: 100px; height: 100px; background: #ddd;}
+    </style>
+</head>
+<body>
+    <div id="outter">
+        <div id="inner"></div>
+    </div>
+</body>
+<script>
+    outter.addEventListener('click',function(e){
+        console.log(e.target);  //inner
+        console.log(e.currentTarget);  //outter
+        console.log(e.target === this);  // false
+        console.log(e.currentTarget === this);  //true
+    },false);
+</script>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		#box{
+			height: 300px;
+			top: 100px;
+			background: #ddd;
+		}
+		#children{
+			width: 200px;
+			height: 200px;
+			position: relative;
+			left: 100px;
+			top: 100px;
+			background: green;
+		}
+
+		.container{
+			position: relative;
+			padding-left: 20px;
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<div class="container">
+			<div id="children">
+				
+			</div>
+		</div>
+	</div>
+</body>
+<script>
+	var oBox = document.getElementById("box");
+	var oChildren = document.getElementById("children");
+
+	console.log(oBox.offsetLeft);
+	console.log(oChildren.offsetLeft);
+	console.log(oChildren.offsetParent);  // container
+	console.log(oChildren.offsetParent.offsetParent);  // BODY
+	console.log(oChildren.offsetParent.offsetParent.offsetParent);   //null
+	console.log(oChildren.offsetParent.offsetLeft);
+
+	// 当前元素的 偏移  +  根据body定位的元素的偏移 ;
+	function postion(ele){
+		if(ele.offsetParent.nodeName == "BODY"){
+			return ele.offsetLeft;
+		}
+		return ele.offsetLeft + postion(ele.offsetParent);
+	}
+
+	console.log(postion(oChildren));
+
+</script>
+</html>

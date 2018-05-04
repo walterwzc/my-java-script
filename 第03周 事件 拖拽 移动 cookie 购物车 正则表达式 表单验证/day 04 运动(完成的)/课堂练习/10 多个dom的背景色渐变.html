@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>多个dom的背景色渐变</title>
+    <style>
+        * {padding: 0; margin: 0;}
+        div {
+            width: 150px;
+            height: 150px;
+            background: #000;
+            float: left;
+            margin-right: 20px;
+            opacity: 0.3;
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+    <div></div>
+    <div></div>
+</body>
+<script>
+    var aDiv = document.getElementsByTagName("div");
+    for (var i = 0; i < aDiv.length; i++) {
+        aDiv[i].onmouseover = function() {
+            move(this, 100)
+        }
+
+        aDiv[i].onmouseout = function() {
+            move(this, 30);
+        }
+    }
+
+    function move(dom, target) {
+        clearInterval(dom.timer);
+        dom.timer = setInterval(function() {
+            var nowOpacity = parseFloat(getStyle(dom,"opacity") * 100);
+            console.log(nowOpacity);
+            var speed = (target - nowOpacity) / 6;
+            speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+
+            if (nowOpacity == target) {
+                clearInterval(dom.timer);
+            } else {
+                dom.style.opacity= (nowOpacity + speed) / 100;
+            }
+        }, 30);
+    }
+
+    function getStyle(dom, attr) {
+        return getComputedStyle(dom, false)[attr];
+    }
+</script>
+</html>

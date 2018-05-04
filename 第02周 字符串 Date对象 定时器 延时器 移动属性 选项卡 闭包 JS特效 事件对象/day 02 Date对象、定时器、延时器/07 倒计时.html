@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>倒计时</title>
+	<script>
+		
+		//终止时间对象;
+		// var end = new Date("2018/2/10");
+
+		// var nEnd = end.getTime();
+		// console.log(end.getTime());// 1970 年 1 月 1 日 -  终止时间的毫秒数;
+		// console.log(end);
+		// var now = new Date();
+		// //console.log(now.getTime());// 1970 年 1 月 1 日 -  现在的毫秒数;
+		// var nNow = now.getTime();
+		// var cha = nEnd - nNow;//两个日期之间的插值;
+		// var day = parseInt(cha / (1000 * 60 * 60 * 24));
+		// var hour = parseInt(cha % 1000 * 60 * 60 * 24 / (1000 * 60 * 60) );
+		// var minutes = parseInt(cha % (1000 * 60 * 60) / (1000 * 60) );
+		// var seconds = parseInt(cha % (1000 * 60) / 1000 );
+		// console.log(seconds);
+
+
+		var end = new Date("2018/2/10");
+		var nEnd = end.getTime();
+		setInterval(function(){
+			var now = new Date();
+			var nNow = now.getTime();
+			var cha = nEnd - nNow;//两个日期之间的插值;
+			var day = parseInt(cha / (1000 * 60 * 60 * 24));
+			var hour = parseInt(cha % (1000 * 60 * 60 * 24) / (1000 * 60 * 60) );
+			var minutes = parseInt(cha % (1000 * 60 * 60) / (1000 * 60) );
+			var seconds = parseInt(cha % (1000 * 60) / 1000 );
+			console.log(day,hour,minutes,seconds);
+		},1000);
+
+
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

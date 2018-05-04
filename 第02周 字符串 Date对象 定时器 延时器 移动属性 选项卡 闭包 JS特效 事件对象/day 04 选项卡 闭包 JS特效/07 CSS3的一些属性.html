@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		a{
+			transition: all 2s; 
+			/*过渡  第一个代表要改变什么属性 第二个代表过渡时间 */
+		}
+		a:hover{
+			color: red;
+		}
+		body{
+			padding: 200px;
+		}
+		.box{
+			width: 100px;
+			height: 100px;
+			background: #000;
+			transition: all 1s;
+		}
+		.box:hover{
+			opacity: 0.3;
+			background: #f99;
+		}
+
+		.img-box{
+			width: 100px;
+			height: 100px;
+		}
+		.img-box img{
+			width: 100%;
+			height: 100%;
+			transition: all 0.5s;
+		}
+		.img-box:hover img{
+			/*变形*/
+			transform:translateX(-20px) translateY(-20px) rotate(360deg) scale(1.5);
+		}
+
+	</style>
+</head>
+<body>
+	<a href="#javascript">hello</a>
+	<div class="box">
+	</div>
+	<div class="img-box">
+		<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1513857425959&di=80747a30af3fa1cb67d9731a9e643a34&imgtype=0&src=http%3A%2F%2Fpic47.nipic.com%2F20140903%2F9885883_103223078001_2.jpg" alt="">
+	</div>
+
+</body>
+</html>

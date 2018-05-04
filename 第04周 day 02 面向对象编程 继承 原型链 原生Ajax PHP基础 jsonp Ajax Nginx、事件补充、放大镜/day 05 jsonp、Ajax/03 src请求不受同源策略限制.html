@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<img src="http://img.zcool.cn/community/01003b5a4f2667a801219741f56dc2.jpeg@260w_195h_1c_1e_1o_100sh.jpg" alt="">
+</body>
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="ajax.js"></script>
+<script>
+
+	ajaxGet("http://localhost/0105/interface/login.php?page=2", function(res){
+		console.log(res);
+	})
+	//同IP 同端口 同协议;
+
+	// 同端口  : 因为一个ip地址可以配置多个端口;
+	// 同协议 : http https;
+
+	// 同源策略 : 同IP 同端口 同协议
+
+	// jsonp; 
+
+	// src 请求不受同源策略限制;
+
+</script>
+</html>

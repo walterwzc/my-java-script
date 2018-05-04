@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>两位随机数之间的数</title>
+</head>
+<body>
+	<h2>两位随机数之间的数</h2>
+</body>
+<script>
+	document.write(twoRandomNumber(10, 25));
+	
+	function twoRandomNumber(num1, num2) {
+		return num1 + Math.round(Math.random() * (num2 - num1));
+	}
+</script>
+</html>

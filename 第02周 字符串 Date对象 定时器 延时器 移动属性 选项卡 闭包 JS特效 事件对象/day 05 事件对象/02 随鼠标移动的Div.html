@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		#box{
+			width: 300px;
+			height: 300px;
+			background: #ddd;
+			
+			position: absolute;
+		}
+		body{
+			width: 5000px;
+			height: 3000px;
+		}
+		#txt{
+			width: 300px;
+			border:none;
+			position: fixed;
+			left: 0;
+			top: 0;
+		}
+	</style>
+</head>
+<body>
+	<input type="text" id="txt" readonly="readonly">
+
+	<div id="box">
+	</div>
+
+</body>
+<script>
+	document.onmousedown = function(event){
+		var e = event || window.event;
+		//X,Y
+		// offset 
+		// client
+		// screen
+		// page
+		console.log(e.offsetX+" |offset:",e.clientX+" |client" , e.screenX+" |screen",e.pageX + " |pageX");//当前发生事件的元素偏移量;
+		//console.log();//根据可视框窗口获取坐标;
+	}
+
+	//什么时候需要定位值更新;
+
+	var oTxt = document.getElementById("txt");
+	var oBox = document.getElementById("box");
+	document.onmousemove = function(event){
+		var evt = event || window.event;
+		var oX = evt.pageX;
+		var oY = evt.pageY;
+
+		oTxt.value = "X坐标为："+oX+",Y坐标为:"+oY;
+
+		oBox.style.left = oX - 150 + "px";
+		oBox.style.top = oY - 150 + "px";
+	}
+
+
+</script>
+</html>

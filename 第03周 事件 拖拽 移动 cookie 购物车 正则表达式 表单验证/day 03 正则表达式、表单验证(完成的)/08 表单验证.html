@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="bootstrap.css">
+	<style>
+		.success{
+			border-color: #0f0;
+		}
+		.error{
+			border-color: #f00;
+		}
+		.low{
+			border-color: orange;
+		}
+		.mid{
+			border-color: #00f;
+		}
+	</style>
+</head>
+<body>
+	
+	<div class="container">
+		<div class="row">
+			<form action="#javascript" class="col-lg-4 col-lg-offset-4">
+				<h4>用户注册:</h4>
+				<div class="from-group ">
+					<label for="email">请输入用户名(邮箱格式):</label>
+					<input type="text" class="form-control" id="email" value="a931673916@qq.com">
+				</div>
+				<div class="from-group">
+					<label for="pass">请输入密码:</label>
+					<input type="text" class="form-control" id="pass">
+				</div>
+				<div class="from-group">
+					<label for="confirmPass">请再次输入密码:</label>
+					<input type="text" class="form-control" id="confirmPass">
+				</div>
+				<div class="from-group">
+					<label for="VerCode">请输入验证码：</label>
+					<input type="text" class="form-control" id="VerCode">
+					<span>1a2c</span>
+				</div>
+				<div class="checkbox">
+	            </div>
+				<button class="btn btn-success " id="register-btn">注册</button>
+			</form>
+		</div>
+	</div>
+</body>
+
+<script>
+	
+	var $ = document.querySelectorAll.bind(document);
+	var oBtn = $("#register-btn")[0];
+	var oEmail = $("#email")[0];
+	var oPass = $("#pass")[0];
+	var oConfirm = $("#confirmPass")[0];
+	oBtn.onclick = function(){
+		//alert("hello world");
+	}
+	oEmail.onblur = function(){
+		var str = this.value;
+		var reg = /^[a-z]\w{5,19}@[a-z]{2,10}\.[a-z]{2,8}$/gi
+		if(reg.test(str)){
+			//通过验证;
+			stautsTip(this,"请输入用户名(邮箱格式):","success")
+		}else{
+			//不通过验证;
+			// 判定是否存在success 或者 error;
+			stautsTip(this,"请输入正确邮箱格式","error")
+		}
+	}
+	oPass.onblur = function(){
+		var str = this.value;
+		var reg = /^[^/\\\*<>\|\?]{6,20}$/;
+		var count = 0;
+		if(reg.test(str)){
+			//6位以上;
+			if(/\d/g.test(str)){
+				count++
+			}
+			if(/[a-z]/gi.test(str)){
+				count++
+			}
+			if(/[!@#\$%\^&\*\(\)]/gi.test(str)){
+				count++
+			}
+			switch(count){
+				case 1:stautsTip(this,"密码强度太差，建议更换密码","low");break;
+				case 2:stautsTip(this,"密码强度一般","mid");break;
+				case 3:stautsTip(this,"请输入密码:","success");break;
+				default:stautsTip(this,"赶紧回火星吧地球不适合你!","goout");break;
+				setTimeout(function(){
+					close();
+				}, 3000);
+			}
+		}else{
+			//提示密码位数不对;
+			stautsTip(this,"请输入6~20位的密码!非/\*<>|?","error")
+		}
+	}
+	oConfirm.onblur = function(){
+		if(oPass.value == oConfirm.value && this.value != ""){
+			stautsTip(this,"请再次输入密码:","success");
+		}else{
+			stautsTip(this,"两次密码不一致，请重新输入:","error");
+		}
+	}
+	function stautsTip(dom,tip,clas){
+		var sClass = dom.className;
+		if(/success|error|mid|low/g.test(sClass)){
+			sClass = sClass.replace(/\ssuccess|\serror|\smid|\slow/," "+clas);
+		}else{
+			sClass += " "+clas
+		}
+		dom.className = sClass;
+		dom.previousElementSibling.innerHTML = tip;
+	}
+
+
+	//思路;
+
+	//邮箱验证思路;
+
+	// 1. 失去焦点事件开始;
+
+	// 2. 判断 用户输入的内容(字符串) 是否符合正则规则;
+
+	// 2.1 正则 (验证邮箱规则的正则);
+
+	// 3. 符合 :  给用户提示 (输入框变绿); 改变 => class =>  
+
+	// 3.2不符合 ：给用户提示 (输入框变红);
+
+	//密码验证:
+
+	// 1. 失去焦点事件开始;
+
+	// 2. 判断 用户输入的密码(字符串) 是否符合正则规则;
+
+	// 2.1 正则 (密码正则) => [^%^&*()]位数验证;
+
+	// 3.1 符合:
+
+	//    验证强度:
+
+	//    count ;
+
+		// 数组 ++；
+		// 字母++;
+		// 特殊符号++
+
+	// 	根据count 的得分给用户相应的提示;
+
+	//	  现有正则 =>  数字字母特殊字符;
+	//    
+
+	// 3.2 不符合: 提示用户;
+
+
+
+
+</script>
+</html>

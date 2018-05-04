@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>变更的Div宽度</title>
+    <style type="text/css">
+        * {padding: 0; margin: 0;}
+        #myDiv {width: 400px; height: 200px; background: #f00; }
+    </style>
+</head>
+<body>
+    <div id="myDiv"></div>
+</body>
+<script>
+    var widthTimer = setInterval(function () {
+        if (myDiv.offsetWidth == 500) {
+            clearInterval(widthTimer);
+        } else {
+            myDiv.style.width = myDiv.offsetWidth + 1 + 'px';
+        }
+    }, 30);
+
+    console.log('width: ' + myDiv.style.width);
+    console.log('height: ' + myDiv.style.height);
+    console.log('background color: ' + myDiv.style.backgroundColor);
+</script>
+</html>

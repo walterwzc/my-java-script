@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>作用域Test</title>
+</head>
+<body>
+    
+</body>
+<script>
+	// 函数提升
+	// 面试题1:
+	// 因为a是全局变量，所在foo函数中，a的赋值不会提升，但是函数a的声明会提升，所以给函数a赋值并没有意义，
+	// 所以最后打印出来a的值，是1.
+
+    // var a = 1;
+    // function foo() {
+        
+    //     function a() {
+
+    //     }
+    //     a = 10;
+    // }
+    // foo();
+    // console.log(a);
+
+    // 面试题2：
+
+	// 函数会首先被提升，然后才是变量。
+
+	// console.log(foo);   
+	// function foo(){
+	//     console.log("函数声明");
+	// }
+	// var foo = "变量";
+	
+
+
+
+
+	// 函数提升优先级比变量提升要高，且不会被变量声明覆盖，但是会被变量赋值覆盖:
+	// console.log(1)函数在最上面，console.log(2)，声明和定义都在下面，所以覆盖了上面的定义。
+
+
+	// var getName = function(){
+	//     console.log(2);
+	// }
+	// function getName (){
+	//     console.log(1);
+	// }
+	// getName();
+
+
+</script>
+</html>

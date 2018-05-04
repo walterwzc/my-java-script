@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>jQuery无 new 调用</title>
+</head>
+
+<body>
+
+</body>
+<script>  
+    var jQuery = function (selector, context) {
+        return new jQuery.prototype.init(selector, context);
+    }
+
+    jQuery.fn = jQuery.prototype = {
+        constructor: jQuery,
+        init: function (selector, context) {
+            // console.log(jQuery.prototype);
+            // console.log(jQuery.fn);
+            // console.log(this.__proto__);
+            return this;
+        },
+        name: function () {
+            console.log("name调用");
+        }
+    }
+
+    jQuery.fn.init.prototype = jQuery.prototype;
+
+    console.log(jQuery()); //  name调用
+</script>
+
+</html>

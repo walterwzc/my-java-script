@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+		// var function 
+		// let const class;
+			
+		//吐槽 var；
+
+		//var => 声明提升;
+		//var => 再大括号里声明的变量也是全局变量(没有块级作用域); 
+		//    => 导致了闭包需要用匿名函数去包裹;
+		
+
+		// var a = 10;
+		// let b = 10; //产生了一块 TDZ 暂时性死区; (在当前的作用域中,在之前不允许使用)
+		// console.log(a,b); 
+		
+
+		// 块级作用域; 大括号作用域;
+
+		// if(true){
+		// 	var a = 10;
+		// 	let b = 20;
+		// }
+		// console.log(a,b);
+
+
+		//const 常量;  和变量的区别 => 一旦声明就不能更改了 ;
+
+		// const a = 10;
+		// a = 20;
+
+		
+		
+
+	</script>
+</head>
+<body>
+	<ul>
+		<li>1</li>
+		<li>2</li>
+		<li>3</li>
+		<li>4</li>
+		<li>5</li>
+	</ul>
+	<script>
+		var aLi = document.getElementsByTagName("li");
+		// for(var i = 0 ; i < aLi.length ; i++){
+		// 	(function(index){
+		// 		aLi[i].onclick = function(){
+		// 			alert(index);
+		// 		}	
+		// 	})(i)
+		// }
+		// for(let i = 0 ; i < aLi.length ; i++){
+		// 	aLi[i].onclick = function(){
+		// 		alert(i);
+		// 	}
+		// }
+	</script>
+</body>
+</html>

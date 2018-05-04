@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+		
+		// 创建一个script 标签 利用script 的src 去获取jsonp跨域数据 ; 
+		//利用script解析字符串的特性，让这个jsonp 跨域数据 去调用 全局函数;
+		// function hello(res){
+		// 	console.log(res);
+		// }
+		// var script = document.createElement("script");
+		// script.src = "http://www.wookmark.com/api/json/popular?callback=hello";
+		// document.documentElement.appendChild(script);
+
+		function jsonp(url, string_callback, fn_callback){
+			var fn_name =("jsonp_callback_" + Math.random()).replace(/\./g,"");
+			// 在全局之中定义了 发往后台的函数，类似于在04案例之中function定义的函数，当script标签加入到页面之中的时候，这个函数开始执行，
+			// 在该函数种执行了 jsonp 传入的 实际的回调函数。
+			window[fn_name] = function(res){
+				fn_callback(res);
+				delete window[fn_name];
+			}
+			url = url + "?" + string_callback + "=" +fn_name;
+			// 规定参数外所有数据都视为数据参数放在url之中拼接;
+			// 虽然没有写在函数的形参之中，但是可通过arguments属性访问到传入的实际参数。
+			if(arguments.length > 3){
+				for(var i = 3 ; i < arguments.length ; i++){
+					url = url + "&" + arguments[i]
+				}
+			}
+			var old_script = document.querySelector("[json_script_data]");
+			if(old_script){
+				old_script.remove();
+			}
+			var script = document.createElement("script");
+			script.src = url;
+			script.setAttribute("json_script_data",fn_name);
+			document.documentElement.appendChild(script);
+		}
+
+
+		(function(){
+			jsonp("http://www.wookmark.com/api/json/popular","callback",nihao1,"page=2","json=3","hello=4");
+				// jsonp("http://www.wookmark.com/api/json/popular","callback",nihao2);
+				// jsonp("http://www.wookmark.com/api/json/popular","callback",nihao3);
+				// jsonp("http://www.wookmark.com/api/json/popular","callback",nihao4);
+
+			function nihao1(res){
+				console.log(res);
+			}
+
+			function nihao2(res){
+				console.log(res);
+			}
+
+			function nihao3(res){
+				console.log(res);
+			}
+
+			function nihao4(res){
+				console.log(res);
+			}
+		})();
+		
+
+
+	</script>
+<!-- 	<script src="http://www.wookmark.com/api/json/popular?callback=hello"></script> -->
+</head>
+<body>
+	
+</body>
+</html>

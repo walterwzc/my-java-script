@@ -1,0 +1,38 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>进度条</title>
+	<style>
+		#box{
+			width: 100px;
+			height: 100px;
+			background: #f99;
+		}
+	</style>
+</head>
+<body>
+	<div id="box"></div>
+
+	<script>
+		//  要让 box 慢慢的 变宽;  width ++；
+		//box.style.width = box.offsetWidth + 10 + "px"; // 110px;
+
+		// 要设置的内容 = 原跨度 + 增加的宽度 + "px";
+
+		// 终止条件;
+		var timer = setInterval(function(){
+			if(box.offsetWidth == 200){
+				clearInterval(timer);
+			}else{
+				box.style.width = box.offsetWidth + 1 + "px";
+			}
+		}, 50);
+		// 间隔时间 越长 动画的流畅度 越低;
+		// 间隔时间 越短 性能越差;
+		// 兼顾流畅度 和 性能的值 => 30;
+		
+	</script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" id="html">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+
+</head>
+<body id="body">
+	
+</body>
+
+<script>
+		// 点击页面上任意位置的时候; 背景颜色发生随机改变;
+
+		// document.onclick = function(){
+		// 	//alert("hello world");	
+		// 	// document.documentElement === <html></html>			
+		// 	//document.documentElement
+		// 	html.style.background = "#000000";
+		// }
+		document.onclick = function(){
+			//alert("hello world");	
+			// document.documentElement === <html></html>			
+			//document.documentElement
+			// var randomColor = parseInt(16777216*Math.random()).toString(16);
+			// html.style.background = "#"+randomColor;
+			var r = Math.round(Math.random() * 255);
+			var g = Math.round(Math.random() * 255);
+			var b = Math.round(Math.random() * 255);
+			var rgb = "rgb("+r +","+g+","+b+")";
+			
+			// body.style.background = rgb;
+			// html.style.background = rgb;
+			html.style.background = randomColor();
+
+			// 打印html标签中所有的内容。
+			// console.log(document.documentElement);
+		}
+		window.onload = document.onclick();
+		
+		function randomColor() {
+			var result = "#";
+			for (var i = 0; i < 6; i++) {
+				result += parseInt(Math.random() * 16).toString(16);
+			}
+			console.log(result);
+			return result;
+		}
+</script>
+</html>

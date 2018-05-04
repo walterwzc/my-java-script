@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>数字时钟</title>
+</head>
+<style>
+    #showTime {margin: 40 auto; font-size: 40px; text-align: center;}
+</style>
+<body>
+    <p id="showTime"><span id="hour"></span>:<span id="minutes"></span>:<span id="second"></span></p>
+</body>
+<script>
+    window.onload = function () {
+        var date = new Date();
+        var nHour = date.getHours();
+        var nMinutes = date.getMinutes();
+        var nSecond = date.getSeconds();
+        hour.innerHTML = buLing(nHour);
+        minutes.innerHTML = buLing(nMinutes);
+        second.innerHTML = buLing(nSecond);
+    }
+
+    setInterval(function () {
+        var date = new Date();
+        var nHour = date.getHours();
+        var nMinutes = date.getMinutes();
+        var nSecond = date.getSeconds();
+        hour.innerHTML = buLing(nHour);
+        minutes.innerHTML = buLing(nMinutes);
+        second.innerHTML = buLing(nSecond);
+    }, 1000);
+
+    function buLing(num) {
+        if (num < 10) {
+            num = "0" + num;
+        }
+        return num;
+    }
+
+    // 终止一个计数器
+    // clearInterval(1);
+</script>
+</html>

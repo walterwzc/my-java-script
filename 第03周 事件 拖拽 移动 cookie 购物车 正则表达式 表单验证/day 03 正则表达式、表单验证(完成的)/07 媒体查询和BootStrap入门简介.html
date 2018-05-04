@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="bootstrap.css">
+    <style>
+     /* 
+        @media screen and (max-width: 1200px){
+            body{
+                background: red;
+            }
+      }
+
+      @media screen and (min-width: 1200px){
+            body{
+                background: green;
+            }
+      }
+     */
+      /*  
+
+        响应式布局 
+
+        根据屏幕大小(去进行相应) ；
+        实现不同的布局;
+
+
+
+    */
+    
+
+    .border{
+        border:1px solid #ddd;
+    }
+
+
+    </style>
+</head>
+<body>
+    
+    <div class="container">
+        
+       <!--  <div class="row">
+           
+           <div class="col-lg-2 col-xs-6  border">
+               hello world
+           </div>
+           <div class="col-lg-2 col-xs-6 border ">
+               hello world
+           </div>
+            <div class="col-lg-2 col-xs-6 border">
+               hello world
+           </div>
+           <div class="col-lg-2 col-xs-6 border ">
+               hello world
+           </div>
+             <div class="col-lg-2 col-xs-6 border">
+               hello world
+           </div>
+           <div class="col-lg-2 col-xs-6 border ">
+               hello world
+           </div>
+       </div> -->
+
+        <div class="row">
+             <form class="col-lg-4 col-lg-offset-4">
+                  <div class="form-group">
+                    <label for="">Email address</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Password</label>
+                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                  </div>
+                  <div class="form-group">
+                    <label for="conPass">Confirm Password  </label>
+                    <input type="email" class="form-control" id="conPass" placeholder="Email">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Password</label>
+                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                  </div>
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox"> Check me out
+                    </label>
+                  </div>
+                <button type="submit" class="btn btn-success">Submit</button>
+            </form>
+        </div>
+
+    </div>
+    
+
+</body>
+</html>

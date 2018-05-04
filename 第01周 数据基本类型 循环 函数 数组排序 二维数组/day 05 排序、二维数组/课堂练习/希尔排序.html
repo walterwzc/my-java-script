@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>希尔排序</title>
+</head>
+<body>
+    
+</body>
+<script>
+    var array = [12, 22, 2, 34, 43, 65, 1 ,23];
+
+    // 设置间隔
+    var step = parseInt(array.length / 2);
+    var temp;
+    while (step >= 1) {
+        
+        for (var i = step; i < array.length; i++) {
+            var index = i;
+            // 处理间隔
+            while (array[index] < array[index-step] && index - step >= 0) {
+                temp = array[index];
+                array[index] = array[index-step];
+                array[index-step] = temp;
+
+                index = index - step;
+            }
+        }
+
+        step = parseInt(step / 2);
+    }
+
+    console.log(array);
+
+</script>
+</html>

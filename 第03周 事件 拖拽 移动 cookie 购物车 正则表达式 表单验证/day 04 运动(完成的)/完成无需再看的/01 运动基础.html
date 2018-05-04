@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>运动基础</title>
+	<style>
+		#box{
+			width: 100px;
+			height: 100px;
+			background: #f00;
+			position: absolute;
+			left: 0;
+			top: 0;
+		}
+	</style>
+</head>
+<body>
+	<div id="box"></div>
+</body>
+<script>
+	// 运动的本质 => 不间断的 改变元素的某个属性;
+	// 递增 递减;
+	var oBox = document.getElementById("box");
+	var speed = 10;
+	setInterval(function(){
+		oBox.style.left = oBox.offsetLeft + speed + "px";
+	}, 30);
+
+	// speed => 单位时间内位移的距离 越大 速度越快;
+
+</script>
+</html>

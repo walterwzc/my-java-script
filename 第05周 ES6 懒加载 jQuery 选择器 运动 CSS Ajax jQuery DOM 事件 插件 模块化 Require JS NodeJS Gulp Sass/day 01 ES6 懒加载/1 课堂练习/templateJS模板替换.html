@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Template JS 模板替换</title>
+    <script src="template.js"></script>
+    
+</head>
+<body>
+    <div class="box"></div>
+</body>
+
+<script type="text" id="ulScript">
+    <ul>
+        <% for(var i = 0 ; i < data.name.length ; i++){ %>
+            <li><%= data.name[i] %></li>
+        <% } %>
+    </ul>
+</script>
+
+
+<script>
+    var section = `
+        <ul>
+            <% for(var i = 0 ; i < data.name.length ; i++){ %>
+                <li><%= data.name[i] %></li>
+            <% } %>
+        </ul>
+    `;
+    var box = document.getElementsByClassName("box")[0];
+
+    var res = test(section,{name:["hello","world","i'm","template"]});
+
+    // console.log(res);
+    // box.innerHTML = res;
+
+    // window.onload = function() {
+        var ulScript = document.getElementById("ulScript");
+        // console.log(ulScript);
+        // console.log(ulScript.innerHTML);
+        var templateString = ulScript.innerHTML;
+        var result = test(templateString, {name:["AAAA", "BBBB", "CCCC"]});
+        box.innerHTML = result;
+    // }
+</script>
+
+
+</html>

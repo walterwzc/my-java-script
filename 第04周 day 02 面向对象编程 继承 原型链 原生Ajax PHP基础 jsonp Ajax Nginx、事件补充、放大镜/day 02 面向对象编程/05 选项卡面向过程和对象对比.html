@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>选项卡</title>
+	<script>
+		
+	</script>
+	<style>
+		li{
+			list-style-type: none;
+		}
+		*{
+			margin: 0;
+			padding: 0;
+		}
+
+		.container{
+			width: 300px;
+			height: 400px;
+			margin: 0 auto;
+			border:1px solid #ddd;
+		}
+
+	    #list{
+			width: 300px;
+			height: 40px;
+		}
+		#list li{
+			width: 25%;
+			height: 40px;
+			line-height: 40px;
+			text-align: center;
+			box-sizing: border-box;
+			border-right: 2px solid #ddd;
+			float: left;
+		}
+		#list li:nth-of-type(1){
+			border-left: 2px solid #ddd;
+		}
+		#list li.active{
+			border:none;
+			border-top: 2px solid #987;
+			background: #ddd;
+			padding-bottom: 5px;
+			box-shadow: 0 0 5px #000;
+		}
+		#content{
+			width: 300px;
+			height: 360px;
+			position: relative;
+		}
+		#content li{
+			height: 360px;
+			position: absolute;
+		}
+		#content li img{
+			width: 100%;
+			height: 100%;
+		}
+	</style>
+</head>
+<body>
+	
+	<div class="container">
+		
+		<ul id="list">
+			<li class="active">热点</li>
+			<li>新闻</li>
+			<li>首页</li>
+			<li>hello</li>
+		</ul>
+		<ul id="content">
+			<li style="z-index: 1;"><img src="images/1.jpg" alt=""></li>
+			<li><img src="images/3.jpg" alt=""></li>
+			<li><img src="images/5.jpg" alt=""></li>
+			<li><img src="images/4.jpg" alt=""></li>
+		</ul>
+	</div>
+<script>
+	
+	// 面向过程的闭包选项卡：
+
+	var $ = document.querySelectorAll.bind(document);
+	//1. 选择元素;
+	var aBtn = $("#list")[0].children;
+	var aShow = $("#content")[0].getElementsByTagName('li');
+	//2. 绑定事件;
+	for(var i = 0 ; i < aBtn.length ; i++){
+		(function(index){
+			console.log("index: " + index);
+			aBtn[i].onclick = function(){
+				//3.实现点击功能;
+				for(var i = 0 ; i < aShow.length  ; i++){
+					aShow[i].style.display = "none";
+					aBtn[i].className = "";
+				}
+				console.log("inner: " + index);
+				aShow[index].style.display = "block";
+				aBtn[index].className = "active";
+			}
+		})(i);
+	}
+	//高内聚 , 低耦合;
+
+	//高内聚 => 在一个方法之中实现尽可能多的功能;
+
+	//尽可能在函数之中少调用方法; => 联系少一点;
+
+	// function Tabs(options){
+	// 	this.init(options);
+	// }
+	// Tabs.prototype.init = function(){
+	// 	// 参数判断 + 选择元素 ; 
+	// 	// 绑定初始事件;
+
+	// 	//参数判断;
+	// 	this.btn = 
+	// 	this.show = 
+
+	// 	for(var i = 0 ; i < this.btn.length ; i++){
+	// 		this.btn[i].index = i;
+	// 		this.btn.onclick = this.changeShow;
+	// 	}
+	// }
+	// Tabs.prototype.changeShow = function(){
+	// 	for(var i = 0 ; i < this.show.length  ; i++){
+	// 		this.show[i].style.display = "none";
+	// 	}
+	// 	this.show[index].style.display = "block";
+	// }
+
+	// var tab = new Tabs();
+
+
+
+
+
+
+</script>
+</html>

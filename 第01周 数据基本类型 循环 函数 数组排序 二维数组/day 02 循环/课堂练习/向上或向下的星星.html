@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>向上或向下的星星</title>
+	<script>
+		for (var i = 0; i < 10; i++) {
+			for (var j = 0; j < i + 1; j++) {
+				document.write("*");
+			}
+			document.write("<br>");
+		}
+
+		document.write('<br/> ----------------------------------------------------' + "<br/>");
+
+		for (var i = 0; i < 10; i++) {
+			for (var j = 0; j < 10 - i; j++) {
+				document.write("*");
+			}
+			document.write("<br>");
+		}
+		document.write('<br/> ----------------------------------------------------' + "<br/>");
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

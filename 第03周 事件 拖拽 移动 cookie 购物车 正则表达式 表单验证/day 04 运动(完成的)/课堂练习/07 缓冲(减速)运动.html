@@ -1,0 +1,57 @@
+<!DOCTYPE html >
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>缓冲运动</title>
+		<style type="text/css">
+			#div1 {
+				width: 100px;
+				height: 100px;
+				background: red;
+				position: absolute;
+				top: 30px;
+				/* left: 800px; */
+				left: 900px;
+			}
+		</style>
+		
+	</head>
+
+	<body>
+		<input type="button" value="运动" id="btn" />
+		<div id="div1"></div>
+		<div style="width:1px; height:300px; position:absolute; left:500px; top:0; background:#000;"></div>
+	</body>
+	
+	<script>
+			
+		function $(select){
+			return document.getElementById(select);
+		}
+		var oDiv = $("div1");
+		var oBtn = $("btn");
+		
+		oBtn.onclick = function(){
+			move(500)
+		}
+
+		var timer = null;
+		function move(target){
+			clearInterval(timer);
+			timer = setInterval(function() {
+				var nowAttr = oDiv.offsetLeft;
+				var speed = (target - nowAttr) / 6;
+				speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+
+				if (nowAttr == target) {
+					clearInterval(timer);
+				} else {
+					oDiv.style.left = oDiv.offsetLeft + speed + "px";
+				}
+			}, 30);
+		}
+
+
+	</script>
+</html>

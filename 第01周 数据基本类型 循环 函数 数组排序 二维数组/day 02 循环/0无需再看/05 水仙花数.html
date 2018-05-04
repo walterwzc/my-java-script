@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+		// 100 - 999;
+		//个位数的 三次方 + 十位数的三次方 + 百位数的三次方 = 这个数本身;
+		//所有的数字都列举出来;
+		// 153 370 371 407
+		for(var i = 100 ; i <= 999 ; i++){
+			var h = parseInt(i / 100);//百位数; 
+			//var m = parseInt((i - h * 100)/10);//十位数字
+			var m = parseInt(i % 100 / 10);//十位数字
+			var l = i % 10;
+			//console.log(i,h,m,l)
+			if(h ** 3 + m ** 3 + l ** 3 == i){
+				console.log(i);
+			}
+		}
+
+
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

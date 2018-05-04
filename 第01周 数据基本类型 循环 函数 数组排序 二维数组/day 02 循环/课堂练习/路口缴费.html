@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>路口缴费</title>
+	<script>
+		var money = 100000;
+		var times = 0;
+		while (money > 0) {
+			if (money > 50000) {
+				money = money - money * 0.05;
+			} else {
+				money = money - 5000;
+			}			
+			times++;
+		} 
+		console.log("times: " + times, "money: " + money);
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

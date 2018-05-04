@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		div{
+			width: 200px;
+			height: 200px;
+			opacity: 0.3;
+			background: #000;
+			float: left;
+			margin-left: 20px;
+		}
+	</style>
+</head>
+<body>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+</body>
+<script>
+	var aDiv = document.getElementsByTagName("div");
+	for(var i = 0 ; i < aDiv.length ; i++){
+		aDiv[i].onmouseover = function(){
+			move(this,100)
+		}
+		aDiv[i].onmouseout = function(){
+			move(this,30)
+		}
+	}
+	function move(dom,target){
+		clearInterval(dom.timer);
+		dom.timer = setInterval(function(){
+			var iNow = Math.round(parseFloat(getStyle(dom,"opacity") * 100));
+			var speed = (target - iNow) / 6;
+			speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+			if(target == iNow){
+				clearInterval(dom.timer);
+			}else{
+				dom.style.opacity = (iNow + speed) / 100 ;  
+			}
+		},30)
+	}
+	function getStyle(dom,attr){
+		return getComputedStyle(dom,false)[attr];
+	}
+</script>
+</html>

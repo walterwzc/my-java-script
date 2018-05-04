@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>some events on one dom</title>
+    <style>
+        #container {width: 200px; height: 200px; background: #97F5B0; margin: 0 auto;}
+        #box {width: 100px; height: 100px; background: #ddd; margin: 0 auto;}
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="box">
+
+        </div>
+    </div>
+</body>
+<script>
+    // box.onmousedown = function(eve) {
+    //     if (eve) {
+    //         console.log("eve");
+    //     } else {
+    //         console.log("window.eve")
+    //     }
+    //     var event = eve || window.eve;
+
+    //     console.log("box mouse down");
+    // }
+
+    // box.onclick = function() {
+    //     console.log("box onclick");
+    // }
+
+    // box.onmouseup = function() {
+    //     console.log("on mouse up");
+    // }
+
+    // container.onmousedown = function(eve) {
+    //     console.log("container mouse down");
+    // }
+
+    // document.body.onmousedown = function (eve) {
+    //     console.log("body mouse down");
+    // }
+
+    var box = document.getElementById("box");    
+    box.addEventListener('click', onclic,false);  
+    box.addEventListener('click', onclic,true);  
+    box.addEventListener('click', onclic,true);  
+    box.addEventListener('click', onclic,true);  
+
+    function onclic(){     
+        setTimeout(function () {
+            console.log(new Date().getTime());
+        }, 2000);
+    }
+
+</script>
+</html>

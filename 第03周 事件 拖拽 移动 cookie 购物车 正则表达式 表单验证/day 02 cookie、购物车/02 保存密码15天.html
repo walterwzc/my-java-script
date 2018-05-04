@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+		
+
+	</script>
+</head>
+<body>
+	<p>用户名: <input type="text" id="userID"></p>
+	<p>密&nbsp;&nbsp;&nbsp;码: <input type="text" id="passWord"></p>
+	<p><input type="checkbox" id="check"> 是否保存密码15天?</p>
+	<button id="login">登陆</button>
+</body>
+<script src="cookie.js"></script>
+<script>
+	// 点击登陆的时候 如果checkbox选中那么保存密码15天;
+	var oLogin = document.getElementById("login");
+	var oCheck = document.getElementById("check");
+	var oUser = document.getElementById("userID");
+	var oPass = document.getElementById("passWord");
+
+	oLogin.onclick = function(){
+		//console.log(oCheck.checked);
+		if(oCheck.checked){
+			//保存密码十五天;
+			//存用户名和密码;
+			//setCookie("userName",)
+			//console.log(oUser.value,oPass.value);
+			setCookie("userName",oUser.value,15);
+			setCookie("pass",oPass.value,15);
+		}
+	}
+	if(getCookie("userName") && getCookie("pass")){
+		oUser.value = getCookie("userName");
+		oPass.value = getCookie("pass");
+	}
+
+</script>
+</html>

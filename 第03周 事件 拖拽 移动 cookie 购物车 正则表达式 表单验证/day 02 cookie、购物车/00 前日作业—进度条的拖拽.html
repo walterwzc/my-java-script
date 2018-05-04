@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>进度条</title>
+	<style>
+		.box{
+			height: 20px;
+			width: 800px;
+			margin: 100px auto;
+			box-shadow: 0 0 15px #000;
+			position: relative;
+		}
+		.moveBtn{
+			border-radius: 50%;
+			width: 30px;
+			height: 30px;
+			background: #099;
+			position: absolute;
+			top: -5px;
+		}
+		.bar{
+			height: 20px;
+			width: 15px;
+			background: #f09;
+		}
+	</style>
+</head>
+<body>
+	
+	<div class="box">
+		<div class="bar"></div>
+		<div class="moveBtn"></div>
+	</div>	
+
+</body>
+<script>	
+
+	var duringTime = 1000;
+	
+	//1.让 moveBtn可以左右移动;
+
+	var $ = document.querySelectorAll.bind(document);
+	var oMoveBtn = $(".moveBtn")[0];
+	var oBox = $(".box")[0];
+	var oBar = $(".bar")[0];
+	//console.log(oMoveBtn);
+	//拖拽;
+
+	oMoveBtn.onmousedown = function(event){
+		var evt = event || window.event;
+		var offsetX = evt.offsetX;
+		document.onmousemove = function(event){
+			var evt = event || window.event;
+			var left = evt.clientX - offsetX - oBox.offsetLeft;
+			var maxWidth = oBox.offsetWidth - oMoveBtn.offsetWidth / 2;
+			//边界检测;
+			//left = left <= 0 ? 0 : left;
+			if(left <= 0 ){
+				left = 0
+			}
+			if(left >= maxWidth){
+				left = maxWidth;
+			}
+			oMoveBtn.style.left = left + "px";	
+			oBar.style.width = left + oMoveBtn.offsetWidth / 2+ "px";
+			var prop = parseInt(left / maxWidth * 100);
+			console.log(secToMin(prop / 100 * duringTime));
+		}
+
+		document.onmouseup = function(){
+			document.onmousemove = null;
+		}
+
+	}
+	oBox.onclick = function(event){
+		var evt = event || window.event;
+		oMoveBtn.style.left = evt.offsetX - oMoveBtn.offsetWidth / 2 + "px";
+		oBar.style.width = evt.offsetX + "px";
+	}
+	function secToMin(sec){
+		var min = parseInt(sec / 60);
+			sec = sec % 60 ;
+		return {
+			min:min,
+			sec:sec
+		} 
+	}
+
+</script>
+</html>

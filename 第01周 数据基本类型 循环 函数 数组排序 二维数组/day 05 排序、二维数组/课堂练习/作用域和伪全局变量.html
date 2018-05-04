@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>作用域Test</title>
+</head>
+<body>
+	
+</body>
+<script>
+
+	// 匿名函数 + 括号会立即执行，所以 a 会成为伪全局变量。
+	(function(){
+	    a = 2;
+	    // var a;
+	    // console.log(a); 
+	})();
+	console.log(a);
+
+
+	// 普通的函数在使用了伪全局变量之后，必须使用函数调用，才能够让伪全局变量生效。
+	function fn () {
+		b = 3;
+	}
+	fn();
+	console.log(3);
+</script>
+</html>

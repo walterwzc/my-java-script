@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+		
+		var arr = [3,7,22,5,44,65,32,79,50];
+
+		//设置间隔;
+		var step = parseInt(arr.length / 2);
+		while(step >= 1){
+			//console.log("间隔数"+step);
+			for(var i = step ; i < arr.length ; i++){
+				var n = i;
+				//间隔处理;
+				while(arr[n] < arr[n - step] && n - step >= 0){
+					//换位;
+					var temp = arr[n];
+					arr[n] = arr[n - step];
+					arr[n - step] = temp;
+					n = n - step;
+				}
+			}
+			step = parseInt(step / 2);
+		}
+
+		console.log(arr);
+
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

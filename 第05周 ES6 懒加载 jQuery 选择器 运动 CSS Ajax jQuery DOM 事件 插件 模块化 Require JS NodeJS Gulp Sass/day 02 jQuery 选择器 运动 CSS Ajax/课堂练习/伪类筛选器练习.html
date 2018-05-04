@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>伪类筛选器</title>
+    <style>
+        * {margin: 0; padding: 0}
+        ul, li {list-style: none;}
+        .container {
+            width: 600px;
+            margin: 0 auto;
+            margin-bottom: 60px;
+            line-height: 30px;
+        }
+
+        .innerbox > p {
+            margin-top: 5px;
+        }
+
+        #table {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <ul>
+            <li>AAAAAAAAAAAAAAAAAAAAA</li>
+            <li id="liRow1">BBBBBBBBBBBBBBBBBBBBB</li>
+            <li>CCCCCCCCCCCCCCCCCCCCC</li>
+            <li>DDDDDDDDDDDDDDDDDDDDD</li>
+            <li id="liRow4">EEEEEEEEEEEEEEEEEEEEE</li>
+            <li>FFFFFFFFFFFFFFFFFFFFF</li>
+        </ul>
+    </div>
+
+    <div class="box">
+        <div class="innerbox">
+            <p>AAAAAAAAAAAAAAAAAAAAA</p>
+            <p id="pRow1">BBBBBBBBBBBBBBBBBBBBB</p>
+            <p>CCCCCCCCCCCCCCCCCCCCC</p>
+            <p>DDDDDDDDDDDDDDDDDDDDD</p>
+            <p id="pRow4">EEEEEEEEEEEEEEEEEEEEE</p>
+            <p>FFFFFFFFFFFFFFFFFFFFF</p>
+        </div>
+    </div>
+    <table id="table" border="1" cellpadding="30" cellspacing="10">
+        <tr>
+            <td>row1 col1111</td>
+            <td>row1 col2222</td>
+        </tr>
+        <tr>
+            <td>row2 col1111</td>
+            <td>row2 col2222</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+</body>
+<script src="jquery-3.2.1.js"></script>
+<script>
+    var $aLi = $(".container > ul > li:not(#liRow4)").css("background", "#b6b6b6");
+    // var $aLi = $(".container > ul > li:first:last").css("background", "#b6b6b6");
+    console.log($aLi);
+
+    var aTr = $("#table td:parent");
+    console.log(aTr);
+</script>
+</html>

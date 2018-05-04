@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>继承</title>
+	<style>
+		#box,#box2{
+			width: 100px;
+			height: 100px;
+			position: absolute;
+			left: 0;
+			top: 0;
+			background: #ddd;
+		}
+		#box2{
+			background: #000;
+			left: 300px;
+		}
+	</style>
+</head>
+<body>
+	<div id="box">的点点滴滴</div>
+	<div id="box2">的点点滴滴</div>
+</body>
+<script>
+	
+	// 1.init => 选元素; 绑定事件;
+
+	// 2.运动 => 元素移动;
+
+	function Drag(selector_ele){
+		this.init(selector_ele);
+	}
+	// Drag.prototype.init = function(){
+	// }	
+	Drag.prototype = {
+		constructor:Drag,
+
+		init : function(selector_ele){
+			//选择元素绑定事件;
+			this.ele = document.querySelector(selector_ele);
+			//绑定事件;
+			this.ele.onmousedown = this.evtStart.bind(this);	
+		},
+		evtStart : function(event){
+			var evt = event || window.event;
+			this.offsetX = evt.offsetX;
+			this.offsetY = evt.offsetY;
+			this.background = getComputedStyle(this.ele,false)["background"];
+			this.ele.style.background = "red";
+			//拖拽开始;
+			document.onmousemove = this.moveEle.bind(this);
+			document.onmouseup = this.evtEnd.bind(this);
+
+			// 事件的默认行为被阻止，点击时，文字不会被选中。
+			evt.preventDefault();
+		},
+		evtEnd : function(){
+			//拖拽结束;
+			document.onmousemove = null;
+			this.ele.style.background = this.background
+
+		},
+		moveEle : function(event){
+			//拖拽进行中;
+			//console.log(2);
+			var evt = event || window.event;
+			// console.log(this);
+			// console.log(this.offsetX);
+			var left = evt.clientX - this.offsetX;
+			var sTop = evt.clientY - this.offsetY;
+			this.ele.style.left = left + "px"
+			this.ele.style.top = sTop + "px"
+			this.ele.style.background = "green";
+		}
+	};
+	//console.log(Drag.prototype);
+	function DragSon(){
+		Drag.apply(this, arguments);
+	};
+
+
+	for(var attr in Drag.prototype){
+		DragSon.prototype[attr] = Drag.prototype[attr]
+	}
+
+	// 定义边界检测。
+	DragSon.prototype.moveEle = function(event){
+		var evt = event || window.event;
+		var left = evt.clientX - this.offsetX;
+		var sTop = evt.clientY - this.offsetY;
+
+		// 重写子元素的原型方法，可以定义子元素自己的属性，边界检测：
+		left = left < 0 ? 0 : left;
+		sTop = sTop < 0 ? 0 : sTop;
+		this.ele.style.left = left + "px"
+		this.ele.style.top = sTop + "px"
+	}
+
+	// 都是将 元素的ID属性 作为构造函数逇参数。
+	new Drag("#box");
+	new DragSon("#box2");
+
+
+</script>
+</html>

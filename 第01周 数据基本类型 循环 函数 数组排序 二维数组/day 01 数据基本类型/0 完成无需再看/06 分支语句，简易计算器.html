@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+		
+	</script>
+</head>
+<body>
+	<input type="text" id="first">
+	<select id="opt">
+		<option value="+">+</option>
+		<option value="-">-</option>
+		<option value="*">*</option>
+		<option value="/">/</option>
+	</select>
+	<input type="text" id="last">
+	<p><button id="btn">计算</button></p>
+
+</body>
+<script>
+
+	//1.计算器必备条件;  两个数字; 一个运算符;
+	//2.点击时候进行运算; => 事件驱动;
+
+	//固定写法; 
+	// 给 ID 为 btn的按钮添加一个点击事件;
+	btn.onclick = function(){
+		//alert("hello world");
+		var sFirst = first.value;//获取id为first的input的value值;
+		var sLast = last.value;
+		// 但凡是从页面之中获取的数据(value) =>  数据类型必然是String;
+		var sOpt = opt.value;
+		//console.log(sFirst,sLast,sOpt);
+		switch(sOpt){
+			case "+": alert(Number(sFirst) + Number(sLast));break;
+			case "-": alert(Number(sFirst) - Number(sLast));break;
+			case "*": alert(Number(sFirst) * Number(sLast));break;
+			case "/": alert(Number(sFirst) / Number(sLast));break;
+		}
+	}
+
+</script>
+</html>

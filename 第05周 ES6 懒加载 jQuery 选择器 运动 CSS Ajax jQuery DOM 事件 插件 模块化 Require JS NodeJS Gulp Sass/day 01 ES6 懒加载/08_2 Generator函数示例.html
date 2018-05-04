@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+		
+	function* Gen(){
+        yield "hello";
+        yield "world";
+        return "it's end";
+
+        // 在 return 之后 的 yield 会被忽略。
+    }
+    console.log(Gen());	
+
+    var gen = Gen();
+
+    console.log(gen.next());
+    console.log(gen.next());
+    console.log(gen.next());
+
+    // done 为true， 但是 value 为 undefined。
+    console.log(gen.next());
+
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

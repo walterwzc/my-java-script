@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		div{
+			width: 50px;
+			height: 50px;
+			position: absolute;
+			left: 0;
+			top: 0;
+			background: #ddd;
+		}
+	</style>
+</head>
+<body>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+</body>
+
+<script>
+	
+	var aDiv = document.getElementsByTagName("div");
+	document.onmousemove = function(event){
+		var evt = event || window.event;
+		var left = evt.clientX;
+		var top = evt.clientY;
+		// for(var i = 0 ; i  < aDiv.length ; i++){
+		// 	aDiv[i].style.left = left + "px";
+		// 	aDiv[i].style.top = top + "px";
+		// }	
+		aDiv[0].style.left = left + "px";
+		aDiv[0].style.top = top + "px";
+		// aDiv[3].style.left = aDiv[2].offsetLeft + "px";
+		// aDiv[3].style.top = aDiv[2].offsetTop + "px";
+
+		// aDiv[2].style.left = aDiv[1].offsetLeft + "px";
+		// aDiv[2].style.top = aDiv[1].offsetTop + "px";
+
+		// aDiv[1].style.left = aDiv[0].offsetLeft + "px";
+		// aDiv[1].style.top = aDiv[0].offsetTop + "px";
+		for(var i = aDiv.length - 1; i > 0 ; i--){
+			aDiv[i].style.left = aDiv[i - 1].offsetLeft + "px";
+			aDiv[i].style.top = aDiv[i - 1].offsetTop + "px";
+		}
+	}
+
+
+</script>
+
+
+</html>

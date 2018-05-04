@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+		// var a = 10;
+		// function fn(){
+		// 	var a = 20;
+		// 	console.log(a);
+		// }
+		// fn();
+
+		// var a = 10;
+		// function fn(){var a
+		// 	console.log(a);
+		// 	a = 20;
+		// }
+		// fn();
+
+		// function fn(){
+		// 	return 1;
+		// }
+		// console.log(fn());
+
+		// function fn(){
+		// 	return function(){
+		// 		alert("hello world");
+		// 	}
+		// }
+		//console.log(fn());
+		//fn()();
+
+		//foo(1)(2)(3);
+
+		// function foo(){
+		// 	return function(){
+		// 		return function(){
+
+		// 		}
+		// 	}
+		// }
+
+		// foo()()();
+
+		// function foo(a){
+		// 	return function(b){
+		// 		return function(c){
+		// 			return a + b + c;
+		// 		};
+		// 	};
+		// };
+
+		// foo(1)(2)(3);
+		
+		// var a = 10;
+
+		// function foo(){
+		// 	return function(){
+		// 		a++;
+		// 		console.log(a);
+		// 	}
+		// }
+		// var fo = foo();
+		// //console.log(fo);
+		// fo();
+		// fo();
+
+
+
+		// var fo2 = foo();
+		// fo2();
+		// fo2();
+
+		// 11 12 13 14 **;
+
+		function foo(){
+			var a = 10; 
+			return function(){
+				a++;
+				console.log(a);
+			}
+		}
+		var fo = foo();
+		fo();
+		fo();
+		var fo2 = foo();
+		fo2();
+		fo2();
+		fo();
+		// 11 12 11 12 ;
+		// 11 11 11 11 ;
+		// 12 12 12 12 ;
+
+		// 闭包; => 自由变量;
+
+		// 自由变量 => 在外部函数被声明;
+		//         => 在内部函数被调用;
+
+
+
+
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

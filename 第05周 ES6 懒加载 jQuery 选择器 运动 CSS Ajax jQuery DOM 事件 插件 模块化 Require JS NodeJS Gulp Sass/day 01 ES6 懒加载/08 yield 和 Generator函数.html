@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+	
+
+</body>
+<script>
+
+	// 示例1
+	// function* Gen(){
+	// 	console.log(1);
+	// }
+
+	// var gen = Gen(); //指针指向了一个对象;
+	// console.log(gen.next()); //next 返回值 => value => 当前函数返回值; 
+
+	// 					     //           => done => 代表函数是否完成;
+
+	// 示例2
+
+	// 部分1。
+	// function* Gen(){
+	// 	yield 1;
+	// 	yield 2;
+	// 	yield 3;
+
+	// 	return "end";
+	// }
+
+	// console.log(Gen());
+
+	// var gen = Gen();
+
+	// console.log(gen.next());
+	// console.log(gen.next());
+	// console.log(gen.next());
+	// console.log(gen.next());
+
+
+	console.log("=========================================");
+
+	// 部分2
+	// function* Gen(a){
+
+	// 	console.log("a: " + a);
+	// 	let i = 0;
+
+	// 	yield ++i;
+	// 	console.log("i1: " + i);
+	// 	yield ++i;
+	// 	console.log("i2: " + i);
+	// 	yield ++i;
+	// 	console.log("i3: " + i);
+	// 	return "end";
+	// }
+	// //console.log(Gen(123));
+
+	// var gen = Gen(123);
+
+	// console.log(gen.next(111));
+	// console.log(gen.next(222));
+	// console.log(gen.next());
+	// console.log(gen.next());
+
+
+	// 示例 3 ：
+	function* Gen(arr){
+		var len = arr.length ;
+		while(len){
+			len --;
+			yield arr[len];
+		}
+		return "end";
+	}
+	
+	var gen = Gen([3,4,5,6,7,8,9]);
+	
+	do{	
+		var genObj = gen.next();
+		var done = genObj.done;
+		console.log(genObj.value)
+	} while (!done) {
+		var genObj = gen.next();
+		var done = genObj.done;
+		console.log(genObj.value)
+	}
+
+	
+
+</script>
+</html>

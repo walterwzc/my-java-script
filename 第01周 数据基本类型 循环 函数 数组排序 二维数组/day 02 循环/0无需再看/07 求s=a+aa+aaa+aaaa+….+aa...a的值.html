@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+		// 求s=a+aa+aaa+aaaa+….+aa...a的值，其中a是一个数字。例如2+22+222+2222;
+		var num = 2;
+		//var s = 2 + 22 + 222 + 2222 + 22222 
+		var s = 0;
+		var a = 2;
+		for(var i = 1 ; i <= 10 ; i ++){//打印十项;
+			//console.log("我要打印"+i+"位数");
+			var num = 0;
+			for(var j = 0 ; j < i; j++){
+				num = num + 10**j * a;
+			}
+			console.log(num);
+			s += num;
+		}
+		console.log(s);
+
+
+
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

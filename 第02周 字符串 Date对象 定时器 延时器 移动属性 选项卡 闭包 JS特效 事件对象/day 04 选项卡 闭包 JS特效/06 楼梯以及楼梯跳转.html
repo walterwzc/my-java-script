@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		header{
+			height: 80px;
+			line-height: 80px;
+			text-align: center;
+			background: #006699;
+		}
+		section{
+			height: 400px;
+			line-height: 400px;
+			font-size: 100px;
+			color: #fff;
+			text-align: center;
+			background: #119999;
+			box-sizing: border-box;
+			border:10px solid #ddd;
+			border-top: none;
+		}
+		footer{
+			height: 800px;
+			line-height: 800px;
+			font-size: 80px;
+			text-align: center;
+			background: #11ffff;
+			color: #fff;
+		}
+		article{
+			height: 600px;
+			line-height: 600px;
+			font-size: 100px;
+			text-align: center; 
+		}
+		.stairs{
+			width: 80px;
+			height: 320px;
+			border:1px solid #ddd;
+			box-sizing: border-box;
+			padding: 3px 2px;
+			box-shadow: 0 8px 10px rgba(0,0,0,0.3);
+			position: fixed;
+			bottom: 5%;
+			left: 5%;
+			background: #fff;
+			display: none;
+		}
+		.stairs ul li{
+			list-style: none;
+			width:80px;
+			height: 40px;
+			line-height: 40px;
+			text-align: center;
+			border-bottom: 1px solid #ddd;
+			box-sizing: border-box;
+		}
+	</style>
+</head>
+<body>
+	
+	<header>头部</header>
+	<article>我的一些介绍</article>
+	<section >内容1</section>
+	<section>内容2</section>
+	<section>内容3</section>
+	<section>内容4</section>
+	<section>内容5</section>
+	<section>内容6</section>
+	<section>内容7</section>
+	<section>内容8</section>
+	<footer>脚部</footer>
+
+	<div class="stairs" id="stairs">
+		<ul>
+			<li>内容1</li>
+			<li>内容2</li>
+			<li>内容3</li>
+			<li>内容4</li>
+			<li>内容5</li>
+			<li>内容6</li>
+			<li>内容7</li>
+			<li>内容8</li>
+		</ul>
+	</div>
+</body>
+<script>
+
+	var aSection = document.getElementsByTagName("section");
+	var oStairs = document.getElementById("stairs");
+	var aLi = oStairs.getElementsByTagName("li");
+
+	var timer = null;
+	//1.当滚动的时候，判定是否该显示楼梯;
+	onscroll  = function(){
+		clearTimeout(timer);
+		timer = setTimeout(function(){
+			//console.log(1);
+			var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+			if(scrollTop >= aSection[0].offsetTop){
+				oStairs.style.display = "block";
+			}else{
+				oStairs.style.display = "none";
+			}
+		},500)
+	}
+
+	//给所有的楼梯按钮绑定事件;
+	for(var i = 0 ; i < aLi.length ; i++){
+		aLi[i].index = i;
+		aLi[i].onclick = function(){
+			//console.log(this.index);
+			//console.log(aSection[this.index]);
+			if(document.documentElement.scrollTop){
+				document.documentElement.scrollTop = aSection[this.index].offsetTop;
+			}else{	
+				document.body.scrollTop = aSection[this.index].offsetTop;
+			}
+		}
+	}
+
+
+	// var timer = null;
+	// for(var i = 0 ; i < 100 ; i ++){
+	// 	clearTimeout(timer)
+	// 	timer = setTimeout(function(){
+	// 		console.log(1)
+	// 	},80)
+	// }
+
+</script>
+</html>

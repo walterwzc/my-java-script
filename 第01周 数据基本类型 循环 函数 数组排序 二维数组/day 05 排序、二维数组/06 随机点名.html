@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+		
+		// var arr = ["杨怀智", "闫泽佳", "闫俊珑", "蔡淼", "王皓", "吴欢欢", "薛加志", "彭友伟", "王德福", "王庆冉", "朱玠铭", "蔡淼", "王永吉", "李硕", "翟乳娜", "王均发", "李山雨", "邓永意", "刘翼萱", "王兆鑫", "陈丰", "吴永生", "牛志昊", "吴彦祖", "吴欢欢", "张渤浴", "边博文", "朱玠铭", "罗俊", "杨亚男", "王新宇", "周海明", "江峥", "王智超", "王虹云", "鲁美琴", "邓永意"]
+
+		// //数组去重;
+
+		// console.log(arr.indexOf("施瓦辛格"));
+
+		// //创建一个新数组; 如果数组之中没有这一项放进数组之中，如果数组之中有了这一项就不放进去;
+
+		// var newArr = [];
+
+
+		// for(var i in arr){
+		// 	if(newArr.indexOf(arr[i]) == -1){
+		// 		newArr.push(arr[i]);
+		// 	}
+		// }
+
+		// console.log(newArr);
+
+
+
+
+
+	</script>
+	<style>
+		#box ,#size{
+			width: 200px;
+			height: 100px;
+			font-size: 40px;
+			line-height: 100px;
+			color: #fff;
+			background: rgba(0,0,0,.5);
+			margin: 50px auto;
+			box-shadow: 0 0 10px #ddd;
+			text-align: center;
+			border-radius: 5px;
+		}
+
+		#btn{
+			width: 100px;
+			height: 40px;
+			display: block;
+			margin: 0 auto;
+		}
+	
+	</style>
+</head>
+<body>
+	
+	<button id="btn">随机点名</button>
+	<div id="box"></div>
+	<div id="size"></div>
+
+</body>
+
+<script>
+		var arr = ["闫泽佳", "闫俊珑", "蔡淼", "王皓", "吴欢欢", "薛加志", "彭友伟", "王德福", "王庆冉", "朱玠铭", "王永吉", "李硕", "翟乳娜", "王均发", "李山雨", "邓永意", "刘翼萱", "王兆鑫", "陈丰", "吴永生", "牛志昊", "张渤浴", "边博文", "罗俊", "杨亚男", "王新宇", "周海明", "江峥", "王智超", "王虹云", "鲁美琴","赖雨泽"];
+		//1.当点击按钮的时候;
+		btn.onclick = function(){
+			if(arr.length <= 0){
+				location.reload();	
+			}
+			//2.要获取一个随机的数字;
+			var random = randomInt(0,arr.length - 1);
+			//3.在数组之中 根据随机的下标获取随机姓名;
+			var randomName = arr[random];
+			//4.把随机名字放进div之中;
+			//5*绝对点不到的人;
+			arr.splice(random,1);
+			// if(randomName == "赖雨泽"){
+			// 	arguments.callee();
+		    //	return 0;
+			// }
+			box.innerHTML = randomName;
+			//5.剩余人数;
+			size.innerHTML ="剩余"+arr.length + "人";
+		}
+		function randomInt(min,max){
+			return min + Math.round(Math.random() * (max - min));
+		}
+		//点击获取该名称之后，不能再次点到这个人的名字;
+		btn.onclick();
+</script>
+</html>

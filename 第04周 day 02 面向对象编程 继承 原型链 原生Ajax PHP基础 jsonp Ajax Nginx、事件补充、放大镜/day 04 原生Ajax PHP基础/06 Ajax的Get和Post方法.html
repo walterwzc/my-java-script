@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+		var xhr = new XMLHttpRequest();
+		//xhr.open("GET","http://10.9.163.1/gp5/php/test_data.txt");
+		//ajax开始使用了; => GET , url , 是否为异步;
+		xhr.open("GET","datainfo.php");
+
+		// GET ;
+			//1.简单,高效;
+			//2.发送信息 数据大小有限制; 4k ~ 10k;
+			//3.安全门槛较低,数据发送是裸露的;
+		// POST;
+			//1.复杂,低效;
+			//2.POST 发送数据的大小没有限制 ; 限制只在性能上;
+			//3.不打开开发工具是看不到的。
+		xhr.send(null);
+		xhr.onreadystatechange = function(){
+				// console.log(1);
+				// 0 1 2 3 4 ;
+				//console.log(xhr.readyState);
+			if(xhr.readyState == 4){
+				//xhr.readyState XHR 对象的状态;
+				//console.log(xhr.responseText)
+				//xhr.responseText 请求回来的结果;
+				var res = xhr.responseText;
+				callback(res);
+			}	
+		}
+
+		function callback(res){
+			res += new Date().toLocaleString();
+			document.write(res);
+		}
+
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

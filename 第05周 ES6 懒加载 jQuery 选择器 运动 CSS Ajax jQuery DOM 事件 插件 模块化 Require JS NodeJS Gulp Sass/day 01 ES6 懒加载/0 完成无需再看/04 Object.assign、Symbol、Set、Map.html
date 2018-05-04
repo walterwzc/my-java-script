@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+
+</head>
+<body>
+	<ul>
+		<li>hello world</li>
+		<li>hello world</li>
+		<li>hello world</li>
+		<li>hello world</li>
+		<li>hello world</li>
+	</ul>
+</body>
+<script>
+	var aLi = document.getElementsByTagName("li");
+	// console.log(aLi);
+	// [].slice.apply(arr,false); 文艺写法;
+	aLi = Array.from(aLi); //伪数组转换成纯属组的标准写法;
+	// console.log(aLi);
+
+
+	//filter 偷懒版（找到一个就返回的方法） => find
+	var arr = [1, 5, 10, 15]
+
+	// var res1 = arr.find(function(value, index, arr) {
+	//    	return value > 9;
+	// })
+	// var res2 = arr.find(function(value, index, arr) {
+	//    	return value > 9;
+	// })
+	// console.log(res1,res2);
+
+	// var res = [1, 5, 10, 15].findIndex(function(value, index, arr) {
+	//      return value > 9;
+	// })
+
+	// console.log(res);
+
+	// var obj1 = {
+	// 	a:1,
+	// 	b:2
+	// }
+	// var obj2 = {
+	// 	b:3,
+	// 	c:4,
+	// 	ob:{
+	// 		a:20
+	// 	}
+	// }
+
+	// var merge = Object.assign(obj1,obj2);
+	// // 改变 了 obj1;
+	// // 对于内部对象进行浅克隆;
+	// // 返回了一个合并后的对象作为结果;
+	// merge.ob.a = "hello world";
+	// console.log(merge,obj2,obj1);
+
+	// var b = {
+	//     age : 20
+	// }
+	// Object.defineProperty(b, "age", {
+	//     enumerable : false
+	// })
+	// var a = {
+	// 	name:20
+	// }
+	// Object.assign(a,b);
+	// console.log(a);
+
+	// wa!;
+
+	// wahahahahah!
+
+	// var symbol1 = Symbol();
+	// var symbol2 = Symbol();
+	// var symbol3 = Symbol("hello world");
+	// var symbol4 = Symbol("hello world");
+
+	// console.log(symbol1 == symbol2 )
+	// console.log(symbol3 , symbol4 )
+
+	//字典量  =>  key => 有意义的键;
+
+
+	// var sizeObj = {
+	// 	MINDDLE:Symbol(),
+	// 	LARGE:Symbol(),
+	// 	SMALL:Symbol()
+	// }
+	// let size = "";
+	// switch(sizeObj.MINDDLE){
+	// 	case sizeObj.MINDDLE : size = "M";break;
+	// 	case sizeObj.LARGE : size = "L";break;
+	// 	case sizeObj.SMALL : size = "S";break;
+	// }
+	// console.log(size);
+
+
+	//set === array;
+	// var set = new Set();
+	// set.add("hello world");
+	// set.add(2);
+	// set.add(3);
+	// set.add(3);
+	// set.add(3);
+	// set.add(3);
+	// set.add(4);
+	// set.add(4);
+	// set.add(4);
+	// set.add(4);
+	// set.add(6);
+	// set.add(6);
+	// set.add(6);
+	// set.add(6);
+	// set.add(4);
+	// set.add(5);
+	// set.add(6);
+	// set.add(6);
+	// set.add(6);
+	// set.add(6);
+	// set.add(6);
+	// console.log(set);
+
+	// set.delete("hello world")
+	// size == length;
+	// console.log(set.size);
+
+	// for  for in for of;
+
+	// for(let attr of set.keys()){
+	// 	console.log(attr);
+	// }
+
+	// var obj = {
+	// 	name:123
+	// }
+	// obj.name = 123;
+
+	// var array = [1,1,1,1,3,4,5,6,3,3,2,2,3,4,5,6,78,8,5,5,5,4,4,3]
+	// var newarr = [...new Set(array)];
+
+	// console.log(newarr)
+
+	// map === object;
+
+	// let map = new Map();
+
+	// map.set("name","杨怀智");
+	// map.set("age","16");
+	// map.set("height","190");
+
+	// console.log(map)
+	// map.delete("name")
+
+	// for(let attr of map.values()){
+	// 	console.log(attr);
+	// }
+
+		
+</script>
+</html>

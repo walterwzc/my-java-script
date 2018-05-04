@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>贪食蛇</title>
+	<style>
+		html{
+			background: #fff;
+		}
+		body{
+			margin: 0 auto;
+			position: relative;
+			background: #000;
+		}
+		.head{
+			background: red;
+			z-index: 999;
+		}
+		div{
+			width: 50px;
+			height: 50px;
+			background:#b6b6b6;
+			position: absolute;
+			left: 0;
+			top: 0;
+			box-sizing: border-box;
+			border:3px solid rgba(0,0,255,.3);
+		}
+		span{
+			display: block;
+			border-radius: 50%;
+			width: 50px;
+			height: 50px;
+			background: rgba(100,180,100,0.8);
+			position: absolute;
+		}
+	</style>
+</head>
+<body>
+	<div class="head"></div>
+	<div></div>
+	<div></div>
+
+</body>
+	
+
+<script>
+	//设置游戏区域宽高;
+	var cWidht = document.documentElement.clientWidth;
+	var cHeight = document.documentElement.clientHeight;
+	var width = parseInt(cWidht / 50) * 50;
+	var height = parseInt(cHeight / 50) * 50;
+	var body = document.body;
+
+	body.style.width = width + "px";
+	body.style.height = height + "px";
+	body.style.marginTop = (cHeight - height) / 2 + "px";
+	//游戏运动部分；
+	var aDiv = document.getElementsByTagName("div");
+
+	var timer = null; //游戏的开始和终止;
+	var interval = 100; //定时器的执行频率;
+	//贪食蛇头的位置;
+	var left = 0;
+	var nTop = 0;
+	//贪食蛇的速度;
+	var speedX = 0;
+	var speedY = 0;	
+	//贪食蛇运动;
+	timer = setInterval(function(){
+		left += speedX;
+		nTop += speedY;
+		//console.log()
+		aDiv[0].style.left = left + "px";
+		aDiv[0].style.top = nTop + "px";
+		//碰撞检测;
+
+		for(var i = 0 ; i < eggArr.length ; i++){
+			//console.log(eggArr[i].left,eggArr[i].top);
+			if(left == eggArr[i].left && nTop == eggArr[i].top){
+				//console.log("吃到蛋了!");
+				var div = document.createElement("div");
+				body.appendChild(div);
+				var aSpan = document.getElementsByTagName("span");
+				for(var j = 0 ; j < aSpan.length ; j ++){
+					aSpan[j].remove();
+				}
+				createEgg();
+			}
+		}
+		for(var i = aDiv.length - 1; i > 0 ; i--){
+			aDiv[i].style.left = aDiv[i - 1].offsetLeft + "px";
+			aDiv[i].style.top = aDiv[i - 1].offsetTop + "px";
+		}
+		//终止条件； 边界检测;
+		var maxWidth = width - aDiv[0].offsetWidth ;
+		var maxHeight = height - aDiv[0].offsetHeight;
+		if(nTop > maxHeight){
+			clearInterval(timer);
+			aDiv[0].style.top = maxHeight + "px";
+			alert("Game Over");
+		}
+		if(left > maxWidth){
+			clearInterval(timer);
+			aDiv[0].style.left = maxWidth + "px";
+			alert("Game Over");
+		}
+		if(nTop < 0){
+			clearInterval(timer);
+			aDiv[0].style.top = 0 + "px";
+			alert("Game Over");
+		}
+		if(left < 0){
+			clearInterval(timer);
+			aDiv[0].style.left = 0 + "px";
+	
+				alert("Game Over");
+		}
+	}, interval)
+	var status = "r";
+	document.onkeypress = function(event){
+		var evt = event || window.event;
+		var code = evt.keyCode|| evt.which;
+		// r => 向右 t => 向上 l => 向左  b => 向下;
+		// 119 =>  上;
+		// 97  =>  左;
+		// 115 =>  下;
+		// 100 =>  右;
+		switch(code){
+			case 119 :  if(status == "b"){
+							return 0;
+					    } 
+						speedX = 0  ; 
+						speedY = -50;
+						status = "t"; 
+						break;
+			case 115 :  if(status == "t"){
+							return 0;
+						} 
+						speedX = 0 ;
+						speedY = 50;
+						status = "b"; 
+						break;
+
+			case 97 :  if(status == "r"){
+							return 0;
+						} 
+						speedX = -50 ;
+						speedY = 0;
+						status = "l"; 
+						break;
+			case 100 :  if(status == "l"){
+							return 0;
+						} 
+						speedX = 50 ;
+						speedY = 0;
+						status = "r"; 
+						break;
+		}
+
+		console.log(status);
+	}
+
+	// document.onclick = function(){
+	// 	var div = document.createElement("div");
+	// 	body.appendChild(div);
+	// }
+
+	//放入新的 蛇蛋;	
+
+	var refreshEgg = 5000;//蛋的刷新时间;
+	var eggArr = [];      //每个蛋的位置;
+
+	function createEgg(){
+		var aSpan = document.getElementsByTagName("span");
+		if(aSpan.length > 0){
+			return 0;
+		}
+		var maxLine = (height / 50);
+		var randomLine = randomInt(0,maxLine-1);
+		var maxColumn = ( width / 50);
+		var randomColumn =  randomInt(0,maxColumn-1);
+		//console.log(randomLine * 50,randomColumn * 50);
+		var span = document.createElement("span");
+		span.style.left = randomColumn * 50 + "px";
+		span.style.top = randomLine * 50 + "px";
+		body.appendChild(span);
+
+		var spanPosition = {
+			left:randomColumn * 50,
+			top:randomLine * 50
+		}
+		eggArr.push(spanPosition);
+		setTimeout(function(){
+			for(var i = 0 ; i < eggArr.length ; i++){
+				if(eggArr[i].left == span.offsetLeft && eggArr[i].top == span.offsetTop){
+						eggArr.splice(i,1);					
+				}
+			}
+			span.remove();
+		},refreshEgg)
+	}
+
+	setInterval(function(){
+		createEgg()
+	}, refreshEgg)
+
+	function randomInt(min,max){
+		return min + Math.round((max - min) * Math.random())
+	}
+	
+
+</script>
+
+	</html>

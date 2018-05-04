@@ -1,0 +1,121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style type="text/css">
+*{font-size: 14px; padding:0; margin:0;}
+.main{
+	position: relative;
+	margin: 20px auto;
+	border: 1px solid steelblue;
+	width: 430px;
+	height: 400px;
+}
+.msgInput{
+	display: block;
+	width: 406px;
+	height: 60px;
+	margin: 10px auto;
+	
+}
+.sendbtn{
+	position: absolute;
+	width: 100px;
+	height: 29px;
+	bottom: 5px;
+	right: 10px;
+}
+.content{
+	list-style: none;
+	width: 410px;
+	height: 280px;
+	margin: 5px auto;
+	border: 1px dotted #D1D3D6;
+	overflow-y: scroll;
+}
+.msgContent{
+	width:auto;
+	max-width: 250px;
+	height: auto;
+	word-break: break-all;
+	margin: 5px;
+	padding: 3px;
+	border-radius: 5px;
+}
+
+.content .left{
+	float: left;
+	text-align: left;
+	background-color: lightgrey;
+}
+.content .right{
+	float: right;
+	text-align: right;
+	background-color: yellowgreen;
+}
+
+
+</style>
+</head>
+
+<body>
+	<div id="main" class="main">
+		<ul id="content" class="content">
+			<li class="msgContent left">hello?</li>
+			<div style="clear: both;"></div>
+			<li class="msgContent left">hello</li>
+			<div style="clear: both;"></div>
+			<li class="msgContent right">hi</li>
+			<div style="clear: both;"></div>
+			<li class="msgContent left">hehe</li>
+			<div style="clear: both;"></div>
+			<li class="msgContent left">goodbye</li>
+			<div style="clear: both;"></div>
+			<li class="msgContent right">。。。。</li>
+			<div style="clear: both;"></div>
+			<li class="msgContent right">sdfasdsadfassdfsdfsdfdsfsdfsdfsdfdfasdffasdfasfdasd fasd fasd fasdfasdfasdf</li>
+		</ul>
+		<textarea id="msg_input" class="msgInput"></textarea>
+		<button id="sendbtn" class="sendbtn">发送</button>
+	</div>
+
+</body>
+
+<script>
+	
+	//由谁触发  在哪做了些什么事;
+	//当点击发送的时候  把文本框里的内容 发送到 聊天框;
+	// 1.点击获取文本框内容;
+	var oSend = document.getElementById("sendbtn");
+	var oMsg = document.getElementById("msg_input");
+	var oUl = document.getElementById("content");
+	//排除元素选择问题：
+	//console.log(oSend);
+	oSend.onclick = function(){ // Test True === tt; 
+		//alert("hello world"); tt => 事件没有问题;
+		var sMsg = oMsg.value;
+		//console.log(sMsg); tt => 取值没有问题;
+		// 2. 发送到聊天框; 创建 li 创建 div; 将内容（sMsg）放进 li之中,让后把元素放进ul之中;
+		//2.1创建元素;
+		var div = document.createElement("div");
+		var li = document.createElement("li");
+		// console.log(div,li); tt => 创建元素没有问题; 
+		div.style.clear = "both";
+		li.innerHTML = sMsg;
+		li.className = "msgContent right";
+
+		oUl.appendChild(div);
+		oUl.appendChild(li);
+
+		//效果的优化;
+		oMsg.value = "";
+		li.scrollIntoView();
+	}
+
+	
+
+
+</script>
+</html>
+	

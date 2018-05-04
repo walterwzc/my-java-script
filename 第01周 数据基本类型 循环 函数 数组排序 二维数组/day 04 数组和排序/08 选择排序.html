@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+		
+		var arr = [99,88,77,13,5,9,44];
+
+		// //1.假定一个最小值;
+
+		// var j = 0;
+		// var min = arr[j];
+		// var index = j;
+		// //2.找寻最小值;
+		// for(var i = j + 1 ; i < arr.length ; i++){
+		// 	if(min > arr[i]){
+		// 		min = arr[i];
+		// 		index = i;
+		// 	}
+		// }
+		// //3.换位;
+		// var temp = arr[j];
+		// arr[j] = arr[index];
+		// arr[index] = temp;
+		// console.log(arr);
+
+		// var j = 1;
+		// //1.假定一个最小值;
+		// var min = arr[j];
+		// var index = j;
+		// //2.找寻最小值;
+		// for(var i = j + 1 ; i < arr.length ; i++){
+		// 	if(min > arr[i]){
+		// 		min = arr[i];
+		// 		index = i;
+		// 	}
+		// }
+		// //3.换位;
+		// var temp = arr[j];
+		// arr[j] = arr[index];
+		// arr[index] = temp;
+		// console.log(arr);
+
+		var arr = [99,88,77,13,5,9,44];
+
+		for(var j = 0 ; j < arr.length - 1; j ++){
+			//假设最小值;
+			var min = arr[j]
+			var index = j;
+			//证明最小值;
+			for(var i = j + 1 ; i < arr.length ; i++){
+				if(min > arr[i]){
+					min = arr[i];
+					index = i;
+				}
+			}
+			var temp = arr[j];
+			arr[j] = arr[index];
+			arr[index] = temp;
+		}
+
+		console.log(arr);
+
+
+
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

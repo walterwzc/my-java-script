@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		
+	</style>
+</head>
+<body>
+		
+	<ul>
+		
+	</ul>
+
+</body>
+<script src="../cookie.js"></script>
+<script>
+	var json = [
+					{
+						img:"https://img11.360buyimg.com/n7/jfs/t15421/228/555228749/141132/d4ddde47/5a30c78dN018428b5.jpg",
+						id:"0"
+					},
+					{
+						img:"https://img14.360buyimg.com/n7/jfs/t2476/110/1122439844/250338/754d8b19/56420025Nb84d4759.jpg",
+						id:"1"
+					},
+					{
+						img:"https://img14.360buyimg.com/n7/jfs/t14491/266/639428541/159455/fb741af0/5a337c7dN75cd772d.jpg",
+						id:"2"
+					},
+					{
+						img:"https://img11.360buyimg.com/n7/jfs/t12328/25/2395367143/292095/fe07e376/5a3e21b8Ne546dcdb.jpg",
+						id:"3"
+					},
+					{
+						img:"https://img11.360buyimg.com/n7/jfs/t4831/320/201860317/58438/5f25552f/58dc83cdNa84b1802.jpg",
+						id:"4"
+					}
+				]
+
+	var aCookie = JSON.parse(getCookie("goodsList"));
+
+	console.log(aCookie);
+	var html = "";
+	for(var i = 0 ; i < aCookie.length ; i++){
+		html += '<li>'+
+					'<img src="'+json[aCookie[i].id].img+'" alt="">'+
+					'<p><span>'+aCookie[i].num+'</span>件</p>'+
+				'</li>'
+	}
+	var oUl = document.getElementsByTagName("ul")[0];
+	oUl.innerHTML = html;
+
+</script>
+</html>

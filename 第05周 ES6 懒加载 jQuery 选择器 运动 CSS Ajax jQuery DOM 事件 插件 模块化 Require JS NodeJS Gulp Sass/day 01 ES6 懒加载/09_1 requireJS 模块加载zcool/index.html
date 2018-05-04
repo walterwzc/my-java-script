@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script src="libs/require.js"></script>
+<script>
+	//业务逻辑页面;
+	require(["src/banner.js"],function(banner){
+		console.log(banner);
+		new banner().sayHello();
+	})
+	// ES6定义方法;
+	//import banner from "src/banner.js";
+
+</script>
+</html>

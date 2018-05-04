@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // var promise = new Promise(function(success, failed) {
+    //     // success("成功");
+    //     failed("失败");
+    // });
+
+    
+    // promise.then(function(res) {
+    //     console.log("success then");
+    //     console.log(res);
+    // }, function(exception) {
+    //     console.log("failed then");
+    //     console.log(exception);
+    // });
+
+    // promise.catch(function(exception) {
+    //     console.log("catch");
+    //     console.log(exception);
+    // });
+
+    // console.log(promise);
+
+
+    console.log("--------------------------------------");
+
+    var promise2 = new Promise(promiseCallback);
+
+    function promiseCallback (successCallback, failedCallback) {
+        successCallback("success");
+        // "after success" 先执行，可以看出其是同步程序，successCallback执行之后，状态不会在改变，所以不会再执行failedCallback。
+        console.log("after success");
+        failedCallback("failed");
+    }
+
+    // function successCallback (res) {
+    //     console.log(res);
+    // }
+
+    // function failedCallback (exception) {
+    //     console.log("failed: " + exception);
+    // }
+
+    promise2.then(function(res) {
+        console.log(res);
+    }, function(e) {
+        console.log(e);
+    });
+</script>
+</html>

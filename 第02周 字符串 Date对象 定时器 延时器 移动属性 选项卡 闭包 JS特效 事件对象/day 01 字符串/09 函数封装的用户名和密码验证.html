@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+			
+		/*
+			用户名密码格式要求？   
+			1.密码位数在 6~12位之间。
+			2.用户名要求必须以小写字母开头。
+			3.用户名6~20位；
+			4.密码必须存在大小写字母和 特殊符号 !@#$% 中的一
+		*/	
+
+	</script>
+</head>
+<body>
+		
+	<p>用户名:
+		<input type="text" id="userId">
+		<span></span>
+	</p>
+	<p>密&nbsp;&nbsp;&nbsp;码:<input type="text" id="pass"></p>
+
+</body>
+<script>
+		//文本框失去焦点的时候去验证用户名;
+
+		//1.文本框失去焦点事件;
+		//2.在事件之中验证;
+
+		userId.onblur = function(){
+			//console.log(this.value);
+			//用户名要求必须以小写字母开头。
+			//用户名6~20位；
+			var vaildeString = this.value;
+			//console.log(vaildeString[0])
+			if(vaildeString.charCodeAt(0) >= 97 && vaildeString.charCodeAt(0) <= 122){
+				//开头为小写字母;
+				if(vaildeString.length >= 6 && vaildeString.length <= 20){
+					//通过验证;
+					this.style.borderColor = "green";
+					this.nextElementSibling.innerHTML = "";
+				}else{
+					errorTip(this,"用户名6~20位")
+				}
+			}else{
+				//验证失败;
+				//alert("请以小写字母开头");
+				errorTip(this,"请以小写字母开头")
+			}
+		}
+		function errorTip(el,tip){
+			// this.nextElementSibling.innerHTML = "请以小写字母开头";
+			// this.style.borderColor = "red";
+			el.nextElementSibling.innerHTML = tip;
+			el.style.borderColor = "red";
+		}
+
+		//1.密码位数在 6~12位之间。
+		//2.密码必须存在大小写字母和 特殊符号 !@#$% 
+
+		pass.onblur = function(){
+			var vaildeString = this.value;
+			if(vaildeString.length >= 6 && vaildeString.length <= 12){
+				//符合位数需求;
+				//密码必须存在大小写字母和 特殊符号 !@#$% 
+				var count = 0;
+				if(ascii("lower",vaildeString)){//小写字母
+					count ++;
+				}
+				if(ascii("upper",vaildeString)){//大写字母
+					count ++;
+				}
+				if(ascii("special",vaildeString)){//特殊符号
+					count ++;
+				}
+				//console.log(count);
+				if(count == 3){
+					this.style.borderColor = "green";
+				}
+				if(count == 2){
+					this.style.borderColor = "yellow";
+				}
+				if(count < 2){
+					this.style.borderColor = "red";
+				}
+
+			}else{
+				this.style.borderColor = "red";
+			}
+
+		}
+
+		function ascii(type,string){ //符合规定返回true; 不符合规定返回false;
+			var min,max;
+			// 97,122
+			// 65,90
+			// 32,47   
+			switch(type){
+				case "lower":min = 97; max = 122;break;
+				case "upper":min = 65; max = 90;break;
+				case "special":min = 32; max = 47;break;
+				default : return false;
+			}
+			var flag = false;
+			for(var i = 0 ; i < string.length ; i++){
+				if(string[i].charCodeAt() >= min && string[i].charCodeAt() <= max){
+					flag = true;
+					break;
+				}
+			}
+			return flag;
+		}
+
+
+
+</script>
+</html>

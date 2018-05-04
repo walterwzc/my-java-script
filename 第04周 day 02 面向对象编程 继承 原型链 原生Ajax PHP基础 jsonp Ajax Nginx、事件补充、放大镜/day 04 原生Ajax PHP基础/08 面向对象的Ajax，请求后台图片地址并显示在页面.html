@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.content{	
+			list-style: none;
+			width:80%;
+			margin: 0 auto;
+		}
+		
+		.btn span{
+			padding: 3px 7px;
+			line-height: 20px;
+			background: #ddd;
+		}
+	</style>
+</head>
+<body>
+	
+	<div class="container">
+			
+		<div class="btn">
+			<span>1</span>
+			<span>2</span>
+			<span>3</span>
+			<span>4</span>
+		</div>
+
+		<div class="content">
+			
+		</div>
+	</div>
+
+</body>
+<script src="ajax.js"></script>
+<script>
+	//加载 => json；
+	function Pagination(){
+		this.init();
+	}
+	Pagination.prototype = {
+		constructor:Pagination,
+		init:function(){
+			this.container = document.querySelector(".content");
+			this.load();
+		},
+
+		load:function(){
+			//加载数据;
+
+			// 为了使回调函数之中的this指向当前的对象，在这里要对回调函数使用bind改变this指向
+			this.get("data.json",this.rendring.bind(this));
+			// this.get("data.json",this.rendring);
+		},
+
+		get:function(url,callback){
+			var xhr = new XMLHttpRequest();
+			xhr.open("GET",url);
+			xhr.send(null);
+			xhr.onreadystatechange = function(){
+				if(xhr.readyState == 4 && xhr.status == 200){
+					try{
+						var json = JSON.parse(xhr.responseText);
+						callback(json);
+					}catch(e){
+						callback(xhr.responseText);
+					}
+				}
+			}
+		},
+		
+		rendring:function(res){
+			console.log(res)
+			var _this = this;
+			// 在这里的回调函数要使用this的话，要记录当前的this指向。
+			res.forEach(function(item){
+				if(item.preview){
+					// 这里使用的是DOM对象，而不是像上一个例题之中的 HTML Text， 插入对象使用appendChild， 而将拼接的Text放入，使用的是innerHTML。
+					var img = new Image();
+					img.src = item.preview;
+					_this.container.appendChild(img);
+				}
+			})	
+			var li = document.getElementById("img_container")
+			//console.log(res);
+		}
+	}
+
+	new Pagination();
+</script>
+</html>

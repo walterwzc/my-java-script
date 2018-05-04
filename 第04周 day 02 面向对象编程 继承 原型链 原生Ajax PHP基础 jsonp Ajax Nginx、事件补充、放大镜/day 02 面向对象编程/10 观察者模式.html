@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+		//订阅名单,订阅者;
+		//发布者;
+
+		var observer = {
+
+			// 增加订阅者
+			createFans: function (name) {
+				this.name = name;
+
+				// 发布者通知订阅者  需要做的行为
+				this.buyGoods = function () {
+					if (Math.random() > 0.5) {
+						console.log("买买买")
+					}
+				}
+			},
+			// 订阅者名单
+			readingList: [],
+
+			// 订阅
+			reading: function () {
+				this.readingList.push(new observer.createFans("fans" + Math.random()))
+			},
+
+			// 发布者
+			pulish: function () {
+				
+				// 通知订阅者
+				for (var i = 0; i < this.readingList.length; i++) {
+					this.readingList[i].buyGoods();
+				}
+			}
+		}
+		observer.reading()
+		observer.reading()
+		observer.reading()
+
+		observer.pulish();
+
+
+	</script>
+</head>
+
+<body>
+
+</body>
+
+</html>

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			body{
+				background: rgba(0,0,0,.5);
+			}
+			canvas{
+				background: #fff;
+				position: absolute;
+				left: 50%;
+				top: 50%;
+				margin-left: -400px;
+				margin-top: -200px;
+				border-radius: 10px;
+			}
+	
+			.mark{
+				width: 100px;
+				height: 40px;
+				line-height: 40px;
+				text-align: center;
+				position: absolute;
+				left: 80%;
+				top: 10%;
+				color: #fff;
+				font-family: "微软雅黑";
+			}
+			
+			
+			
+			#res{
+				width: 200px;
+				height: 200px;
+				position: absolute;
+				left: 50%;
+				top: 50%;
+				margin-left: -100px;
+				margin-top: -100px;
+				background: rgba(0,0,0,.5);
+				color: #fff;
+				z-index: 999;
+				border-radius: 50%;
+				display: none;
+				text-align: center;
+			}
+			#res p{
+				line-height: 200px;
+			}
+			#res h2{
+				text-align: center;
+				padding: 5px 0;
+			}
+			#res img{
+				width: 50px;
+				height: 50px;
+				display: block;
+				margin:  0 auto;
+				border-radius: 50%;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="canvas" width="800" height="400"></canvas>
+		<div class="mark" id="mark"></div>
+		<div class="res" id="res">
+			<h2>得分:100</h2>
+			<img src="依赖包/图片/奖牌/金牌.png"/>
+		</div>
+		<script type="text/javascript">
+			// canvas 提供了非常多的api 供我们使用;
+			var canvas = document.getElementById("canvas");
+			var context = canvas.getContext("2d");  //   获取绘制环境;			
+			//   flash => 图片 动画 视频；     插件！！！;       图片  => gif ;   动画(特效) => js + css 代替 ;   H5 video ;
+			//   flash => 直播网站;     BiliBili ; 
+			//   苹果  =>   宣布只用 H5 不用 flash ; 
+			/*把图片放进画布之中 drawImage*/
+			//创建图片; 
+			var img = new Image(); // 创建一个图片;
+			img.src = "依赖包/图片/鸟/上.png";
+			// drawImage => 1.图片对象 2.图片的x坐标 3.图片的y坐标;
+			//回调函数 ; => 回头去调用的函数;
+			var birdX = 200;// 小鸟的 X 坐标
+			var birdY = 100;// 小鸟的 X 坐标
+			var birdTimer = null;// 定时器 ;
+			img.onload = function(){
+					//不让定时器重复执行； 定时器为关闭状态才去开启定时器;
+					if(birdTimer == null){
+						birdTimer = setInterval(function(){
+							context.clearRect(0,0,800,400);// 清空;
+							flyBird()   //调用绘制小鸟功能;
+							column() //调用绘制柱子功能;
+						},10)
+					}
+			}
+			function flyBird(){
+				if(birdY < 355){
+					birdY = birdY + 1; //让 Y 轴不断自增;
+				}		
+				context.drawImage(img,birdX,birdY);//绘图
+			}	
+			canvas.onmousedown = function(){//鼠标按下;
+				//更换图片;
+				img.src =  "依赖包/图片/鸟/下.png";
+				//小鸟起飞;
+				birdY = birdY - 30;
+			}
+			canvas.onmouseup = function(){//鼠标按下;
+				//更换图片;
+				img.src =  "依赖包/图片/鸟/上.png";
+			}
+			
+			var columnA = new Image();
+			var columnB = new Image();
+			
+			columnA.src = "依赖包/图片/柱子/反.png"
+			columnB.src = "依赖包/图片/柱子/正.png"
+			//产生单个柱子原理;
+//			var columnX = 800; // 柱子的X轴值;
+//			var columnY = -Math.round(Math.random() * 100 + 100) ; //柱子的Y轴值；
+			var columnArr = [];
+			var hardTimer = null;
+			function createColumn(){ //创建柱子
+				var hard = 0.3;
+				setInterval(function(){
+					if(Math.random() > hard){ //不固定产生柱子;
+							var column = {}; //容器;
+							column.positionX = 800;
+							column.positionY = -Math.round(Math.random() * 100 + 100) ;
+							column.imgA = new Image();
+							column.imgA.src = "依赖包/图片/柱子/反.png";
+							column.imgB = new Image();
+							column.imgB.src = "依赖包/图片/柱子/正.png";
+							//时间戳; 让柱子变成唯一的;
+							column.id = new Date().getTime();
+							columnArr.push(column);
+					}
+				},1500);
+				
+			}
+			createColumn();
+			
+			//标识变量声明;
+			
+			var same = null;   // 标识 ;
+			var mark = 0;
+			
+			function column(){ // 画出柱子来;
+				for(var i = 0 ;i  < columnArr.length; i++){ //看看有多少个柱子;
+						//columnArr[i] 每一个柱子对象;
+						columnArr[i].positionX = columnArr[i].positionX - 1;  //位置改变， x轴值递减;
+						//绘制上下柱子;  下柱于上柱间隔100px，同时柱子高度250。
+						context.drawImage(columnArr[i].imgA,columnArr[i].positionX,columnArr[i].positionY);
+						context.drawImage(columnArr[i].imgB,columnArr[i].positionX,columnArr[i].positionY + 350);	
+						//console.log(columnArr[i].positionX);
+						//冗余;
+						
+						// 删除柱子就要从数组之中删除;s
+						// if else  switch (case break default) 
+						if(columnArr[i].positionX < -100 ){ //
+							columnArr.splice(i,1)
+						}
+						//判定传过柱子;
+						if(columnArr[i].positionX){ //解决报错 ， 如果 columnArr[i].positionX不为空再执行下面代码;
+								if(birdX + 40 >=  columnArr[i].positionX  &&  birdX - 70 <=  columnArr[i].positionX){
+										//经过的时候 加分!;   => 标识变量;
+										if(columnArr[i].id !=  same){ // 和same 不一样的时候 ;
+												same = columnArr[i].id;
+												//console.log("经过");
+												//分数增加；
+												mark ++; //分数增加;
+												document.getElementById("mark").innerHTML = "得分:"+mark;
+										}
+											if(birdY < columnArr[i].positionY+250 || birdY+40 > columnArr[i].positionY+370){
+											//碰到上面的柱子；
+											//console.log("碰到上面的柱子");
+											//console.log("die");
+											clearInterval(birdTimer);
+											clearInterval(hardTimer);
+											//显示结算页面;
+											var oRes = document.getElementById("res");
+											oRes.style.display = "block";
+											oRes.children[0].innerHTML = "得分:"+mark;
+											//奖牌;
+											if( mark >0 && mark <= 10  ){
+												oRes.children[1].src = "依赖包/图片/奖牌/铜牌.png"
+											}
+											if( mark >10 && mark <= 50  ){											
+												oRes.children[1].src = "依赖包/图片/奖牌/银牌.png"
+											}
+											if( mark >50 && mark <= 100  ){
+												oRes.children[1].src = "依赖包/图片/奖牌/金牌.png"
+											}
+											if( mark >100  ){
+												oRes.children[1].src = "依赖包/图片/奖牌/白金牌.png"
+											}
+											//结束提示语;
+											setTimeout(function(){
+													oRes.innerHTML = "<p>五秒后游戏重新开始</p>";
+													setTimeout(function(){
+															location.reload();//刷新页面;			
+													},5000)
+											},3000)
+										}
+								}
+						}	
+				}
+				//rendring ; => 渲染 (position => css);  reset; => 重置;
+			}
+
+			document.onmousedown = function(){
+
+				return false;
+
+			}
+			
+		</script>
+	</body>
+</html>

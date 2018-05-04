@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="style/style.css">
+</head>
+<body>
+	
+	<div class="small">
+		<div class="wrap">
+			
+		</div>
+		<img src="images/timg.jpg" alt="">
+		<span class="grayBox"></span>
+	</div>
+
+	<div class="big">
+		<img src="images/timg.jpg" alt="">
+	</div>
+
+</body>
+<script>
+	//鼠标移入的时候，让小灰框 和大图 显示;
+	function $$(select,all){ //jQuery
+		if(all == undefined){
+			return document.querySelector(select);
+		}else{
+			return document.querySelectorAll(select);
+		}
+	}
+
+	var oSmall = $$(".small");	//小图片;
+	var oSmallImg = oSmall.children[1];//图片;
+	var oBig = $$(".big");	//大图;
+	var oGray = $$(".grayBox");	//小灰框;
+	var oImg = oBig.children[0] ;	//小灰框;
+
+	oSmall.onmouseenter = function(){
+		//让小灰框,大图元素显示;
+		oBig.style.display = "block";
+		oGray.style.display = "block";
+		oSmallImg.style.opacity = 0.3;
+		setScale()
+	}
+	oSmall.onmouseleave = function(){
+		//让小灰框,大图元素隐藏;
+		oBig.style.display = "none";
+		oGray.style.display = "none";
+		oSmallImg.style.opacity = 1;
+	}
+
+	oSmall.onmousemove = function(event){
+		var evt = event || window.event;
+		var left = evt.offsetX - oGray.offsetWidth / 2;	
+		var top = evt.offsetY - oGray.offsetHeight / 2;	
+		//边界检测;
+		//最小值 && 最大值;
+		drift(left,top)
+	}
+
+	function drift(left,top){ //位移;
+		left = left <= 0 ? 0 : left;
+		if(top <= 0){
+			top = 0;
+		}
+		//samll 的宽度 - gary 的宽度 ;
+		var maxLeft = parseInt(getStyle(oSmall,"width")) - parseInt(getStyle(oGray,"width"));
+		var maxTop = parseInt(getStyle(oSmall,"height")) - parseInt(getStyle(oGray,"height"));
+		left = left >= maxLeft ? maxLeft : left;
+		if(top >= maxTop){
+			top = maxTop;
+		}
+		oGray.style.left = left + "px";
+		oGray.style.top = top  + "px";
+		//更改背景图位置;
+		oGray.style.backgroundPosition=-left+"px "+-top+"px"
+
+		var propLeft = Math.round(left / maxLeft * 100)/100 ;//左侧位移的比例;保留两位小数;
+		var propTop =  Math.round(top / maxTop * 100)/100;
+		//console.log(propLeft,propTop);
+		//图片的能走的路;
+
+		var maxBigLeft = oImg.offsetWidth - oBig.offsetWidth//图片left能移动的距离;
+		oImg.style.left = -maxBigLeft * propLeft + "px"; //让大图移动;
+
+		var maxBigTop = oImg.offsetHeight - oBig.offsetHeight;
+		oImg.style.top = -maxBigTop * propTop + "px";
+
+		//根据比例求得框的大小和图片的大小;
+	}
+
+	function setScale(){
+		var scale = oSmall.offsetWidth/ oGray.offsetWidth ;
+			oImg.style.width = oBig.offsetWidth * scale + "px";
+			oImg.style.height = oBig.offsetHeight * scale + "px";
+	}
+
+	oSmall.onmousewheel = function(event){  //非FF浏览的滚轮事件;
+		var evt = event || window.event;
+		//console.log(evt.wheelDelta); 
+		// 120 -120;
+		if(evt.wheelDelta > 0 ){
+			if(oGray.offsetWidth >= 300 ){
+				return 0;
+			}
+			oGray.style.width = oGray.offsetWidth + 2 + "px";
+			oGray.style.height = oGray.offsetHeight + 2 + "px";
+			var left = oGray.offsetLeft - 1;
+			var top = oGray.offsetTop - 1;
+			drift(left,top);
+		}else{	
+			if(oGray.offsetWidth <= 100){
+				return 0;
+			}
+			var left = oGray.offsetLeft + 1;
+			var top = oGray.offsetTop + 1;
+			drift(left,top)
+			oGray.style.height = oGray.offsetHeight - 2 + "px";
+			oGray.style.width = oGray.offsetWidth - 2 + "px";
+		}
+		setScale()
+	}
+
+	function getStyle(dom,attr){
+		if(getComputedStyle){
+			return getComputedStyle(dom, false)[attr];
+		}else{
+			return dom.currentStyle[attr];
+		}
+	}
+
+
+</script>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>ES5</title>
+	<script>
+		// function foo(){
+		// 	a = 10;
+		// }
+		// foo();
+		// var a = 20;
+		// delete window.a;
+		// console.log(a);
+		// function foo(){
+		// 	a = 10;
+		// }
+		// foo();
+		(function(){
+			"use strict"
+			// function foo(a,b,b){
+			// 	console.log(a,b);
+			// }
+			// foo(1,2,3)
+
+			//this 不允许指向window;
+			// function foo(){
+			// 	console.log(this);
+			// }
+			// new foo();
+
+			//arguments 对象;
+
+			// function foo(){
+			// 	console.log(arguments.callee); //禁用;
+			// }
+			// foo()
+
+			// function foo(a,b){
+			// 	a = 20;
+			// 	console.log(arguments[0],a);
+			// 	// a == arguments[0] 
+			// }
+			// foo(10,20)
+			// delete window.innerHeight;
+			// alert(window.innerHeight);
+		})()
+
+		// function foo(a,b,b){
+		// 	console.log(a,b);
+		// }
+
+		// foo(1,2,3)
+
+		// function foo(){
+		// 	console.log(this);
+		// }
+
+		// foo();
+
+		// function foo(){
+		// 	//console.log(arguments.callee());
+		// }
+		// foo();
+
+		// function foo(a,b){
+		// 	a = 20;
+		// 	console.log(arguments[0]);
+		// 	// a == arguments[0] 
+		// }
+		// foo(10,20)
+
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

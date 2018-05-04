@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>基础轮播图</title>
+	<style>
+	*{
+		margin: 0 ;
+		padding: 0;
+	}
+	
+	html{
+		height: 100%;
+	}
+	body{	
+		height: 100%;
+	}
+	.container{
+		width: 100%;
+		height: 100%;
+		overflow: hidden;
+	}
+	.container ul{
+		height: 100%;
+		position: relative;
+	}
+	.container ul li{
+		list-style: none;
+		width: 100%;
+		height: 100%;
+		background-position: center;
+		position: absolute;
+		left: 100%;
+	}
+	.container ul li:nth-of-type(1){
+		background-image: url(images/bg1.png);
+	}
+	.container ul li:nth-of-type(2){
+		background-image: url(images/bg2.png);
+	}
+	.container ul li:nth-of-type(3){
+		background-image: url(images/bg3.png);
+	}
+	.container ul li:nth-of-type(4){
+		background-image: url(images/bg4.png);
+	}
+
+	.btn{
+		width: 100%;
+		position: absolute;
+		top: 85%;
+		height: 15px;
+		z-index: 999;
+		text-align: center;
+		margin-left: -15px;
+	}
+	.btn span{
+		display: inline-block;
+		width: 15px;
+		height: 15px;
+		margin-left: 15px;
+		border-radius: 50%;
+		background: #fff;
+	}
+	.btn span.active{
+		background: #f99;
+		box-shadow:  0 0px 5px #fff;
+	}
+	.lr{
+		width: 100%;
+		position: absolute;
+		top: 50%;
+		height: 40px;
+		margin-top: -20px;
+	}
+	.lr span{
+		position: absolute;
+		display: block;
+		width: 40px;
+		height: 40px;
+		background: #ddd;
+		z-index: 999;
+	}
+	.lr span:nth-of-type(1){
+		left: 0;
+	}
+	.lr span:nth-of-type(2){
+		right: 0;
+	}
+	</style>
+</head>
+<body>
+
+	<div class="container">
+		<ul class="show">
+			<li style="left: 0"></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+		<div class="btn">
+			<span class="active"></span>
+			<span></span>
+			<span></span>
+			<span></span>
+		</div>
+		<div class="lr">
+			<span class="left"></span>
+			<span class="right"></span>
+		</div>
+	</div>
+</body>
+
+<script src="move.js"></script>
+<script>
+	// 1. 从左向右;   入场的下标 较 出场的 下标 大的;
+ 
+	// 2. 从右向左;   入场的下标 较 出场的 下标 小的;
+
+
+	// function right(){
+	// 	var out = //; 出场元素;  left 0 => - clientWidth;
+	// 	var approach = //入场元素; left clientWidth => 0;
+
+	// }
+
+	// function left(){
+	// 	var out = //; 出场元素;  left 0 => clientWidth 
+	// 	var approach = //入场元素; left -clientWidth = 0;
+
+	// }
+
+	var $ = document.querySelectorAll.bind(document);
+	var aSpan = $(".btn")[0].children; //按钮；
+	var aShow = $(".show")[0].children;//图片;
+
+	//入场元素 => 当前点击的下标; this.index;
+
+	//出厂元素 => 当前显示的下标; index;
+	var index = 0;
+	for(var i = 0 ; i < aSpan.length ; i++){
+		aSpan[i].index = i;
+		aSpan[i].onclick = function(){
+			if(this.index == index){
+				return 0;
+			}
+			// console.log("入场元素"+ this.index);
+			// console.log("出厂元素"+index);
+			//给span加上active;
+			for(var i = 0 ; i < aSpan.length ; i++){
+				aSpan[i].className = "";
+			}
+			this.className = "active";
+			if(this.index > index){
+				right(aShow[index],aShow[this.index]);
+			}else{
+				left(aShow[index],aShow[this.index]);
+			}
+			console.log(this.index,index);
+			index = this.index;
+		}	
+	}
+	var cWidth = document.documentElement.clientWidth;
+	function right(out,approach){
+		// var out = 0//; 出场元素;  left 0 => - clientWidth;
+		// var approach =0 //入场元素; left clientWidth => 0;
+		// console.log("right 出场元素left 0 => - clientWidth;  入场元素; left clientWidth => 0;" )
+
+		for(var i = 0 ; i < aShow.length ; i++){
+			aShow[i].style.zIndex = 0;
+		}
+
+		out.style.zIndex = 1;
+		approach.style.zIndex = 1;
+
+		out.style.left = 0;
+		move(out,{
+			left:-cWidth
+		})
+
+		approach.style.left = cWidth + "px";
+		move(approach,{
+			left:0
+		})
+
+	}
+
+	function left(out,approach){
+		// var out =0 //; 出场元素;  left 0 => clientWidth 
+		// var approach = 0//入场元素; left -clientWidth = 0;
+		// console.log("left 出场元素;  left 0 => clientWidth ; 入场元素; left -clientWidth = 0" )
+
+		for(var i = 0 ; i < aShow.length ; i++){
+			aShow[i].style.zIndex = 0;
+		}
+
+		out.style.zIndex = 1;
+		approach.style.zIndex = 1;
+
+		out.style.left = 0;
+		move(out,{
+			left:cWidth
+		})
+
+		approach.style.left = -cWidth + "px";
+		move(approach,{
+			left:0
+		})
+
+	}
+
+	var oLeft = $(".left")[0];
+	var oRight = $(".right")[0];
+
+	oRight.onclick = function(){	
+
+		if(index == aShow.length - 1){
+			var nOut = index;
+			var nApproach = 0;
+			index = 0;
+		}else{
+			var nOut = index;
+			var nApproach = ++index;
+		}
+		right(aShow[nOut],aShow[nApproach]);
+		for(var i = 0 ; i < aSpan.length ; i++){
+			aSpan[i].className = "";
+		}
+		aSpan[index].className = "active";
+		console.log(nOut +"出场");
+		console.log(nApproach + "入场");
+	}
+
+	oLeft.onclick = function(){
+
+		if(index == 0){
+			var nOut = index;
+			var nApproach = aShow.length - 1;
+			index = aShow.length - 1;
+		}else{
+			var nOut = index;
+			var nApproach = --index;
+		}
+		left(aShow[nOut],aShow[nApproach]);
+		for(var i = 0 ; i < aSpan.length ; i++){
+			aSpan[i].className = "";
+		}
+		aSpan[index].className = "active";
+
+		console.log(nOut +"出场");
+		console.log(nApproach + "入场");
+
+	}
+
+</script>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>clientTop和clientLeft</title>
+    <style>
+        body{
+            border: 6px solid #000000;
+        }
+
+        #container {width: 200px; height: 200px; position: relative; border: 3px solid #f00; background: #C1FFE4;}
+        #container:after {content: ""; display: "block"; clear: both;}
+
+        .one{
+            border: 2px solid green;
+            width: 100px;
+            height: 100px;
+            /* margin : 5px 0 0 5px; */
+            padding: 3px;
+            background: red;
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            margin: 20px 0 0 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <div class="one"></div>
+    </div>
+</body>
+
+<script>
+    var oDiv = document.getElementsByClassName('one')[0];
+    console.log("client left and top: " + oDiv.clientLeft+":"+oDiv.clientTop);
+    console.log("offset left and top: " + oDiv.offsetLeft+":"+oDiv.offsetTop);
+    console.log("scroll left and top: " + oDiv.scrollLeft+":"+oDiv.scrollTop);
+</script>
+</html>

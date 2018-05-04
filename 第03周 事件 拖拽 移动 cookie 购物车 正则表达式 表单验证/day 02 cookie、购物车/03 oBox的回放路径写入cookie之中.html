@@ -1,0 +1,112 @@
+<!DOCTYPE>
+<html >
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>完美拖拽</title>
+<style type="text/css">
+html,body{overflow:hidden;}
+body,div,h2,p{margin:0;padding:0;}
+body{color:#fff;background:#000;font:12px/2 Arial;}
+p{padding:0 10px;margin-top:10px;}
+span{color:#ff0;padding-left:5px;}
+#box{position:absolute;width:300px;height:150px;background:#333;border:2px solid #ccc;top:50%;left:50%;margin:-75px 0 0 -150px;}
+#box h2{height:25px;cursor:move;background:#222;border-bottom:2px solid #ccc;text-align:right;padding:0 10px;}
+#box h2 a{color:#fff;font:12px/25px Arial;text-decoration:none;outline:none;}
+</style>
+<script type="text/javascript">
+
+</script>
+</head>
+<body>
+<div id="box" style="margin-left: 0px; margin-top: 0px; left: 533px; top: 231px;">
+    <h2><a href="javascript:;">点击回放拖动轨迹</a></h2>
+    <p><strong>Drag:</strong><span>false</span></p>
+    <p><strong>offsetTop:</strong><span>231</span></p>
+    <p><strong>offsetLeft:</strong><span>533</span></p>
+</div>
+
+<script src="cookie.js"></script>
+<script>
+	var oBox = document.getElementById("box");
+	var oH2 = oBox.children[0];
+	var oDrag = oBox.children[1].children[1];
+	var oLeft = oBox.children[2].children[1];
+	var oTop = oBox.children[3].children[1];
+	var oBack = oH2.children[0];
+
+	oH2.onmousedown = function(event){
+		var evt = event || window.event;
+		var offsetX = evt.offsetX;
+		var offsetY = evt.offsetY;
+		oDrag.innerHTML = "true";
+		document.onmousemove = function(event){
+			var evt = event || window.event;
+			var left = evt.clientX - offsetX;
+			var top = evt.clientY - offsetY;
+			oBox.style.left = left  + "px";
+			oBox.style.top = top + "px";
+			oLeft.innerHTML = left;
+			oTop.innerHTML = top;
+			// console.log({
+			// 	left:left,
+			// 	top:top
+			// })
+
+			var sCookie = getCookie("position");
+
+			//有结构 ; => 向内部插入元素;
+
+			//没有; => 建立结构;
+
+			//console.log(sCookie)
+			if(sCookie){	
+				//有结构 => 向结构中插入内容;
+				// 字符串操作？？？？？ nononno
+				// 字符串转换成数组;
+				//console.log("其余时候执行的内容");
+				var aCookie = JSON.parse(sCookie);
+				//console.log(aCookie);
+				aCookie.push({
+					left:left,
+					top:top
+				})
+				setCookie("position",JSON.stringify(aCookie))
+				//console.log(aCookie);
+			}else{
+				//没有  => 建立结构;
+				var arr = [];
+				arr.push({
+					left:left,
+					top:top
+				});
+				console.log(JSON.stringify(arr));
+				setCookie("position",JSON.stringify(arr))
+			}
+		}	
+		document.onmouseup = function(){
+			document.onmousemove = null;
+			oDrag.innerHTML = "false";
+		}
+	}
+	var timer = null;
+	oBack.onclick = function(){
+		var aCookie = JSON.parse(getCookie("position"));
+		var i = aCookie.length  - 1;
+		timer = setInterval(function(){
+			if(i == -1){
+				clearInterval(timer);
+				setCookie("position","");
+			}else{
+				oBox.style.left = aCookie[i].left + "px";
+				oBox.style.top = aCookie[i].top + "px";
+			}
+			i--;
+		}, 30)
+	}
+
+
+
+</script>
+
+
+</body></html>

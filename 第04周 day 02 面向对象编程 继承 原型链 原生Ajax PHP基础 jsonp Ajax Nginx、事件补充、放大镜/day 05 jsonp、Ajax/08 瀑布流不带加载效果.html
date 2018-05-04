@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>瀑布流</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+
+		.container {
+			margin: 0 auto;
+			position: relative;
+		}
+
+		.box {
+			width: 280px;
+			padding: 5px;
+			box-sizing: border-box;
+			float: left;
+		}
+
+		.box img {
+			width: 100%;
+			box-shadow: 0 0 10px #000;
+			border-radius: 5px;
+		}
+
+		header h2 {
+			text-align: center;
+			line-height: 50px;
+			text-shadow: 0 3px 5px #ddd;
+		}
+	</style>
+</head>
+
+<body>
+	<header>
+		<h2>非常炫酷的瀑布流</h2>
+	</header>
+	<div class="container">
+
+	</div>
+</body>
+
+<script src="ajax.js"></script>
+<script>
+
+	// jsonp("http://www.wookmark.com/api/json/popular","callback",function(){
+	// })
+	function Waterfall() {
+		this.init();
+	}
+	Waterfall.prototype = {
+		constructor: Waterfall,
+		init: function () {
+			this.ele = document.querySelector(".container")//瀑布流父级;
+			this.box = [];
+			this.load_json();
+			window.onscroll = this.window_scroll.bind(this);
+		},
+		window_scroll: function () {
+
+		},
+		load_json: function () {
+			//加载数据;
+			var _this = this;
+			jsonp("http://www.wookmark.com/api/json/popular", "callback", function (res) {
+				_this.rendering_page(res);
+			})
+		},
+		rendering_page: function (res) {
+			var frag = document.createDocumentFragment();
+			var _this = this;
+			res.forEach(function (item) {
+				console.log(item)
+				var div = document.createElement("div");
+				div.className = "box";
+				var img = new Image();
+				img.src = item.preview;
+				var prop = 280 / item.width;//宽度缩小比例;
+				div.style.height = item.height * prop + "px";
+				//console.log(item.width / item.height)
+				_this.box.push(div);
+				div.appendChild(img);
+				frag.appendChild(div)
+			})
+			this.ele.appendChild(frag);
+			// console.log(document.querySelectorAll(".box")[0].offsetWidth);
+			this.rank_img();
+
+		},
+		rank_img: function () {
+			var cWidth = document.documentElement.clientWidth;
+			var num = Math.floor(cWidth / 280);
+			this.ele.style.width = 280 * num + "px";
+			//console.log(num);
+			//选中所有的图片进行排列;
+			//分两类，一类是第一排，一类是第二排;
+			var height_arr = [];
+			for (var i = 0; i < this.box.length; i++) {
+				if (i < num) {
+					//console.log(aBox[i]);
+					height_arr.push(this.box[i].offsetHeight);
+				} else {
+					var min_height = Math.min.apply(false, height_arr);
+					var min_index = height_arr.indexOf(min_height);
+					this.box[i].style.position = "absolute";
+					this.box[i].style.top = min_height + "px";
+					this.box[i].style.left = this.box[min_index].offsetLeft + "px";
+					//更新数组最小值  => 拼接之后最矮的元素已经不是最矮的了;
+					height_arr[min_index] = height_arr[min_index] + this.box[i].offsetHeight;
+				}
+			}
+			//console.log(height_arr);
+		}
+	}
+	new Waterfall();
+</script>
+
+</html>

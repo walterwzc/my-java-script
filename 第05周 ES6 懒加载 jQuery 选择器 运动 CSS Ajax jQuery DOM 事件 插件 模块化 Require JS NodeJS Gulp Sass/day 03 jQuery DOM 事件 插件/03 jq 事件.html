@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="libs/jquery-3.2.1.js"></script>
+	<script>
+		$(function () {
+			// alert(1);
+			// $("html").click(function () {
+			// 	alert(1);
+			// })
+
+			// 错误的解除事件绑定的方式：
+			// $("html").click(null);
+
+			// on off
+
+			// bind unbind;
+
+
+			// $("button").on("click", function () {
+			// 	alert(1);
+			// })
+			// $("button").on("click", function () {
+			// 	alert(2);
+			// })
+
+			// 事件的命名空间 => 事件的删除;
+			// $("button").on("click.yanghuaizhi", function (e) {
+			// 	//alert(1);	
+			// 	//console.log(e);
+			// })
+			// $("button").on("click", function () {
+			// 	//alert(2);	
+			// })
+
+			// 事件的命名空间;
+
+			// $("button").off("click.yanghuaizhi");
+
+			// 定时器调动;
+
+			// $("body").on("click", function () {
+			// 	alert("i'm body")
+			// })
+
+			// $("button").on("click", function () {
+			// 	alert("hello world")
+			// })
+
+			// 事件的触发
+			// //$("button").trigger("click");
+			// //setInterval('$("button").trigger("click")',3000);
+			// //trigger 会触发事件冒泡;
+			// //$("button").trigger("click");
+			// //triggerHandler 不会触发事件冒泡;
+			// $("button").triggerHandler("click")
+
+
+			// 函数的高级绑定方式;
+			// 使用$.proxy 来绑定事件this的指向。
+			// $.proxy(fn, 1) == bind;
+			// $("button").on("click", $.proxy(fn, 1));
+			// function fn() {
+			// 	console.log(this);
+			// }
+
+
+			setTimeout(function () {
+				var html = "";
+				for (var i = 0; i < 10; i++) {
+
+					if (i % 2 == 0) {
+						html += "<button>我是异步加载的按钮</button>"
+					} else {
+						html += "<button class=hello>我是异步加载的按钮</button>"
+					}
+				}
+				$(".box").html(html);
+			}, Math.random() * 5000);
+
+			console.log($(".box"));
+
+			// 采用的是事件冒泡的方式，事件委托，在父级元素的box，设置了对于 class 为 .hello 的button的事件的拦截。
+			$(".box").on("click", ".hello", function () {
+				alert("hello world");
+			})
+
+			//1. on 事件绑定： off 事件解绑;
+
+			//2. 事件命名 click.yanghuaizhi;
+
+			//3. 事件的自动触发 trigger() triggerHandel();
+
+			//4. 事件的函数代理 $.porxy(fn,context); 改变函数this指向;
+
+			//5. 事件委托 on(事件名,(委托元素选择器)?,事件回调函数);
+
+			//6. 默认事件阻止和 事件冒泡的阻止 同 js 查阅文档;
+
+			//7. return false; => 双阻止;  慎用;
+
+			//console.log($.support)
+		})
+
+		// if ( $.browser.msie )
+ 	// 		alert( $.browser.version );
+
+ 		// var arr = [1,2,3,4,5,6,7];
+ 		// $.each(arr,function(index,value){
+ 		// 	console.log(index,value);
+ 		// })
+	</script>
+</head>
+
+<body>
+	<button>点我有惊喜</button>
+
+	<div class="box">
+
+	</div>
+</body>
+
+</html>

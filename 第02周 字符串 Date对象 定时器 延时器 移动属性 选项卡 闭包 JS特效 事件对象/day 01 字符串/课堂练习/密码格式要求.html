@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>密码格式要求</title>
+</head>
+<body>
+    <h2>用户名密码格式要求：</h2>
+    <h3>1.密码位数在 6~12位之间。</h3>
+    <h3>2.用户名要求必须以小写字母开头。</h3>
+    <h3>3.用户名6~20位；</h3>
+    <h3>4.密码必须存在大小写字母和 特殊符号 !@#$% 中的一种</h3>
+    请输入用户名：<input type="text" id="username"><span></span><br/>
+    请输入密码：&nbsp;&nbsp;&nbsp;<input type="text" id="userpwd"><span></span><br/>
+    <button id="btn">验证密码</button>
+</body>
+<script>
+    var string = "!@#$%";
+    var symbolCodeArray = [33, 35, 36, 37, 64];
+    // for (var i = 0; i < string.length; i++) {
+    //     console.log(string.charCodeAt(i));
+    // }
+    
+    username.onblur = function () {
+        var name = this.value;
+        if (name.charCodeAt(0) >= 97 && name.charCodeAt(0) <= 122) {
+            if (name.length >= 6 && name.length <=20) {
+
+            } else {
+
+            }
+
+        } else {
+            errorInfo(this, "用户名要求必须以小写字母开头");
+        }
+    }
+
+    userpwd.onblur = function () {
+        var pwd = this.value;
+        if (pwd.length >= 6 && pwd.length <=20) {
+            
+        } else {
+
+        }
+
+
+    }
+
+    function errorInfo(ele, info) {
+            ele.style.borderColor = "red";
+            ele.nextSibling.innerHTML = info;
+    }
+</script>
+</html>

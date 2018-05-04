@@ -1,0 +1,23 @@
+方法 === 函数
+
+匿名函数
+
+函数体; => 承载代码 声明函数名的一个作用
+
+如果返回一个函数，使用（）运行一个函数。
+
+声明提前
+
+JS事件：
+onclick， ondblclick， onmouseover， onmouseout， onmousemove， onmousedown， onmouseup， onkeydown， onfocus， onblur， oninput， onload
+
+作用域： 全局作用域， 函数作用域。 作用域链
+
+堆栈，队列，简单类型的变量比较，引用类型的变量比较。
+
+return 1. 终止代码， 2. 返回值
+
+parameter： 实际参数， 形式参数。
+
+闭包： 自由变量
+自由变量 1. 在外部函数被声明; 2. 在内部函数被调用;

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+
+	<script src="libs/jquery-3.2.1.js"></script>
+	<script>
+		// var def = $.Deferred();
+		// console.log(def);
+
+		// setTimeout(function () {
+		// 	def.resolve();
+		// }, 3000)
+
+		// def.then(function () {
+		// 	alert(1);
+		// });
+		// 我们使用deferred => 封装内部;
+
+
+		// var def = $.Deferred();
+		// var ajaxDef = $.get();
+		//ajaxDef 返回的deferred 对象 没有 resolve rejected; ? 为啥，凭啥..
+
+		// console.log(def,ajaxDef);
+
+		// function getAjax() {
+		// 	var def = $.Deferred();
+		// 	setTimeout(function () {
+		// 		def.resolve("hello");
+		// 	}, Math.random() * 5000)
+		// 	// return def.promise(); // resolve , rejected;
+		// 	return def; // resolve , rejected;
+		// }
+		// var def = getAjax();
+		// //resolve 和rejected 不该在同步程序里有访问权限;
+		// // def.resolve();
+		// console.log(def, def.promise());
+		// def.then(function (a) {
+		// 	alert(a);
+		// 	alert("hello world")
+		// })
+		// 1. 内部  => 细节全部暴露;
+		// 2. 外部  => 隐藏细节;
+
+
+
+		// 示例： 模拟在返回对象的时候，屏蔽不应该在同步线程中出现的变量或方法。
+		// function family(){
+		// 	var obj = {
+		// 		name:"吴彦祖",
+		// 		age:"30",
+		// 		marry:"true",
+		// 		out:function(){
+		// 			for(var attr in obj){
+		// 				if(attr == "marry"){
+		// 					delete obj[attr];
+		// 				}
+		// 			}
+		// 			return obj;
+		// 		}
+		// 	}
+
+		// 	return obj.out();
+		// }
+		// console.log(family());
+
+
+
+		// function ansy() {
+		// 	var def = $.Deferred();
+		// 	setTimeout(function () {
+		// 		def.resolve(1);
+		// 	}, Math.random() * 4000)
+		// 	return def.promise(); // resolve , rejected;
+		// }
+		// function ansy2() {
+		// 	var def = $.Deferred();
+		// 	setTimeout(function () {
+		// 		def.reject(1);
+		// 		// def.resolve(2);
+		// 	}, Math.random() * 4000)
+		// 	return def.promise(); // resolve , rejected;
+		// }
+
+		// $.when(ansy(), ansy2()).then(function (a, b) {
+		// 	console.log("成功", a, b)
+		// }, function () {
+		// 	console.log("啊哈哈哈哈， 失败了");
+		// });
+	</script>
+</head>
+
+<body>
+
+</body>
+
+</html>

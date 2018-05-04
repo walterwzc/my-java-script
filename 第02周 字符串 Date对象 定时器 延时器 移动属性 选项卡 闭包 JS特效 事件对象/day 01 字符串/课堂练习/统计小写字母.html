@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>统计小写字母</title>
+</head>
+<body>
+    <input type="text" id="userStr"><button id="tongji">统计小写字母</button>
+    <p id="showInfo"></p>
+</body>
+<script>
+    tongji.onclick = function () {
+        var count = 0;
+        var inputString = userStr.value;
+        for (var i = 0; i< inputString.length; i++) {
+            if (inputString.charCodeAt(i) >= 97 && inputString.charCodeAt(i) <=122) {
+                count++;
+            }
+        }
+
+        if (count == 0) {
+            showInfo.innerHTML = "没有小写字母";
+        } else {
+            showInfo.innerHTML = "小写字母有" + count + "个";
+        }
+    }
+</script>
+</html>

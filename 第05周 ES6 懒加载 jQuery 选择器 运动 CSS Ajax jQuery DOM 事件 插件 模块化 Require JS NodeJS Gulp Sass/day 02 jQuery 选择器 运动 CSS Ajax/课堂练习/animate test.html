@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+
+	<style>
+		#box{
+			width: 100px;
+			height: 100px;
+			background: #ddd;
+			position: absolute;
+		}
+
+
+
+	</style>
+</head>
+<body>
+	<button id="btn" >开始动画</button>
+	<button id="stop" >stop</button>
+	<div id="box" class="show">
+		
+
+	</div>
+
+</body>
+<script src="jquery-3.2.1.js"></script>
+<script>
+
+	// $.fx.interval = 1000;
+	// $.fx.off = true;
+
+	$(function(){	
+		$("#stop").click(function(){
+			//1. 第一个参数，动画队列; 是否清空动画列队;
+			//2. 第二个参数，动画过程; 是否立即完成;
+			//$("#box").stop(false,false);
+			//$("#box").stop(true,false);//动画队列清空 , 动画不完成;
+			//$("#box").stop(true,true);
+			//$("#box").stop(false,true);
+			// boolean boolean
+
+		})
+		
+		$("#btn").click(function(){
+			var $box = $("#box");
+
+            //不传递参数直接隐藏;
+            
+            // console.log($("#box").hasClass("show"));
+
+			// // if($("#box").is(".show")){ // 等同于 如下：
+			// if($("#box").hasClass("show")){
+			// 	$("#box").hide(2000);//让元素隐藏方法;
+			// 	$("#box").removeClass("show");
+			// }else{
+			// 	$("#box").show(2000);//让元素隐藏方法;
+			// 	$("#box").addClass("show");
+			// }
+
+			// //$box.toggle("normal") //slow => 800  fast => 400 normal => 600
+
+			// $box.toggle("normal",function(){
+			// 	//alert("动画结束");
+			// 	//console.log(this);
+			// 	$(this).toggle("normal",arguments.callee);
+			// })
+
+			//fade
+
+			// $box.fadeOut(3000)
+			// $box.fadeIn(3000)
+
+			//$box.fadeToggle(3000)
+			//slide
+
+			// slideDown slideUp slideToggle;
+
+			// animate方法默认接受4个参数，第2、 3、 个参数可以没有，第4个参数是回调函数，当第2、 3 参数没有的时候，第二个参数可以为回调函数，因为其函数做了参数判断，所以实际参数可以不按照形式参数位置的定义来传递。
+			//自定义动画API => animate;
+			// $box.animate({
+			// 	width:300,
+			// 	height:200,
+			// 	opacity:0.3,
+			// 	left:100,
+			// 	top:100
+			// },3000,"swing",function(){
+			// 	alert("自定义动画结束");
+			// })
+
+		// 	$box.animate({
+		// 		left:"100"
+		// 	},function(){
+		// 		//console.log(this);
+		// 		$(this).animate({
+		// 			top:100
+		// 		},function(){
+		// 			$(this).animate({
+		// 				width:300
+		// 			},function(){
+		// 				$(this).animate({
+		// 					height:200
+		// 				},function(){
+		// 						$(this).animate({
+		// 							top:0
+		// 						},function(){
+
+		// 						})
+		// 				})
+		// 			})
+		// 		})
+        // 	})
+        
+
+
+
+        
+			// $("#box")
+			// .animate({
+			// 	left:300
+			// },5000)
+			// .animate({
+			// 	top:100
+			// })
+			// .animate({
+			// 	width:200
+			// })
+			// .animate({
+			// 	height:200,
+			// 	top:200
+			// })
+			// .animate({
+			// 	left:0,
+			// 	height:100
+			// })
+			// .animate({
+			// 	top:0,
+			// 	width:100
+			// })
+			// // 等 运动结束之后，将背景颜色变为黄色，但是因为该设置为同步，而运动为异步，所以box在一开始运动的时候就会变为黄色，所以将其放在队列之后，最后执行。
+			// .queue(function(next){
+			// 	$(this).css({
+			// 		background:"yellow";
+			// 	})
+			// 	next();
+			// })
+			// .animate({
+			// 	top:50,
+			// 	left:50
+            // })
+            
+
+
+			// .animate({
+			// 	top:0,
+			// 	width:100
+			// },function(){
+			// 	$(this).css({
+			// 		 background:"yellow"
+			// 	})
+			// })
+		})
+	})	
+</script>
+</html>

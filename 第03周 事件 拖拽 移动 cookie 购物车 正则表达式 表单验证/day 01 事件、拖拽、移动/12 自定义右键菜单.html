@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>自定义右键菜单</title>
+	<style>
+		ul{
+			width: 200px;
+			display: none;
+			position: absolute;
+		}
+		ul li{
+			height: 20px;
+			line-height: 20px;
+			text-align: center;
+			list-style-type:none;
+		}
+	</style>
+</head>
+<body>
+	<p>这是一段文字</p>
+	<p>这是一段文字</p>
+	<p>这是一段文字</p>
+	<p>这是一段文字</p>
+	<p>这是一段文字</p>
+	<p>这是一段文字</p>
+	<p>这是一段文字</p>
+	<ul id="list">
+		<li>这是一个自己定义的菜单呦</li>
+		<li>点击会有神奇的事情发生呦</li>
+		<li>点击会有神奇的事情发生呦</li>
+		<li>点击会有神奇的事情发生呦</li>
+		<li>点击会有神奇的事情发生呦</li>
+	</ul>
+	<input type="text">
+</body>
+<script>
+	var oList = document.getElementById("list");
+	document.oncontextmenu = function(event){
+		var evt = event || window.event;
+		if(evt.preventDefaul){
+			evt.preventDefault();
+		}else{
+			evt.returnValue = false;
+		}
+		//console.log(evt);
+		oList.style.display = 'block';
+		oList.style.left = evt.clientX + "px";
+		oList.style.top = evt.clientY + "px";
+	}
+	document.onclick = function(){
+		oList.style.display = 'none';
+	}
+	document.onmousedown = function(event){
+		var evt = event || window.event;
+		evt.preventDefault();
+	}
+</script>
+</html>

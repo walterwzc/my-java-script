@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+		var xhr = new XMLHttpRequest();
+		xhr.open("GET","interface/login.php");
+		xhr.send(null);
+		xhr.timeout = 3000;
+
+		// Ajax 加载完成之后触发的事件
+		xhr.onload = function(event){
+			// console.log(event);
+			if(xhr.status == 200){
+				console.log(xhr.response)
+			}
+		}
+		xhr.ontimeout = function(){
+			//alert("加载超时");
+		}
+
+		xhr.onprogress = function(event){  //上传文件的进度
+			console.log(event)
+		     if(event.lengthComputable){
+		          var percent = event.loaded / event.total;
+		     }
+		}
+
+		
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

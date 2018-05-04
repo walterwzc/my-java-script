@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+	/*	
+		1. 如何忽略空白节点？      不太懂
+		2. 根据可是框的绝对定位？  不太懂
+		3. 隔行变色 ？
+	*/
+	</script>
+	<style>
+		#box{
+			width: 800px;
+			height: 600px;
+			margin-left: 20px;
+			background: #ddd;
+			overflow: hidden;
+			position: relative;
+		}
+		#box span{
+			display: block;
+			width:100px;
+			height: 100px;
+			background: #f99;
+			margin-left: 100px;
+			margin-top: 80px;
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<span>hello world</span>
+	</div>
+	<ul id="list">
+		<li>hello world1</li>
+		<li>hello world2</li>
+		<li>hello world3</li>
+		<li>hello world4</li>
+		<li>hello world5</li>
+	</ul>
+</body>
+<script>
+	
+	var oBox = document.getElementById("box");
+	// var nodes = oBox.childNodes;
+	// for(var i = 0 ; i < nodes.length ; i++){
+	// 	//文本节点;
+	// 	if(nodes[i].nodeType == 3){
+	// 		console.log(nodes[i].nodeValue);
+	// 		//trim 去掉字符串首位的空白;
+	// 		//去掉文字节点内容 首位空白字符之后，如果 字符数为 0 为空白文本节点;
+	// 		if(nodes[i].nodeValue.trim().length == 0){
+	// 			nodes[i].remove();
+	// 		};
+	// 	}	
+	// 	//dom 空白节点;
+	// }
+	// console.log(nodes)
+
+	// function trimplus(dom){
+	// 	var nodes = dom.childNodes;
+	// 	for(var i = 0 ; i < nodes.length ; i++){
+	// 		//文本节点;
+	// 		if(nodes[i].nodeType == 3){
+	// 			//trim 去掉字符串首位的空白;
+	// 			//去掉文字节点内容 首位空白字符之后，如果 字符数为 0 为空白文本节点;
+	// 			if(nodes[i].nodeValue.trim().length == 0){
+	// 				nodes[i].remove();
+	// 			};
+	// 		}	
+	// 		//dom 空白节点;
+	// 	}
+	// }
+	var oBox = document.getElementById("box");
+	console.log(oBox.children[0].offsetLeft);
+	function postion(dom){
+		if(dom.offsetParent.nodeName == "BODY"){
+			return dom.offsetLeft;
+		}
+		return dom.offsetLeft + position(dom.offsetParent);
+	}
+	var oList = document.getElementById("list");
+	var aLi = oList.children;
+	for(var i = 0 ; i < aLi.length ; i++){
+		if(i % 2 == 0){ aLi[i].style.background = "red";} ;
+	}
+
+</script>
+</html>

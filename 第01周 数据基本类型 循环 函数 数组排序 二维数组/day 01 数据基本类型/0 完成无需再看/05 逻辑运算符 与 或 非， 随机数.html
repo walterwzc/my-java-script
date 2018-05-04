@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+		//单分支结构;
+			//var a = 3; 
+
+			// if(a > 5){
+			// 	alert("hello world");
+			// }
+
+			// if( a > 5 ){
+			// 	alert("a大于5");
+			// }else{
+			// 	alert("a小于等于5")
+			// }
+			// if(){
+
+			// }else if(){
+
+			// }else{
+
+			// }
+
+			//开发一款软件，根据公式（身高-108）*2=体重，可以有10斤左右的浮动。来观察测试者体重是否合适
+
+			// var userWeight = 120;
+			// var userHeight = 179;
+			// var standardWeight = (userHeight-108) * 2; // 142 
+			// console.log(standardWeight);
+			// // 158 - 142  => 超重的结果;
+			// if( userWeight - standardWeight > 0){
+			// 	//用户超出标准体重;
+			// 	if(userWeight - standardWeight <= 10){
+			// 		//符合标准的体重;
+			// 		alert("标准体重");
+			// 	}else{
+			// 		alert("超重");
+			// 	}
+			// }else{
+			// 	//用户过轻;
+			// 	if(standardWeight - userWeight <= 10){
+			// 		alert("标准体重");
+			// 	}else{
+			// 		alert("过轻");
+			// 	}
+			// }
+
+
+			// 与或否;
+
+			// && || !;
+
+			// && => 并且;
+
+			var a = 9;
+
+			//console.log(a > 5 && a % 2  == 0);
+
+			//console.log("0" && 0);
+
+			// && 返回值(计算结果)的规则;
+
+			// 1 . 左右都为true;  返回后面的值;
+			// 2. 如果false 那么返回false这个值;
+
+			// || => 都行;
+
+			// console.log( "123" || "456")
+
+			// 1. 碰到true 就返回true的值;
+			// 2. 两者都为false 返回后面的;
+
+			// !;
+			//console.log(!false);
+			// != ;
+			// console.log(1 !== "1");
+
+			// var userWeight = 140;
+			// var userHeight = 179;
+			// var standardWeight = (userHeight-108) * 2; // 142 
+
+			// if(userWeight - 10 >= standardWeight || userWeight + 10 <= standardWeight){
+			// 	alert("不符合");
+			// }else{
+			// 	alert("符合");
+			// }
+
+
+			//闰年规则;
+
+			//能被四整除且不能被100整除 , 或者能被400整除的年份;
+
+			//伪随机数;
+
+			// 0 ~ 1;
+
+			//console.log(parseInt(Math.random() * 200));
+
+			var randomYear = parseInt(Math.random() * 9000) + 1000; //随机的四位数年份;
+
+			console.log(randomYear);
+
+			// 逻辑 => 平年闰年;
+
+			//if 之中的隐式数据类型转换?; => boolean
+
+			// if(null){ //转换目标为布尔值;  
+			// 	alert("转换为true");
+			// }else{
+			// 	alert("转换为false");
+			// }
+
+			// if(randomYear % 4 == 0 && randomYear % 100 != 0 || randomYear % 400 == 0){
+			// 	alert("这是闰年有366天");
+			// }else{
+			// 	alert("这是平年有365天");
+			// }
+
+			// alert(1);
+			// document.write();
+			// console.log();
+
+			// if(){
+			// 	alert(123);
+			// }
+
+			//多分支结构;
+
+			//  if == switch => 定义了整个语句;
+
+			// case => 定义条件的;
+			// break => 阻止穿透;
+			// default === else;
+
+			// var prop = "3";
+
+			// switch(prop){
+			// 	case 1 : alert("hello world");//穿透;
+			// 	break;
+			// 	case 2 : alert("hello world2");
+			// 	case 3 : alert("hello world3");
+			// 	break;
+			// 	case 4 : alert("hello world4");
+			// 	case 5 : alert("hello world5");
+			// 	case 6 : alert("hello world6");
+			// 	default : alert("hello worlddefault");
+			// }
+
+			// var x = 2;
+			// switch(x){
+			//      case 1 : console.log(1);
+			//      case 2 : console.log(2);
+			//      default : break;
+			//      case 3 : console.log(3);
+			// }
+			
+
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+
+		//事件冒泡; => 事件的传播顺序;
+
+
+		//offset系列;
+
+		// var timer = setInterval(function(){
+		// 	console.log(1);
+		// },1000)
+		// clearInterval(timer);
+
+		// var timer = setInterval(function(){
+		// 	console.log(1);
+		// 	clearInterval(timer);
+		// },1000)
+
+
+		// oBox.myAttr();
+
+		// Element.prototype.myAttr = function(){
+		// 	alert("hello world");
+		// }
+
+		//1.获取当前事件的毫秒数;
+
+		//2. 终止时间的毫秒数;
+
+		//3. end - start; 
+
+		//转换为 时分秒;
+
+		//楼梯;
+
+		// 布局: 楼层区; 
+
+		// 操作区;
+
+		// 楼层区滚动到一定高度的时候操作区显示; 
+
+		//显示功能；
+		
+		// if(scrollTop >= 一定的高度){
+		// 	操作区显示；
+		// }
+		//楼层跳转功能;
+
+		//点击楼层 => 到达对应的楼层;
+
+		// 操作区的下标；
+
+		// 对应楼层的 offsetTop;
+
+		// 事件委托封装;
+	</script>
+	<style>
+		div{
+			width: 100px;
+			height: 100px;
+			background: #000;
+			margin-top: 10px;
+		}
+	</style>
+</head>
+<body id="body">
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+</body>
+
+<script>
+
+	//在特定的操作下执行一段代码;
+
+
+	// document.onclick = function(event){
+	// 	var evt = event||window.event;
+	// 	evt.target.style.background = "#ddd";
+	// 	console.log(evt.target);
+	// }
+	// var aDiv = document.getElementsByTagName("div");
+		
+	// for(var i = 0 ; i < aDiv.length ;i++){
+	// 	aDiv[i].onclick = function(){
+	// 		console.log(1);
+	// 	}
+	// }
+
+
+	var aDiv = document.getElementsByTagName("div");
+	// for(var i = 0 ; i < aDiv.length ;i++){
+	// 	aDiv[i].onclick = function(){
+	// 		this.style.background = "#ddd";
+	// 	}
+	// }
+	
+	//在特定的操作下执行一段代码;
+	//在哪 ? =>   div 
+	//干了啥? =>  点击;
+
+	//当点击div的时候执行一段代码;
+
+	// if(是不是div){
+	//	console.log()
+	//}
+
+	// document.body.onclick = function(event){
+	// 	var e = event || window.event;
+	// 	var target = e.target || e.srcElement;
+	// 	console.log(target.nodeName);
+	// 	if(target.nodeName == "DIV"){
+	// 		alert("hello world");
+	// 	}
+	// }
+
+	//当点击的是 规定的元素组内的元素的时候； 时候执行一段代码
+	document.body.onclick = function(event){
+		var e = event || window.event;
+		var target = e.target || e.srcElement;
+		aDiv = [].slice.call(aDiv); //要执行事件的元素组;
+		if(aDiv.indexOf(target) != -1){
+			alert("hello world");
+		}
+	}
+
+	document.body.onclick = delegation(aDiv,function(){
+		console.log(1);
+		console.log(this);//this
+	});
+
+	function delegation(nodeList,callback){
+		return function(event){
+			var e = event || window.event;
+			var target = e.target || e.srcElement;
+			nodeList = [].slice.call(nodeList); //要执行事件的元素组;
+			if(nodeList.indexOf(target) != -1){
+				callback.call(target);
+			}	
+		}
+	}
+</script>
+</html>

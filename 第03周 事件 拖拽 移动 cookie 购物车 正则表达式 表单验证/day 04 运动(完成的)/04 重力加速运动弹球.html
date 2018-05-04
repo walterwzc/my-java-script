@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>重力弹球</title>
+
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		#container{
+			width: 800px;
+			height: 400px;
+			margin: 30px auto;
+			position: relative;
+			box-shadow: 0 0 15px #ddd;
+		}
+		#box{
+			width: 50px;
+			height: 50px;
+			background: #f99;
+			border-radius: 50%;
+			position: absolute;
+			left: 100px;
+			top: 20px;
+		}
+
+	</style>
+
+
+</head>
+<body>
+	
+
+	<div id="container">
+		<div id="box">
+			
+		</div>
+	</div>	
+	
+	<script>
+	
+		var oBox = document.getElementById("box");
+		var oContainer = document.getElementById("container");
+		var speed = 1; //速度
+		var speedX = 10; //x轴速度;
+		var g = 1; //重力加速度;
+		var count = 0;//频率控制;
+		var maxTop = oContainer.offsetHeight - oBox.offsetHeight; //最大高度;
+		var maxLeft = oContainer.offsetWidth - oBox.offsetWidth; //最大高度;
+		var timer = null;
+		timer = setInterval(function(){
+			count ++;
+			if(count % 5 == 0){
+				speed += g;
+			}	
+			if(Math.abs(oBox.offsetTop - maxTop) < Math.abs(speed)){ //匀速运动的终止条件判定什么时候速度变为负数;
+				oBox.style.top = maxTop + "px";  //直接到终点; 
+				//clearInterval(timer);
+				speed = -parseInt(speed * 0.5); //速度损耗;
+				//speed = -speed;
+				if(speed == -1){
+					clearInterval(timer);
+				}
+				oBox.style.top = oBox.offsetTop + speed  + "px";
+			}else{
+				oBox.style.top = oBox.offsetTop + speed + "px";
+				oBox.style.left = oBox.offsetLeft + speedX + "px";
+			}
+
+			// if(oBox.offsetTop < 0){
+			// 	oBox.style.top = 0;
+			// 	speed = -speed;
+			// }
+			if(Math.abs(oBox.offsetLeft - maxLeft) < Math.abs(speedX)){
+				speedX = -speedX;
+			}
+			if(oBox.offsetLeft < 0){
+				oBox.style.left = 0;
+				speedX = -speedX;
+			}
+		
+		},30)
+
+
+	</script>
+
+
+</body>
+</html>

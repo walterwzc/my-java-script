@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>冒泡排序</title>
+	<script>
+		//数组的换位;	
+		// var arr = [1,2,3,4,5,6];
+
+		// var temp = arr[0]//谁将要被覆盖?
+		// arr[0] = arr[5];
+		// arr[5] = arr[0];
+
+		//console.log(arr);
+
+		//冒泡排序的原则; 
+
+			// 两两比较; => part 1. 后面的比前面的大换位; || part 2. 后面的比前面的小换位;
+
+			var arr = [99,88,77,13,5,9,44];
+
+			// var i = 0 ;
+			// if(arr[i] > arr[i+1]){ //如果前面的大于后面的 ; 换位;
+			// 	var temp = arr[i];
+			// 	arr[i] = arr[i+1];
+			// 	arr[i+1] = temp;
+			// }
+			// var i = 1 ;
+			// if(arr[i] > arr[i+1]){ //如果前面的大于后面的 ; 换位;
+			// 	var temp = arr[i];
+			// 	arr[i] = arr[i+1];
+			// 	arr[i+1] = temp;
+			// }
+			// var i = 2 ;
+			// if(arr[i] > arr[i+1]){ //如果前面的大于后面的 ; 换位;
+			// 	var temp = arr[i];
+			// 	arr[i] = arr[i+1];
+			// 	arr[i+1] = temp;
+			// }
+			// var i = 3 ;
+			// if(arr[i] > arr[i+1]){ //如果前面的大于后面的 ; 换位;
+			// 	var temp = arr[i];
+			// 	arr[i] = arr[i+1];
+			// 	arr[i+1] = temp;
+			// }
+			// var i = 4 ;
+			// if(arr[i] > arr[i+1]){ //如果前面的大于后面的 ; 换位;
+			// 	var temp = arr[i];
+			// 	arr[i] = arr[i+1];
+			// 	arr[i+1] = temp;
+			// }
+			// var i = 5 ;
+			// if(arr[i] > arr[i+1]){ //如果前面的大于后面的 ; 换位;
+			// 	var temp = arr[i];
+			// 	arr[i] = arr[i+1];
+			// 	arr[i+1] = temp;
+			// }
+			
+
+			// for(var i = 0 ; i < arr.length - 1 ; i++){
+			// 	if(arr[i] > arr[i+1]){ //如果前面的大于后面的 ; 换位;
+			// 		var temp = arr[i];
+			// 		arr[i] = arr[i+1];
+			// 		arr[i+1] = temp;
+			// 	}
+			// }
+
+			// var i = 0 ;
+			// if(arr[i] > arr[i+1]){ //如果前面的大于后面的 ; 换位;
+			// 	var temp = arr[i];
+			// 	arr[i] = arr[i+1];
+			// 	arr[i+1] = temp;
+			// }
+
+			// var i = 1 ;
+			// if(arr[i] > arr[i+1]){ //如果前面的大于后面的 ; 换位;
+			// 	var temp = arr[i];
+			// 	arr[i] = arr[i+1];
+			// 	arr[i+1] = temp;
+			// }
+			// var i = 2 ;
+			// if(arr[i] > arr[i+1]){ //如果前面的大于后面的 ; 换位;
+			// 	var temp = arr[i];
+			// 	arr[i] = arr[i+1];
+			// 	arr[i+1] = temp;
+			// }
+			// var i = 3 ;
+			// if(arr[i] > arr[i+1]){ //如果前面的大于后面的 ; 换位;
+			// 	var temp = arr[i];
+			// 	arr[i] = arr[i+1];
+			// 	arr[i+1] = temp;
+			// }
+			// var i = 4 ;
+			// if(arr[i] > arr[i+1]){ //如果前面的大于后面的 ; 换位;
+			// 	var temp = arr[i];
+			// 	arr[i] = arr[i+1];
+			// 	arr[i+1] = temp;
+			// }
+			
+			// for(var i = 0 ; i < arr.length - 1 ; i++){
+			// 	if(arr[i] > arr[i+1]){ //如果前面的大于后面的 ; 换位;
+			// 		var temp = arr[i];
+			// 		arr[i] = arr[i+1];
+			// 		arr[i+1] = temp;
+			// 	}
+			// }
+
+			// for(var i = 0 ; i < arr.length - 2 ; i++){
+			// 	if(arr[i] > arr[i+1]){ //如果前面的大于后面的 ; 换位;
+			// 		var temp = arr[i];
+			// 		arr[i] = arr[i+1];
+			// 		arr[i+1] = temp;
+			// 	}
+			// }
+
+			// for(var i = 0 ; i < arr.length - 3 ; i++){
+			// 	if(arr[i] > arr[i+1]){ //如果前面的大于后面的 ; 换位;
+			// 		var temp = arr[i];
+			// 		arr[i] = arr[i+1];
+			// 		arr[i+1] = temp;
+			// 	}
+			// }
+			// for(var i = 0 ; i < arr.length - 4 ; i++){
+			// 	if(arr[i] > arr[i+1]){ //如果前面的大于后面的 ; 换位;
+			// 		var temp = arr[i];
+			// 		arr[i] = arr[i+1];
+			// 		arr[i+1] = temp;
+			// 	}
+			// }
+			// for(var i = 0 ; i < arr.length - 5 ; i++){
+			// 	if(arr[i] > arr[i+1]){ //如果前面的大于后面的 ; 换位;
+			// 		var temp = arr[i];
+			// 		arr[i] = arr[i+1];
+			// 		arr[i+1] = temp;
+			// 	}
+			// }
+			// for(var i = 0 ; i < arr.length - 6 ; i++){
+			// 	if(arr[i] > arr[i+1]){ //如果前面的大于后面的 ; 换位;
+			// 		var temp = arr[i];
+			// 		arr[i] = arr[i+1];
+			// 		arr[i+1] = temp;
+			// 	}
+			// }
+
+			
+
+			for(var j = 0 ; j < arr.length - 1; j ++){//排序多少趟;
+				for(var i = 0 ; i < arr.length - j - 1 ; i++){ //两两比较;
+					if(arr[i] > arr[i+1]){ //如果前面的大于后面的 ; 换位;
+						var temp = arr[i];
+						arr[i] = arr[i+1];
+						arr[i+1] = temp;
+					}
+				}
+			}
+
+			// 两两比较;
+			
+
+
+
+			console.log(arr);
+
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

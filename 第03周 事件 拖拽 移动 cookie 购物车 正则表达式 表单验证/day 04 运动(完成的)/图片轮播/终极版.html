@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="js/move.js"></script>
+	<style>
+	*{
+		margin: 0;
+		padding: 0;
+		list-style-type: none;
+
+	}
+	body{
+		background: #b6b6b6;
+		background-image: url(images/bg.png);
+	}
+	.warp{
+		width: 450px;
+		height: 410px;
+		margin:120px auto;
+		border-radius: 20px 20px 0 0;
+		overflow: hidden;
+		box-shadow: 0 5px 10px #ddd;
+
+	}
+	.big_img{
+		width:450px;
+		height: 300px;
+		background: #b6b6b6;
+		position: relative;
+	}
+	.big_img ul{
+		position: relative;
+		width: 450px;
+		height: 300px;
+	}
+	.big_img ul li{
+		width: 450px;
+		height: 300px;
+		position: absolute;
+	}
+	.big_img ul li img{
+		width: 100%;
+		height: 100%;
+	}
+
+	.small_img{
+		width:450px;
+		height: 100px;
+		overflow: hidden;
+		padding:4px 0;
+		background: #fff;
+	}
+	.small_img ul{
+		width:900px;
+		height: 100px;
+		position: relative;
+		left: 0;
+	}
+	.small_img ul li{
+		float: left;
+		width: 146px;
+		height: 100px;
+		filter:alpha(opacity:60);
+		opacity: 0.6;
+		padding:0 2px;
+	}
+	.small_img ul li img{
+		width: 100%;
+		height: 100%;
+	}
+	#leftTouch,#rigthTouch{
+		display: block;
+		position: absolute;
+		width: 225px;
+		height: 300px;
+		z-index: 100;
+	}
+	#leftTouch{
+		background: green;
+		opacity: 0;
+	}
+	#rigthTouch{
+		background: red;
+		opacity: 0;
+		left: 225px;
+	}
+	#btnR,#btnL{
+		position: absolute;
+		display: block;
+		width: 80px;
+		height: 60px;
+		left: 0;
+		top: 140px;
+		z-index: 1000;
+		opacity: 0;
+		filter:alpha(opacity:0);
+		background: #ddd;
+		border-radius: 0 50% 50% 0;
+		box-shadow: 0 0 5px #fff;
+		
+	}
+	#btnR{
+		border-radius: 50% 0 0 50%;
+		left: 370px;
+	}
+	#btnR img,#btnL img{
+		width: 100%;
+		height: 100%;
+	}
+
+
+
+	</style>
+	<script>
+
+	window.onload=function(){
+		//移入显示
+		var oLeftBtn=document.getElementById('btnL');
+		var oRightBtn=document.getElementById('btnR');
+
+		oLeftBtn.onmouseover=document.getElementById('leftTouch').onmouseover=function(){
+			move(oLeftBtn,'opacity',80)
+		}
+		oLeftBtn.onmouseout=document.getElementById('leftTouch').onmouseout=function(){
+			move(oLeftBtn,'opacity',0)
+		}
+
+		oRightBtn.onmouseover=document.getElementById('rigthTouch').onmouseover=function(){
+			move(oRightBtn,'opacity',80)
+		}
+		oRightBtn.onmouseout=document.getElementById('rigthTouch').onmouseout=function(){
+			move(oRightBtn,'opacity',0)
+		}
+
+
+		//图片切换;
+		//大小图片选择;
+		var aBigPic=document.getElementById('bigList').children;
+		var aSmallPic=document.getElementById('smallList').children;
+		//小图片效果
+		var NzIndex=2;
+		var now=0;
+		for(var i = 0 ; i < aSmallPic.length; i++ ){
+			aSmallPic[i].index=i
+			aSmallPic[i].onclick=function(){
+
+				//组件：确定是否点击的是当前的；
+				if(now==this.index){
+					return 
+				}else{
+					now=this.index
+				}//--end
+//--------------------------------------------------------------
+				Cut()
+//--------------------------------------------------------------
+
+			}
+
+			aSmallPic[i].onmouseover=function(){
+				move(this,'opacity',100)
+			}
+			aSmallPic[i].onmouseout=function(){
+				if(this.index!=now){					
+					move(this,'opacity',60)
+				}
+			}
+		}
+
+		//按钮点击
+
+		function Cut(){
+			NzIndex++;
+			console.log(now)
+			aBigPic[now].style.zIndex=NzIndex;
+			aBigPic[now].style.height='0px';
+			move(aBigPic[now],'height',300);
+
+			//当前变不透明；
+
+			for(var i = 0 ; i < aSmallPic.length; i ++){
+				aSmallPic[i].style.opacity=0.6;
+			}
+
+			aSmallPic[now].style.opacity=1;
+
+
+			var oSmallList=document.getElementById('smallList');
+			if(now==0){
+				move(oSmallList,'left',0)
+			}else if(now==aSmallPic.length-1){
+				move(oSmallList,'left',-(now-2)*aSmallPic[0].offsetWidth)
+			}else{
+				move(oSmallList,'left',-(now-1)*aSmallPic[0].offsetWidth)
+			}
+			
+			
+			
+		}
+
+		oRightBtn.onclick=function(){
+			now++
+			if(now==aSmallPic.length){
+				now=0
+			}
+			Cut()
+//-------------------------------------------------------------------
+			//小图滚动
+			/*var oSmallList=document.getElementById('smallList');
+			if(now!=0||now!=aSmallPic.length-1){
+				move(oSmallList,'left',-(now-1)*aSmallPic[0].offsetWidth)
+			}*/
+		}
+		oLeftBtn.onclick=function(){
+			now--
+			if(now==-1){
+				now=aBigPic.length-1;
+			}
+			Cut()
+//-------------------------------------------------------------------
+
+			//小图滚动
+			/*var oSmallList=document.getElementById('smallList');
+			if(now!=0||now!=aSmallPic.length-1){
+				move(oSmallList,'left',-(now-1)*aSmallPic[0].offsetWidth)
+			}*/
+		}
+		var timer;
+		clearInterval(timer)
+	    timer=setInterval(oRightBtn.onclick,2000);
+		var oWarp=document.getElementById('warp');
+		oWarp.onmouseover=function(){
+			clearInterval(timer)
+		}
+		oWarp.onmouseout=function(){
+			clearInterval(timer)
+			 timer=setInterval(oRightBtn.onclick,2000);
+		}
+
+
+	}
+
+	</script>
+</head>
+<body>
+	<div class="warp" id='warp'>
+		<div class="big_img">
+			<span id="btnL">
+				
+			</span>
+			<span id="leftTouch"></span>
+			<span id="rigthTouch"></span>
+			<ul id="bigList">
+				
+				<li style="z-index: 1">
+					<img src="images/1.jpg" alt="">
+				</li>
+				<li><img src="images/2.jpg" alt=""></li>
+				<li><img src="images/3.jpg" alt=""></li>
+				<li><img src="images/4.jpg" alt=""></li>
+				<li><img src="images/5.jpg" alt=""></li>
+				<li><img src="images/6.jpg" alt=""></li>
+				
+
+			</ul>
+
+			<span id="btnR">
+				
+			</span>
+		</div>
+
+		<div class="small_img">
+			<ul id="smallList">
+				<li style="opacity:1;filter:alpha(opacity:100)"><img src="images/1.jpg" alt=""></li>
+				<li><img src="images/2.jpg" alt=""></li>
+				<li><img src="images/3.jpg" alt=""></li>
+				<li><img src="images/4.jpg" alt=""></li>
+				<li><img src="images/5.jpg" alt=""></li>
+				<li><img src="images/6.jpg" alt=""></li>
+			</ul>
+		</div>
+
+
+	</div>
+</body>
+</html>

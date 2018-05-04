@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>乘法表</title>
+	<script>
+		for (var i = 1; i <= 9; i++) {
+			for (var j = 1; j <= i; j++) {
+				document.write(j + "&nbsp;X&nbsp;" + i + "&nbsp;=&nbsp;" + i * j + "&emsp;&emsp;");
+			}
+			document.write("<br/>");
+		}
+		document.write('<br/> ----------------------------------------------------' + "<br/>");
+
+		for (var ii = 1, jj = 1; ii <= 9; jj++ ) {
+			document.write(jj + "&nbsp;X&nbsp;" + ii + "&nbsp;=&nbsp;" + ii * jj + "&emsp;&emsp;");
+			if (ii == jj) {
+				jj = 0;
+				ii++;
+				document.write("<br/>");
+			}
+		}
+
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

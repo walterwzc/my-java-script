@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+		// function fn(){
+		// 	var a = 10;
+		// 	var b = 20;
+		// 	return a + b;
+		// }
+
+		// fn()
+
+		// function add(a,b,c,d){ //形参; => 形式参数 => 局部变量;
+		// 	console.log(a,b,c,d);
+		// }
+
+		// add(10,20,30) //实参; =>实际的参数 => 实实在在的数据 (可以是基本类型，可以是引用类型);
+
+		// 实参 给 形参赋值; 一一对应关系;
+
+		// function add(){
+		// 	console.log(arguments); //参数的集合; => 伪数组类型;
+		// }
+		// add(1,2,3,4,4,5,6);
+
+		// 简易计算器封装;
+		// function add(a,b){
+		// 	return a + b;
+		// }
+		// function add(a,b){
+		// 	return a - b;
+		// }
+		// function add(a,b){
+		// 	return a * b;
+		// }
+
+		// function add(a,b,opt){
+		// 	switch(opt){
+		// 		case "+":return a + b;
+		// 		case "-":return a - b;
+		// 		case "*":return a * b;
+		// 		case "/":return a / b;
+		// 		default:return a + b;
+		// 	}
+		// }
+		// console.log(add(100,568,"/"));
+		// console.log(add(100,568));
+
+		//console.log(add(1,2));
+		// 简易随机颜色封装; 六位16进制随机颜色 #ffffff;
+		function randomColor(){
+			var res = "#";
+			for(var i = 0 ; i < 6 ; i++){
+				res += randomInt(0,15).toString(16);
+			}
+			return res;
+		}
+		console.log(randomColor());
+
+		// 范围随机数;
+		function randomInt(min,max){
+			return min + Math.round(Math.random() * (max - min));
+		}
+
+		//console.log(randomInt(1,5))//1~5之间的随机数;
+		// 0 + Math.round(Math.random() * 10);	
+		// 10 + Math.round(Math.random() * 10);
+		// 20 + Math.round(Math.random() * 10);// 0   10
+		// 60 + Math.round(Math.random() * 15);// 0   15
+		// 60~ 75( 60 + 15) 
+		// 80 + Math.round(Math.random() * 40)//0~40
+		// //min + Math.round(Math.random() * (max - min))
+
+		// // 55 ~ 65 ;
+
+		// 55 + Math.round(Math.random() * (10))
+
+
+		//编写函数 求圆的面积;
+		// function yuan(r){
+		// 	return Math.PI * r * r;
+		// }
+		// console.log(yuan(10)); 	
+
+		//判定一个字符串是不是纯数字;
+		//参数 => 字符串;
+		//返回值 true false;
+
+		// function isNumber(str){
+		// 	//判定 str 是不是数字;
+		// 	//console.log(!isNaN(str));
+		// 	return !isNaN(str);
+		// }
+
+		// console.log(isNumber("abcdef"));
+
+		//编写一个函数，计算三个数字的大小，按从小到大的顺序输出。
+
+		// sort() 方法; => 比较三个数大小 ，按照从小到大的顺序输出;
+		// 参数 sort(a,b,c) a,b,c => 数字类型;
+		// 返回值 一个字符串; 
+
+		// function sort(a,b,c){
+		// 	// a b c ||  a c b ;
+		// 	// b a c ||  b c a ;
+		// 	// c a b ||  c b a ;
+		// 	//a开头
+		// 	if( a < b && a < c){
+		// 		//最小值是a;
+		// 		if(b < c){
+		// 			// a b c ;
+		// 			return a + "<" + b + "<" + c;
+		// 		}else{
+		// 			return a + "<" + c + "<" + b;
+		// 		}
+		// 	}
+		// 	//b开头;
+		// 	if( b < a && b < c){
+		// 		//最小值是a;
+		// 		if(a < c){
+		// 			// a b c ;
+		// 			return b + "<" + a + "<" + c;
+		// 		}else{
+		// 			return b + "<" + c + "<" + a;
+		// 		}
+		// 	}
+		// 	//c 开头;
+		// 	if( c < a && c < b){
+		// 		//最小值是a;
+		// 		if(a < b){
+		// 			return c +"<" + a + "<" + b;
+		// 		}else{
+		// 			return c +"<" + b + "<" + a;
+		// 		}
+		// 	}
+		// }
+		// console.log(sort(100,20,3));
+
+	</script>	
+</head>
+<body>
+	
+</body>
+</html>

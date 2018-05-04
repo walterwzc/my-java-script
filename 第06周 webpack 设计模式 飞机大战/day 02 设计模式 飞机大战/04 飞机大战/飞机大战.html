@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="dahuiji.css" />
+
+	<script>
+		
+				// var obj = {
+				// 	say(){ //es6方法的简写;
+				// 		alert(1);
+				// 	},
+				// 	sayHello:function(){
+
+				// 	}
+				// }
+				// obj.say();
+	</script>
+
+</head>
+<body>
+	<div id="body_main" class="main">
+			<ul id="options" class="options">
+				<li value="1">超级困难</li>
+				<li value="2">非常困难</li>
+				<li value="3">比较困难</li>
+				<li value="4">就选我吧</li>
+			</ul>
+	</div>
+</body>	
+<script src="js/jquery-3.2.1.js"></script>
+<script>
+(function($,window,document){
+	/*
+		Engine => 难度选择 ,动画 , 功能开启
+	*/
+
+	let on = true; //游戏是否开启总开关 => 记录状态不允许事件重复执行;
+
+	class Engine{
+		constructor(){
+			this.init();				
+		}				
+		init(){
+			this.options = $("#options");
+			// selector , context 选择符 ， 执行上下文(父级);
+			// 缩短选择过程，提升性能;
+			// console.log(this.choice_ele);
+			$("li",this.options).on("click",$.proxy(this.choice_hard,this));
+		}
+		choice_hard(e){
+			//选择难度;
+			let target = e.target;
+			//把难度放在对象之中;
+			this.hard = $(target).attr("value");
+			this.options.remove();
+			//console.log(this.hard);
+			this.start_animate();
+		}
+		start_animate(){
+			logo.show();
+			//开启动画;
+			let $loading = creatediv("loading");
+			$loading.css({
+				display:"none"
+			})
+			.fadeIn();
+			let i = 0;
+			let timer = setInterval(function(){
+				//只会打印1,2,3的代码;
+				//console.log(++i % 3 + 1)
+				$loading.css({
+					background:`url(images/loading${++i % 3 + 1}.png) no-repeat`
+				})
+			},800)
+			//背景运动;
+			let bg = 0;
+			this.pauseTimer = setInterval(function(){
+				$("#body_main").css({
+					"backgroundPositionY":"+=10"
+				})
+			}, 80)
+
+			let _this = this;
+			setTimeout(function(){
+				//开场动画结束 ， 游戏开始;
+				clearInterval(timer);//删除掉无用动画：
+				$loading.remove()//删除掉放屁飞机;
+				logo.hide();//隐藏logo;
+				_this.start();
+				$("#body_main").on("mouseover",$.proxy(_this.start,_this))
+				_this.createEnemy();
+
+			},1000);
+		}
+		start(){ 
+			//初始化飞机;
+			on = true;//代表游戏开启;
+			plain.init();
+			clearInterval(this.pauseTimer);
+			this.pauseTimer = setInterval(function(){
+				$("#body_main").css({
+					"backgroundPositionY":"+=10"
+				})
+			}, 80)
+		}
+		pause(){	//暂停;
+			clearInterval(this.pauseTimer);
+		}
+
+		createEnemy(){
+			//创建敌机对象;
+			this.smallTimer = setInterval(function(){
+				Math.random() > 0.5 ? new Enemy(1) : "";
+			},1000)
+			this.middleTimer = setInterval(function(){
+				Math.random() > 0.6 ? new Enemy(2) : "";
+			},3000)
+			this.largeTimer = setInterval(function(){
+				Math.random() > 0.8 ? new Enemy(3) : "";
+			},5000)
+		}
+	}
+
+
+	let plain = {
+		x:0,
+		y:0,
+		bullet:[],//子弹数组;
+		init:function(){
+			//初始化飞机;
+			//位置计算;
+			//绑定事件;
+			//单例模式 => 只允许存在单个实例;
+			if(!this.$ele){
+				this.$ele = creatediv("my-warplain");
+			}
+			//初始化调用; //策略模式 => 根据传入参数不同，执行的功能也不同;
+			this.move();	
+			$(document).on("mousemove",$.proxy(this.move,this));
+			this.fire();
+		},
+		move:function(e){
+			//判定谁是调用者;
+			if(e instanceof Object){ //判定此时由事件调用;
+				//console.log("事件调用");
+				this.x = e.clientX - this.$ele.width() / 2;
+				this.y = e.clientY - this.$ele.height() / 2;
+				//边界检测;
+				let min = $("#body_main").offset().left;
+				let max = min + $("#body_main").width() - this.$ele.width();
+				this.x = this.x <= min ? min :this.x;
+				this.x = this.x >= max ? max :this.x;
+
+				//是否暂定;
+				if(e.clientX < min || e.clientX > max + this.$ele.width()){
+					//console.log("该暂停了");
+					if(on == true){
+						on = false;
+						//关闭操作;
+						//console.log("该暂停了",on);
+						$(document).off("mousemove");
+						engine.pause();
+					}
+				}
+				if(e.clientX >= min && e.clientX <= max - this.$ele.width()){
+					if(on == false){
+						//开启操作
+						on = true;
+						//console.log("该开始了",on)
+					}
+				}
+			}else{
+				//console.log("初始化调用");
+				let html_width = $("html").width();
+				let html_height = $("html").height();
+				this.x = (html_width  - this.$ele.width()) / 2 ;
+				this.y = (html_height - this.$ele.height()) / 2;
+			}
+			//让飞机根据 x,y进行移动;
+			this.$ele.css({
+				left:this.x,
+				top:this.y
+			})
+		},
+		fire:function(){
+			//开火; === 烟花;
+			// setInterval(function(){
+			// },)
+			//console.log(engine.hard);
+			let frequency = 800;
+			switch(engine.hard){
+				case "1": frequency = 1000;break;//超级困难
+				case "2": frequency = 800;break;//非常困难
+				case "3": frequency = 600;break;//比较困难
+				case "4": frequency = 100;break;//就选我把(开挂模式)
+			}
+			clearInterval(this.bulletTimer);
+
+			var _this = this;
+			this.bulletTimer = setInterval(function(){
+				//console.log("子弹发射");
+				_this.bullet.push(new Bullet());
+			},frequency)
+
+		},
+		destory:function(){
+			//损毁动画;
+		}
+	}
+
+	class Bullet{
+		constructor(){
+			this.$ele = creatediv("bullet");
+			this.offset = {
+				left:0,
+				top:0
+			}
+			//对外暴露的位置对象;
+			this.init();
+		}
+		init(){
+			//console.log(plain.x)
+			this.$ele.css({
+				left:plain.x + plain.$ele.width() / 2 - this.$ele.width() / 2,
+				top:plain.y - this.$ele.height()
+			})
+			this.move();
+		}
+		move(){
+			let _this = this;
+			this.timer = setInterval(function(){
+				
+				_this.$ele.css({
+					top:"-=10"
+				})
+				_this.offset = _this.$ele.offset(); //将自己的属性值暴露在外方便使用;
+				if(_this.$ele.offset().top <= 10){
+					//清除无效子弹定时器残留;
+					clearInterval(_this.timer);
+					_this.die();
+				}
+			}, 100)
+		}
+		die(){
+			this.$ele.addClass("bullet_die");
+			var _this = this;
+			setTimeout(function(){
+				plain.bullet.forEach(function(obj,index){
+					//清除飞机中子弹数组的残留;
+					if(obj.$ele == _this.$ele){
+						plain.bullet.splice(index,1);
+					}	
+				})
+				//清除页面上无用的元素子弹残留;
+				_this.$ele.remove();
+				//console.log(plain.bullet);
+			},80)
+		}
+	}
+
+	function Enemy(type){//敌军；
+		this.init(type);
+	}
+	Enemy.prototype = {
+		constructor:Enemy,
+		init:function(type){
+			switch(type){
+				case 1:
+						this.speed = 20;
+						this.hp = 1;
+						this.class = "enemy-small";
+						break;
+				case 2:
+						this.speed = 5;
+						this.hp = 5;
+						this.class = "enemy-middle";
+						break;
+				case 3:
+						this.speed = 3;
+						this.hp = 50;
+						this.class = "enemy-large";
+						break;
+			}
+			this.create();
+		},
+		create:function(type){
+			//策略模式 => 根据不同参数执行不同功能;
+			this.$ele = creatediv(this.class);
+			//定位;
+			this.get_random_position();
+		},
+		get_random_position:function(){
+			//获取飞机允许的范围;
+			let min = $("#body_main").offset().left;
+			let max = min + $("#body_main").width() - this.$ele.width();
+			this.$ele.css({
+				top:0,
+				left:randomInt(min,max)
+			})
+			this.move();
+		},
+		move:function(){
+			var _this = this;
+			this.timer = setInterval(function(){
+				_this.$ele.css({
+					top:"+="+_this.speed
+				})
+				if(_this.$ele.offset().top > $("html").height()){
+					_this.die();
+				}
+				_this.collision()
+			},100)
+		},
+		die:function(){
+			clearInterval(this.timer);
+			this.$ele.remove();
+		},
+		collision:function(){
+			//this.ele；
+			let _this = this;
+			plain.bullet.forEach(function(obj, index) {
+				//console.log(obj.offset)
+				let max = _this.$ele.offset().top + _this.$ele.height();//最大高度;
+				let min = _this.$ele.offset().top - obj.$ele.height();//最小高度;
+				//console.log(max,min)
+				//top值碰撞检测
+				if(obj.offset.top <= max && obj.offset.top >= min){
+					//高度相撞;
+					let max = _this.$ele.offset().left + _this.$ele.width();
+					let min = _this.$ele.offset().left - obj.$ele.width();
+					//left值碰撞检测;
+					if(obj.offset.left <= max && obj.offset.left >= min){
+						obj.die();
+
+						_this.hp --;
+						if(_this.hp <= 0){
+							_this.die();
+						}
+					}
+					//console.log("高度相撞")
+				}
+			});
+		}
+	}
+
+	let creatediv = (str_class) => {
+		let $div = $("<div></div>");
+			$div.addClass(str_class);
+			$("body").append($div);
+		return $div;
+	}
+
+	let randomInt = (min,max)=>{
+		return min + Math.round((max - min) * Math.random());
+	}
+
+	/* 控制 logo的显示隐藏 => 单体模式 */
+
+	let logo = {
+		ele:$("<div></div>"),
+		show:function(){
+			this.ele.addClass("logo");
+			this.ele.css({
+				display:"none"
+			})
+			$("body").append(this.ele);
+			this.ele.fadeIn();
+		},
+		hide:function(){
+			this.ele.fadeOut();
+		}
+	}
+
+	let engine = new Engine();
+
+})(jQuery,window,document)
+	</script>
+</html>	

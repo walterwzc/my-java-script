@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+		// for (var i = 0; i < 10; i++) {
+		//     setTimeout(
+		//     	(function(number) {
+		//     	//立即执行;
+		//     	console.log("同步程序", i);
+		//     	console.log("同步程序", number);
+		//         return function() {
+		//         	//异步
+		//         	console.log("异步程序执行")
+		//             console.log(number);
+		//         };
+		//     // })(i);
+		//     })(i), 1000);
+		// }
+
+
+		// 回调函数;
+		function fn1(callback){
+			setInterval(function(){
+				callback()
+			}, 2000)
+		}
+
+		//异步列队; =>>  当浏览器计时结束之后， 回头去帮你调用异步列队之中的函数;
+/*
+			function(){
+				callback()
+			}
+			
+		//回调函数的作用 => 在异步之中是保证函数执行顺序的函数;
+*/
+
+
+		fn1(function(){
+			console.log("函数调用")
+		})
+
+
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

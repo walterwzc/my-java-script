@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>myMap</title>
+</head>
+<body>
+    
+</body>
+<script>
+    var arr = [1,2,3,4,5,6,7];
+    var newArray = arr.map(function(item, index, array) {
+        return item + 10;
+    });
+
+    console.log(newArray);
+    console.log("---------------------------------------------------");
+
+    Array.prototype.myMap = function(callback) {
+        var array = [];
+        for (var i = 0; i < this.length; i++) {
+            array.push(callback(this[i], i, this));
+        }
+        return array;
+    }
+
+    var myNewArray = arr.myMap(function(item) {
+        return 20 + item;
+    });
+
+    console.log(myNewArray);
+</script>
+</html>

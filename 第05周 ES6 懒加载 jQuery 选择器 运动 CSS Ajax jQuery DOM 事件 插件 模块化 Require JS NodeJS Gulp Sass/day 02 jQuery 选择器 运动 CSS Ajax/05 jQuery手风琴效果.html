@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+
+	<style>
+
+		*{
+			margin: 0;
+			padding: 0;
+
+		}
+		li{
+			list-style: none;
+		}
+		.container{
+			width: 800px;
+			margin: 50px auto;
+			border: 1px solid #000;
+		}
+		.container:after{
+			content: "";
+			display: block;
+			clear: both;
+		}
+		.container ul li{
+			width:50px;
+			height: 150px;
+			position: relative;
+			float: left;
+			border-right: 2px solid #000;
+			overflow: hidden;
+		}
+
+		.container ul li div span{
+			display: inline-block;
+			height: 150px;
+			background: #ddd;
+			position: absolute;
+		}	
+
+		.container ul li div span:nth-of-type(2){
+			width:150px; 
+			background: #088;
+			left: 50px;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<ul>
+			<li>
+				<div>
+					<span>收回时显示内容</span>
+					<span>放开时显示内容</span>
+				</div>
+			</li>
+			<li>
+				<div>
+					<span>收回时显示内容</span>
+					<span>放开时显示内容</span>
+				</div>
+			</li>
+			<li>
+				<div>
+					<span>收回时显示内容</span>
+					<span>放开时显示内容</span>
+				</div>
+			</li>
+			<li>
+				<div>
+					<span>收回时显示内容</span>
+					<span>放开时显示内容</span>
+				</div>
+			</li>
+		</ul>
+
+	</div>
+	
+</body>
+<script src="jquery-3.2.1.js"></script>
+<script>
+	
+	$(function(){
+
+		$(".container").find("li")
+		.mouseover(function(){
+			//console.log(1)
+			$(this).stop(true).animate({
+				width:"200"
+			})
+			.siblings("li").stop(true)
+			.animate({
+				width:"50"
+			})
+		})
+
+	})
+
+</script>
+</html>

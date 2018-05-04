@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Document</title>
+		<style>
+			#box{
+				width: 100px;
+				height: 100px;
+				background: #ddd;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box" class="hello">
+			<p></p>
+			<h2>
+			</h2>
+			<div name="hello"></div>
+		</div>
+		<div id="box" name="hello">
+			<p></p>
+			<h2>
+			</h2>
+		</div>
+		<input type="" name="hello">
+		<input type="" name="hello">
+		<input type="" name="hello">
+
+	</body>
+
+
+	<script>
+			
+		// 增删改查;
+
+		//查询方法:
+		
+		// ID 标签选择 ;
+		// var oBox = document.getElementById("box");
+
+		// var aInput = document.getElementsByName("hello");    
+		// console.log(aInput)
+		// // ID 失明现象; 范围必须是docuemnt;
+		
+		// var aDiv = oBox.getElementsByTagName("div");
+		//在一定的范围之内进行找寻;
+		//console.log(aDiv)
+
+		//终极选择器方法; 
+		//#id .class div 
+
+		// var dom = document.querySelectorAll("#box");
+		// var dom = document.querySelectorAll("#box");
+		// var dom = document.querySelectorAll("div");
+
+		// //console.log(dom);
+		// var dom = document.querySelector("#box");
+		// console.log(dom);
+
+		// function $(select){
+		// 	return document.querySelectorAll(select);
+		// }
+		// var dom = $("#box");
+		var $ = document.querySelectorAll.bind(document);
+		var dom = $("#box");
+		console.log(dom);
+
+	</script>
+</html>

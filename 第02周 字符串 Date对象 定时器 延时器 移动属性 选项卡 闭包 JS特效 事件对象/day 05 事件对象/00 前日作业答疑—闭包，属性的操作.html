@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>复习</title>
+
+	<script>
+		/*
+			1. 闭包，
+
+			1.如何理解延长生命周期？  如果闭包内的变量是保密的，外部访问不到，那么延长的变量周期又有什么用？
+
+	
+			function outer(){
+				var a = 10;
+				function inner(){
+					console.log(a);
+				}
+
+				return inner;
+			}
+
+			var a = outer();
+			a();
+
+
+
+			2. 保密？
+		
+			(function(){
+		
+				var question = [1,2,3,4,5]
+
+				function fn1(){
+					
+				}
+				function fn2(){
+		
+				}
+				.....
+			})()
+			3. 网上说，闭包是一个独立命名空间，可以防止闭包内部的变量被污染，JQuery就是采用这种方式，如何理解这句话？
+			
+		*/
+
+		// var hello = "你好啊";
+
+		// (function(){
+		// 	var hello = "hello";
+		// })()
+		// var hello = "world";
+
+			
+		// function fn(){
+		// 	var hello = "hello";
+		// 	function fn2(){
+		// 	}
+		// 	function fn3(){
+		// 	}
+		// }
+		// fn()
+		// var hello = "world";
+
+		// (function(){
+
+		// })()
+
+
+		// function fn(){
+
+		// }
+
+		// var fn = (function(){
+		// 	function fn(){
+		// 	}
+		// 	function fn_1(){
+
+		// 	}
+		// 	return fn;
+		// 	window.fn = fn;
+		// })()
+
+	</script>
+	<!-- <script src="js1.js"></script>
+	<script src="js2.js"></script> -->
+</head>
+<body>
+	<div id="box"></div>
+</body>
+
+<script>
+	// var oBox = document.getElementById("box");
+
+	// console.log(oBox.attributes);
+
+	// function setAttr(dom,attr,value){
+	// 	//console.log(dom.attributes);
+	// 	dom.setAttribute(attr,value);
+	// }
+	// setAttr(oBox,"attr","value")
+
+
+	// function getAttr(dom,attr){
+	// 	var nodeList = dom.attributes;
+	// 	for(var i = 0 ; i < nodeList.length ; i++){
+	// 		if(nodeList[i].nodeName == attr){
+	// 			return nodeList[i].nodeValue;
+	// 		}
+	// 	}
+	// 	return null;
+	// }
+
+	// function removeAttr(dom,attr){
+	// 	var nodeList = dom.attributes;
+	// 	for(var i = 0 ; i < nodeList.length ; i++){
+	// 			if(nodeList[i].nodeName == attr){
+	// 				nodeList[i].remove();
+	// 			}
+	// 	}
+	// }
+
+
+	// oBox.getAttr("id") // box; null;
+
+	// oBox.setAttr("data","value") // oBox data = value;
+
+	// oBox.removeAttr("id")// 删除id属性;
+
+</script>
+</html>

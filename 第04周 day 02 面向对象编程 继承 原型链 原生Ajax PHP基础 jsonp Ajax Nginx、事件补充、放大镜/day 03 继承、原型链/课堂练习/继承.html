@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>使用call 和 apply 继承</title>
+</head>
+<body>
+    
+</body>
+<script>
+    function Father(name, age) {
+        this.name = name;
+        this.age = age;
+        this.sayHi = function() {
+            console.log(this.name, this.age);
+        }
+    }
+
+    var father = new Father("father", 20);
+    console.log(father);
+
+    function Son (name, age) {
+        // Father.call(this, name, age);
+        Father.apply(this, arguments);
+    }
+
+    var son = new Son("son", 10);
+    console.log(son);
+    son.sayHi();
+</script>
+</html>

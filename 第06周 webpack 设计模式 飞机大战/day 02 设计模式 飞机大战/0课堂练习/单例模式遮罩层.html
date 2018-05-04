@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>单例模式遮罩层</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <button>点击弹出遮罩层</button>
+</body>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script>
+    function Pop() {
+        if (Pop.instance instanceof Object) {
+            return Pop.instance;
+        } else {
+            return Pop.instance = Pop.prototype;
+        }
+    }
+
+    Pop.prototype = {
+        constructor: Pop,
+
+        init: function () {
+            if (this.ele) {
+                this.show();
+                return 0;
+            }
+            this.ele = $("<div></div>");
+            $("html, body").css({
+                height: "100%",
+                width: "100%"
+            });
+            this.ele.css({
+                position: "fixed",
+                top: 0,
+                left: 0,
+                height: "100%",
+                width: "100%",
+                background: "rgba(0, 0, 0, .3)"
+            });
+            $("body").append(this.ele);
+            this.ele.on("click", $.proxy(this.hide, this));
+        },
+
+        hide: function () {
+            this.ele.css({
+                display: "none"
+            });
+        },
+
+        show: function () {
+            this.ele.css({
+                display: "block"
+            });
+        }
+    }
+
+
+    $("button").on("click", function () {
+        console.log(new Pop());
+        new Pop().init();
+    });
+</script>
+
+</html>

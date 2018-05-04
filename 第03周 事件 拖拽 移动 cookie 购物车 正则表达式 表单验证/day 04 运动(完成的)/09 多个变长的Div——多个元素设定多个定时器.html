@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		div{
+			width: 400px;
+			height: 100px;
+			background: #ddd;
+			margin-bottom: 20px;
+		}
+	</style>
+</head>
+<body>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+</body>
+
+<script>
+	
+	var aDiv = document.getElementsByTagName("div");
+	for(var i = 0 ; i < aDiv.length ; i++){
+		aDiv[i].onmouseover = function(){
+			move(this,800)
+		}
+		aDiv[i].onmouseout = function(){
+			move(this,400)
+		}
+	}
+
+	function move(dom,target){
+		clearInterval(dom.timer);
+		dom.timer = setInterval(function(){
+			var speed = (target- dom.offsetWidth) / 6;
+			speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+			if(target == dom.offsetWidth){
+				clearInterval(dom.timer);
+			}else{
+				dom.style.width = dom.offsetWidth + speed + "px";
+			}
+		},30)
+	}
+
+</script>
+</html>

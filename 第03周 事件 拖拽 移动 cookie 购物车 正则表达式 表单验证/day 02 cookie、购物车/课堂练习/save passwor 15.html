@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="session method.js"></script>
+</head>
+<body>
+    username <input type="text" id="username"><br/>
+    password <input type="text" id="password"><br/>
+    <p><input type="checkbox" id="whetherSave"> save password for 15</p>
+    <button id="login">login</button>
+</body>
+<script>
+    var username = document.getElementById("username");
+    var userpassword = document.getElementById("password");
+    var whetherSave = document.getElementById("whetherSave");
+    
+    login.onclick = function() {
+        console.log(whetherSave.checked);
+        if (whetherSave.checked) {
+            setCookie("username", username.value, 15);
+            setCookie("userpwd", userpassword.value, 15);
+        }
+    }
+
+    if (getCookie("username") && getCookie("userpwd")) {
+        username.value = getCookie("username");
+        userpassword.value = getCookie("userpwd");
+    }
+    
+</script>
+</html>

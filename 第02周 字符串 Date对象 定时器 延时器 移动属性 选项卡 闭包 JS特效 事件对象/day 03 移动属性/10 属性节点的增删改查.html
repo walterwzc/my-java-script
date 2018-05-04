@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div id="box">
+		<span id="span" data-id="this is a span">hello world</span>
+		<span id="span" data-id="this is a span">hello world</span>
+		<span id="span" data-id="this is a span">hello world</span>
+		<span id="span" data-id="this is a span">hello world</span>
+		<span id="span" data-id="this is a span">hello world</span>
+		<span id="span" data-id="this is a span">hello world</span>
+		hello world
+		<!--我是一个小注释-->
+	</div>
+</body>
+<script>
+	//属性节点;
+	//增删改查;
+	// var oSpan = document.getElementById("span");
+	// var res = oSpan.getAttribute("data-id");
+	// //console.log(res);
+	// oSpan.setAttribute("data","hello")
+	// oSpan.setAttribute("id","hello")
+	// oSpan.removeAttribute("id")
+
+	var oBox = document.getElementById("box");
+	//console.log(oBox.childNodes);
+
+	for(var i = 0 ; i < oBox.childNodes.length ;i++){
+		// console.log(oBox.childNodes[i]);
+		// console.log(oBox.childNodes[i].nodeType);
+		// console.log(oBox.childNodes[i].nodeName);
+	}
+
+	// 1 => 元素节点;
+	// 2 => 属性节点;
+	// 3 => 文本节点;
+	// 8 => 注释节点;
+	// 9 => document节点;
+
+	//console.log(document.nodeType);
+
+	//封装方法 找到当前元素的所有子元素节点;
+
+	function find(dom){
+		var arr = [];
+		for(var i = 0 ; i < dom.childNodes.length ; i++){
+			if(dom.childNodes[i].nodeType == 3){
+				arr.push(dom.childNodes[i])
+			}
+		}
+		return arr;
+	}
+	console.log(find(oBox));
+
+</script>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>jQuery preObject 属性</title>
+    <style>
+        div {
+            width: 100px;
+            height: 100px;
+            background-color: antiquewhite;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div></div>
+    <div></div>
+</body>
+<script src="jquery-3.2.1.js"></script>
+<script>
+    console.log($('div'));
+    console.log($('div').eq(0));   // 第二个div元素
+    console.log($('div').eq(0).end());  // $('div)
+</script>
+
+</html>

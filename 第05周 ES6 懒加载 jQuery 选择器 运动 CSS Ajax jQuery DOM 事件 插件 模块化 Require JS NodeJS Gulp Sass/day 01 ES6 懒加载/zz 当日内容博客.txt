@@ -1,0 +1,14 @@
+阮一蜂promise：
+http://es6.ruanyifeng.com/#docs/promise
+
+彻底理解Javascript 中的 Promise
+https://www.talkingcoder.com/article/6336155176377712832
+
+一个使用javascript promise的例子
+http://blog.csdn.net/sulinux/article/details/42401437
+
+
+
+
+promise解决回调地狱：
+https://www.cnblogs.com/qq9694526/p/5714124.html

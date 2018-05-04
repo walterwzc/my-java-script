@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>分享到</title>
+	<style>
+		#box{
+			width: 150px;
+			height: 200px;
+			position: absolute;
+			left: -150px;
+			top: 0;
+			background: #ddd;
+
+		}
+		#box span{
+			display: block;
+			width: 20px;
+			font-size: 20px;
+			line-height: 20px;
+			height: 60px;
+			padding: 5px 2px;
+			background: #ddd;
+			color: #fff;
+			position: absolute;
+			right: -20px;
+			top: 65px;
+		}
+
+	</style>
+</head>
+<body>
+		
+	<div id="box">
+		<span>
+			分享到
+		</span>
+	</div>
+
+</body>
+<script>
+	
+	//1.时间绑定给父级;
+
+	//2.让 box 向右移动; left ++; left == 0 => stop
+	var oBox = document.getElementById("box");
+
+	var timer = null;
+	// oBox.onmouseover = function(){ // bug 1 ;
+	// 	//让 box 向右移动
+	// 	clearInterval(timer);
+	// 	timer = setInterval(function(){
+	// 		if(oBox.offsetLeft >= 0){ //终止条件的改变;
+	// 			clearInterval(timer);
+	// 		}else{
+	// 			oBox.style.left = oBox.offsetLeft + 5 + "px";
+	// 		}
+	// 	},30)
+
+	// 	console.log("事件触发");
+	// 	console.log(timer);
+	// }
+
+	oBox.onmouseover = function(){ // bug 1 ;
+		//让 box 向右移动
+		//clearInterval(timer);
+		if(timer){
+			return 0;
+		}
+		timer = setInterval(function(){
+			if(oBox.offsetLeft >= 0){ //终止条件的改变;
+				clearInterval(timer);
+				timer = null;
+			}else{
+				oBox.style.left = oBox.offsetLeft + 5 + "px";
+			}
+		},30)
+		// console.log("事件触发");
+		// console.log(timer);
+	}
+
+	// bug 1 => 因为mouseover 会多次触发 导致定时器 多次开启 ; 
+
+	// 1. 每次开启定时器之前先关闭定时器确保开启的定时器唯一;
+	// 2. 只要运动还在进行(timer != null 的时候) 不开启定时器，直接跳出函数;
+
+	
+
+
+</script>
+</html>	

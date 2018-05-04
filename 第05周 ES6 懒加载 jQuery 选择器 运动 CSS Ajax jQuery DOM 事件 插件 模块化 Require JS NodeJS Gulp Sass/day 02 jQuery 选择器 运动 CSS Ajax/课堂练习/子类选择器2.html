@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>子类选择器2</title>
+</head>
+<body>
+    <div id="topDiv">
+        <h1>h1h1h1h1h1h1h1h1h1h1</h1>
+        <p>ppppppppppp</p>
+        <strong id="strong1">
+            <p>ppppppppppp</p>
+        </strong> 
+        <strong id="strong2">
+            <i>
+                <p>ppppppppppp</p>
+            </i>
+        </strong> 
+        <span>span1span1span1span1span1</span>
+        <p>ppppppppppp</p>
+        <span>span2span2span2span2span2</span>
+        <p>ppppppppppp</p>
+    </div>
+    <p>ppppppppppp</p>
+        <strong>
+            <p>ppppppppppp</p>
+        </strong> 
+        <strong>
+            <i>
+                <p>ppppppppppp</p>
+            </i>
+        </strong> 
+</body>
+<script src="jquery-3.2.1.js"></script>
+<script>
+    // $("#topDiv p:first-of-type").css("background", "red");
+
+    console.log($("#strong1").find("p").end());
+</script>
+</html>

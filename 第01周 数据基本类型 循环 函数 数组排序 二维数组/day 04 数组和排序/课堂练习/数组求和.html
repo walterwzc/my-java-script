@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>数组求和</title>
+</head>
+<body>
+    <h3>array = [1,2,3,4,5,6,7,8,9,10] 中数组的和为：</h3>
+    <h3 id="showNumber"></h3>
+</body>
+<script>
+    var array = [1,2,3,4,5,6,7,8,9,10];
+    var sumResult = 0;
+    for (var i = 0; i < array.length; i++) {
+        sumResult += array[i];
+    }
+    console.log(sumResult);
+    showNumber.innerHTML = sumResult;
+</script>
+</html>

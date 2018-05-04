@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="libs/jquery-3.2.1.js"></script>
+	<script>
+		$(function () {
+			// 全局对象 jQuery; => jquery构造函数的原型;
+
+			// 局部对象 jQuery.fn; => jquery的原型;
+
+			// console.log(jQuery.yanghuaizhi);
+
+			// 全局方法的绑定; $.xxx;
+
+			// jQuery.yanghuaizhi = 10;
+			// jQuery.foo = function () {
+			// 	console.log(this);//指向jQuery对象;
+			// }
+			// //console.log(jQuery.yanghuaizhi);
+			// jQuery.foo();
+
+
+			// 局部插件的绑定;
+			// jQuery.fn.foo = function () {
+			// 	console.log(this);
+			// }
+
+			// $("#box").foo()
+
+			// 工具方法 => 1.只传递一个对象,
+			// 	$.extend({
+			// 		yanghuaizhi: "123"
+			// 	})
+
+			// 2.两个及以上参数的时候干了些啥？ => 把多个对象进行合并, 并返回合并结果;
+
+			// var res = $.extend({ aaa: 10 }, { bbb: 20 }, { aaa: 15 });
+			// console.log(res)
+
+		})		
+	</script>
+</head>
+
+<body>
+	<div id="box">
+
+	</div>
+</body>
+
+</html>

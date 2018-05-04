@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+
+/*
+
+		var arr = [];
+
+		console.log(arr.indexOf("a"));
+
+		Array.prototype.sensen = function(){
+			alert("这是朕打下的江山！");
+		}
+
+		arr.sensen();
+
+		console.log(arr);
+
+
+*/
+	
+	// var obj = {
+	// 	a : 10,
+	// 	fn:function(){
+	// 		console.log(this);
+	// 	}
+	// }
+
+	// 哪个对象调用的 方法this就指向哪里;
+	// function fn(){
+	//	console.log(this)
+	// }
+	// window.fn(); // window
+	// obj.fn(); // obj
+
+	// setInterval(function(){
+	// 	console.log(this)
+	// });
+
+	//所有定时器中的回调函数的this 都指向 window;
+
+	// (function(){
+	// 	console.log(this);
+	// })()
+
+	//所有匿名函数的this都指向window;
+
+	// dom.onclick = function(){
+	// 	console.log(this);// dom
+	// }
+	// dom.onclick()
+
+	// bind => ES5 方法
+
+	// var a = {
+	// 	  p: 'Hello',
+	// 	  b: {
+	// 	    m: function() {
+	// 	      console.log(this);
+	// 	    }
+	// 	  }
+	// 	};
+	// 	a.b.m() 
+
+	var obj ={
+	  foo: function () {
+	    console.log(this);
+	  }
+	};
+
+	(obj.foo = obj.foo)();
+
+	(false || obj.foo)
+
+	(1, obj.foo)
+
+	// Tabs.prototype.change = function(event){
+	// 	var index = event.target.index;
+	// 	// event.target  代表事件源;
+	// 	for(var i = 0; i < this.show.length; i++){
+	// 		this.show[i].style.display = "none";
+	// 		this.btn[i].className = "";
+	// 	}
+	// 	this.show[index].style.display = "block";
+	// 	this.btn[index].className = "active";
+	// }
+
+	
+
+/*		
+
+
+5. 问题0:this 指向哪儿有点乱
+var obj ={
+  foo: function () {
+    console.log(this);
+  }
+};
+obj.foo()// obj;
+
+
+上面的代码，this指向obj；如果用以下三种方法调用，都指向window是嘛？为什么。。。
+// 情况一
+(obj.foo = obj.foo)() 
+
+// 情况二
+(false || obj.foo)() 
+
+// 情况三
+(1, obj.foo)() 
+
+
+6. 问题1:如果某个方法位于多层对象的内部，这时候this只是指向当前一层对象是嘛？
+var a = {
+  p: 'Hello',
+  b: {
+    m: function() {
+      console.log(this.p);
+    }
+  }
+};
+a.b.m() 
+
+*/
+	
+
+
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

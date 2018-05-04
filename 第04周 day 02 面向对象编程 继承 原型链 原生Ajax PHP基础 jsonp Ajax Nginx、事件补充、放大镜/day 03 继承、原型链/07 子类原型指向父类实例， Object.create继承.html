@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+		//实例化; 函数new 调用之后的返回值;
+
+		// 例1： 子类的原型，指向父类的实例， 存在的问题是： 子类原型的构造函数也指向父类，需要重新指向。
+		function Foo(){
+			this.name = "Foo";
+		}
+
+		Foo.prototype.hello = function(){
+			console.log("i'm foo prototype");
+		}
+
+		function Father(){
+			this.name = "Father";
+		}
+
+		Father.prototype.hello = function(){
+			console.log("i'm Father prototype");
+		}
+
+		function Son(){
+		}
+
+		Son.prototype = new Father();
+		
+		Son.prototype.hello = function(){
+			console.log("i'm son prototype")
+		}
+		//console.log(foo.yanghuaizhi());	
+		// Son.prototype.__proto__.hello = function(){
+		// 	console.log(1);.
+		// }
+		console.log(new Son());
+		new Son().hello();
+		new Father().hello();
+
+
+
+
+
+		// 使用 ES5 的 Object.create()  方法进行继承。
+		// function Father(){
+		// 	this.name = "Father";
+		// }
+
+		// Father.prototype.hello = function(){
+		// 	console.log("i'm Father's hello in prototype");
+		// }
+
+		// function Son(){
+		// }
+
+
+		// // // 使用ES5的Object.create方法传入构造函数或者是构造函数的原型，能够完成继承。
+		// Son.prototype = Object.create(Father.prototype);
+		// // Son.prototype = new Father();
+
+		// Son.prototype.hello = function(){
+		// 	console.log("i'm Son'hello in prototype")
+		// }
+
+		// // Son.prototype.hello = function(){
+		// // 	console.log(1);
+		// // }
+
+		// //console.log(foo.yanghuaizhi());	
+		// // Son.prototype.__proto__hello = function(){
+		// // 	console.log(1);.
+		// // }
+
+		// var son = new Son();
+		// var father = new Father();
+
+		// console.log(son, father);
+
+		// son.hello();
+		// father.hello();
+		// ES3 => ES5;
+
+		// console.log(Object.create(new Father())); //继承;
+
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

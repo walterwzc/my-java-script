@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+		// class Hello{
+		// 	constructor(){ //立即执行的;
+		// 		this.name = "hello"
+		// 	}
+		// 	sayHello(){
+		// 		alert(this.name);
+		// 	}
+
+		// }	
+
+		// console.log(new Hello());
+
+		// function Hello2(){
+		// 	this.name = "hello"
+		// }
+		// Hello2.prototype = {
+		// 	constructor:Hello2,
+		// 	sayHello:function(){
+		// 		alert(this.name)
+		// 	}
+		// }
+		// console.log(new Hello2());
+
+
+		class Father{
+			constructor(name){ //必选参数；
+				this.name = name
+			}
+			sayWho(){
+				alert(this.name)
+			}
+		}
+
+		class Son extends Father{
+			constructor(name){ //super 更改参数;
+				super(name); //call(this,a,b,c)
+				//name === a;
+			}
+			sayWho(){
+				alert(123);
+			}
+		}
+
+		console.log(new Son("hello").sayWho());
+
+		// function Father2(){
+		// 	this.name = "Father2"
+		// }
+		// Father2.prototype = {
+		// 	constructor:Father2,
+		// 	sayWho:function(){
+		// 		alert(this.name);
+		// 	}
+		// }
+
+		// function Son(){
+		// }
+		// Son.prototype = new Father();
+		// console.log(new Son());
+
+	
+
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

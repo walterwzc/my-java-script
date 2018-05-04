@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>正则</title>
+</head>
+<body>
+    
+</body>
+<script>
+    var str = '<div class="menu-list hide">' +
+    '<p><a href="http://www.abcedf.com.cn/job/?from=abcedfindex&amp;position=index_nav" abc_d="nav_tab_job_job">ְλ</a></p>' +
+    '<p><a href="http://www.abcedf.com.cn/job/qiye?from=abcedfindex" abc_d="nav_tab_job_company"></a></p>' +
+    '<p><a href="http://www.abcedf.com.cn/job/corp/publish.do?from=abcedfindex" abc_d="nav_tab_job_publish"></a></p>' +
+    '</div>';
+
+    var reg = /href="[^"]+"/g;
+    var reg2 = /abc_d="[^"]+"/g;
+    // var reg = /href=(\").*?(?=\")"/g
+    // var reg = /href="(.*)"/g
+
+    // console.log(reg.test(str));
+    // var resultStr = str.replace(reg,function(str){
+    //     console.log(str);
+    //     str = "href=\"\"";
+    //     return str;
+    // });
+
+    var resultString;
+    resultString = str.replace(reg, "href=\"\"");
+    resultString = resultString.replace(reg2, "abc_d=\"\"");
+
+    console.log('-----------------------------');
+    console.log(resultString);
+</script>
+</html>

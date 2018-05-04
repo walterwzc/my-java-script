@@ -1,0 +1,58 @@
+在方法中可以通过arguments参数来访问 实际传入该方法的参数。
+
+对象的属性，实际上就是该对象私有化的变量。
+
+arguments["length"] === arguments.length
+
+
+
+递归
+
+Maximum call stack size exceeded 范围错误:内存溢出
+
+arguments.callee 代表当前函数的本身
+
+递归二要素：
+1. 计算规则
+2. 终止条件
+
+
+对象：
+json => 对象数组 ; 数组对象; 对象;
+
+in 关键字 返回的是 属性值是否在对象中，如果在返回true，不存在的话，返回false。
+
+全局变量其实就是 给widnow加上了一个属性， window. 都可以省略;
+
+
+在函数中，没有关键字var 声明的变量，叫做伪全局变量，具有全局的作用域 => 声明变量要加 var;
+
+
+数组：
+1.
+var arr = [1,2,3,4,5,6];
+
+2.
+var arr2 = new Array(1,2,3,4,5,6,7);//构造函数; => 构造了数组的函数;
+
+静态赋值，引用赋值。
+
+原型指针
+
+数组中的方法：
+
+前增： unshift， 后增： push
+前删： shift， 后删： pop
+concat， reverse， join， sort， splice， slice
+
+
+
+排序方法：
+
+1. 水桶排序。
+2. 冒泡排序。
+3. 选择排序。
+4. 快速排序。
+
+
+

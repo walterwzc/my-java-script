@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+		var array = "hfdjwejhsbvdfgejbnmahjiuqloqpoqp ,znbvtucshz,cmhguyeq";
+		var noRepeatArry = [];
+		var numx = [];
+		for(var i in array){
+			if (noRepeatArry.indexOf(array[i]) == -1) {
+				noRepeatArry.push(array[i]);
+				numx[noRepeatArry.indexOf(array[i])] = 1;			
+			} else {
+				for (var j in noRepeatArry){
+					if (array[i] == noRepeatArry[j]){
+						numx[j] += 1;
+					}
+				}
+			}
+		}
+
+		for(var k in noRepeatArry){
+			console.log(noRepeatArry[k], numx[k]);
+		}
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

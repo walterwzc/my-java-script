@@ -1,0 +1,25 @@
+开启服务： 
+start nginx
+
+
+关闭服务:
+taskkill /F /IM nginx.exe > nul
+
+
+重启服务：
+taskkill /F /IM nginx.exe > nul
+start nginx.exe
+
+
+
+
+
+要将 
+1. 
+要先将Server HTTP 模块的内容注释，之后引入自己的模块。
+
+2.
+include proxy.conf(一定要是conf的后缀)  写在HTTP 模块之下。
+
+
+之后可以在proxy.conf 文件之中定义 需要代理的路径， 之后 重启服务，浏览器就可以访问需要代理的网址，并将结果返回给浏览器，完成跨域。

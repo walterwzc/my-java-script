@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>在同一个方法之中设置元素的变宽、变高、变透明</title>
+    <style>
+        div {
+            height: 100px;
+            width: 100px;
+            background: #f00;
+            float: left;
+            margin-right: 40px;
+            border: 10px solid #000;
+            text-align: center;
+            vertical-align: middle;
+            font-size: 20px;
+            line-height: 100px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div id="box1">变高</div>
+    <div id="box2">变宽</div>
+    <div id="box3">变透明</div>
+</body>
+<script>
+    var box1 = document.getElementById("box1");
+    var box2 = document.getElementById("box2");
+    var box3 = document.getElementById("box3");
+
+    box1.onmouseover = function() {
+        move(this, "height", 500);
+    }
+
+    box1.onmouseout = function() {
+        move(this, "height", 100);
+    }
+
+    box2.onmouseover = function() {
+        move(this, "width", 500);
+    }
+
+    box2.onmouseout = function() {
+        move(this, "width", 100);
+    }
+
+    box3.onmouseover = function() {
+        move(this, "opacity", 30);
+    }
+
+    box3.onmouseout = function() { 
+        move(this, "opacity", 100);
+    }
+
+    function move(dom, attr, target) {
+        clearInterval(dom.timer);
+        dom.timer = setInterval(function() {
+            // console.log(getStyle(dom, attr));
+            var nowAttr;
+            if (attr == "opacity") {
+                nowAttr = Math.round(parseFloat(getStyle(dom, attr) * 100));
+            } else {
+                nowAttr = Math.round(parseFloat(getStyle(dom, attr)));
+            }
+            console.log(nowAttr);
+            var speed = (target - nowAttr) / 6;
+            speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+            console.log(speed);
+            if (nowAttr == target) {
+                clearInterval(dom.timer);
+            } else {
+                if (attr == "opacity") {
+                    dom.style.opacity = (nowAttr + speed) / 100;
+                } else {
+                    dom.style[attr] = nowAttr + speed + "px";
+                }
+            }
+            
+        }, 30);
+    }
+
+    function getStyle(dom, attr) {
+        return getComputedStyle(dom, false)[attr];
+    }
+</script>
+</html>

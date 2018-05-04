@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+		for(var k = 0 ; k < 10 ; k++){
+			multiplication();
+			daimond();
+		}
+		function multiplication(){
+			for(var i = 1 ; i <= 9; i ++){
+				for(var j = 1 ; j <= i ; j ++){
+					//console.log(i,j)
+					document.write(j +"*"+ i +"="+j * i+"&nbsp;&nbsp;");
+				}
+				document.write("<br>");
+			} // 这是九九
+		}
+		function daimond(){
+			for(var i = 0 ; i < 6; i ++){
+				//打印空格; 打印 5 4 3 2 1 0 个空格;
+				for(var ll = 5 ; ll > i ; ll --){
+					document.writeln("&nbsp;&nbsp;")
+				}
+				//每行打印 1 3 5 7 9 11 .... i * 2 + 1 颗星星 
+				//打印 1 3 5 7 9 ... 颗星星;
+				for(var j = 0 ; j < i * 2 + 1 ; j++){
+					if( j == 0 || j == i * 2){
+						document.writeln("u");
+					}else{
+						document.writeln("&nbsp;&nbsp;");
+					}
+				}
+				document.write("</br>");
+			}
+			for(var i = 5 ; i >= 0; i --){
+				//打印空格; i = 5 4 3 2 1 0 
+				for(var l = 5 ; l > i ; l --){
+					document.writeln("&nbsp;&nbsp;")
+				}
+				//打印  11 9 7 5 3 1  颗星星;
+				for(var j = 0 ; j < i * 2 + 1 ; j++){
+						if( j == 0 || j == i * 2){
+							document.writeln("u");
+						}else{
+							document.writeln("&nbsp;&nbsp;");
+						}					
+				}
+				document.write("</br>");
+			} //空心菱形;
+		}
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

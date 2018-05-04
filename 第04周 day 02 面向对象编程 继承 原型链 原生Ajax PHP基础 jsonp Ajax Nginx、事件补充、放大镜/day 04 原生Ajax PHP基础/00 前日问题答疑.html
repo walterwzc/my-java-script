@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+
+	// 	var obj = {
+	// 		data:"",
+	// 		scope:""
+	// 	}
+
+	// 	Object.defineProperty(obj,"data", {
+	// 		set:function(value){
+	// 			//alert(value);
+	// 			if(typeof value == "string" && value != ""){
+	// 				this.scope = parseInt(value);
+	// 			}
+	// 		},
+	// 		get:function(value){
+	// 			//alert("hello i'm get");
+	// 			//this.scope = value;
+	// 			return this.scope + "";
+	// 		}
+	// 	})
+
+	// 	obj.data = "10.222444444";
+
+	// 	console.log(obj.data);
+
+	// var obj = {
+	// 	a:{
+	// 		d:"e"
+	// 	},
+	// 	b:20,
+	// 	c:30
+	// }
+
+	// obj.a; //地址;
+
+	// //
+
+	// var obj2 = {};
+
+	// for(var i in obj){
+	// 	obj2[i] = obj[i]
+	// }
+
+	// console.log(obj2 == obj);//false  
+	// console.log(obj2.a == obj.a); // true;
+
+
+	// function cloneObject(obj){
+	// 	var o = new Object();
+	// 	for(var attr in obj){
+	// 		if(obj[attr] instanceof Object){
+	// 			o[attr] = cloneObject(obj[attr]);
+	// 		}else{
+	// 			o[attr] = obj[attr];
+	// 		}
+	// 	}
+	// 	return o;
+	// }
+	// var obj2 = cloneObject(obj);
+	// obj2.a.d = "10";
+	// console.log(obj, obj2);
+
+	
+/*
+1. function Father(name,age){
+		this.name =name;
+		this.age = age;
+		this.show = function(){
+			alert(this.name,this.age)
+		}
+	}
+	function Son(){
+		console.log(arguments)
+		Father.apply(this,arguments)
+	}
+	var sss = new Son("二哈","20")
+		
+	sss.show()
+
+1. 执行这个函数为哈只打印了二哈，不打印20了  arguments是数组，alert的机制只能打印下标为0的属性？还是有其他解释，sss 里面存在20，说明已经混合继承了，但是怎么打印不了20呢
+
+2. 对象的深克隆可以理解为 空对象 || 构造函数 for attr in 循环产生一个具有另一个新对象||构造函数吗 ？
+
+3. Object.create(Father.prototype)感觉和 new Father()区别不是很大,用的合理的话，效果都差不多，可以讲讲区别吗？
+
+4. Object.defineProperty中的get和set感觉很模糊，希望老师能再讲一下
+
+5. 数据描述符和存取描述符。
+
+6. 对象的深浅克隆  =>  对象套对象
+	var obj = {
+		a:{
+			d:"e"
+		},
+		b:20,
+		c:30
+	}
+
+	function cloneObject(obj){
+		var o = new Object();
+		for(var attr in obj){
+			if(obj[attr] instanceof Object){
+				o[attr] = cloneObject(obj[attr]);
+			}else{
+				o[attr] = obj[attr];
+			}
+		}
+		return o;
+	}
+	
+	var obj2 = cloneObject(obj);
+	obj2.a.d = "10";
+	console.log(obj, obj2);
+
+7. 混合继承 ( 1.缺点是书写麻烦 , 原理简单; 2.没法多重继承 )和原型链继承的优缺点对比。(1.书写简单; 2.可以多重继承)
+
+9. 原型指针中的constructor值有什么实际的作用？
+
+10.function Drag(selector_ele){
+		if(selector_ele){
+			this.init(selector_ele);
+		}
+	}
+拖拽升级版的开始为什么要做一个if判断？
+
+11. 对于对象的属性的访问， 属性的点 和 中括号有什么区别？
+
+    var obj = {
+        name: "AAA",
+        // luckyNumber: [1,2,3,4,5],
+        parent: {"fahter": "Jimson", "mother": "Lily"}
+    }
+
+    var cloneObj = deepClone(obj);
+
+    function deepClone(obj) {
+        var cloneObj = {};
+        for (var attr in obj) {
+            if (obj[attr] instanceof Object) {
+                // cloneObj.attr = deepClone(obj[attr]);
+                cloneObj[attr] = deepClone(obj[attr]);
+            } else {
+                // cloneObj.attr = obj[attr];
+                cloneObj[attr] = obj[attr];
+            }
+        }
+        return cloneObj;
+    }
+
+    // cloneObj.luckyNumber = [11,22,33,44,55];
+    // cloneObj.parent = {"fahter": "ABC", "mother": "DEF"};
+
+    console.log(obj);
+    console.log(cloneObj);
+
+
+
+
+
+
+		
+	var obj = {
+        name: "AAA",
+        // luckyNumber: [1,2,3,4,5],
+        parent: {"fahter": "Jimson", "mother": "Lily"}
+    }
+
+    var cloneObj = deepClone(obj);
+
+    function deepClone(obj) {
+        var cloneObj = {};
+        for (var attr in obj) {
+            if (obj[attr] instanceof Object) {
+                cloneObj.attr = deepClone(obj.attr);
+                //cloneObj[attr] = deepClone(obj[attr]);
+            } else {
+                cloneObj.attr = obj[attr];
+               // cloneObj[attr] = obj[attr];
+            }
+        }
+        return cloneObj;
+    }
+
+    // cloneObj.luckyNumber = [11,22,33,44,55];
+    // cloneObj.parent = {"fahter": "ABC", "mother": "DEF"};
+
+    // console.log(obj);
+    // console.log(cloneObj);
+
+    // var a = "a";
+    // console.log(obj.a)
+*/
+
+
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

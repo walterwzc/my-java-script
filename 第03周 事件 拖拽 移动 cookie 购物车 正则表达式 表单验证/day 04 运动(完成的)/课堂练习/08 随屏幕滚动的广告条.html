@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>随屏幕滚动的广告条</title>
+	<style>
+#div1{
+	width: 60px;
+	height: 100px;
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	background: #b7b7b7;
+}
+body{
+	height: 3000px;
+}
+input{
+	position: fixed;
+	right: 0;
+	top: 0;
+}
+	</style>
+
+</head>
+<body>
+	<div id='div1'></div>
+	<input type="text" id='txt1'>
+</body>
+
+<script>	
+	var oDiv = document.getElementById("div1");
+	var oInput = document.getElementById("txt1");
+	var clientHeight = document.documentElement.clientHeight || document.body.clientHeight;
+	var oDivHeight = oDiv.offsetHeight;
+	var oDivClientTop = (clientHeight - oDivHeight) / 2;
+	// console.log("clientHeight: " + clientHeight);
+	// console.log("oDivHeight: " + oDivHeight);
+	// console.log("oDivClientTop: " + oDivClientTop);
+	
+	window.onscroll = function() {
+		var clientScrollTop = document.documentElement.scrollTop;
+		var target = oDivClientTop + clientScrollTop;
+		// console.log("oDivClientTop: " + oDivClientTop);
+		// console.log("clientScrollTop: " + clientScrollTop);
+		// console.log("target: " + target);
+		// console.log("clientScrollTop: " + clientScrollTop);
+		move(target);
+	}
+	
+	var timer = null;
+	function move(target) {
+		clearInterval(timer);
+		timer = setInterval(function() {
+			var oDivOffsetTop = oDiv.offsetTop;
+			// console.log("oDivOffsetTop: " + oDivOffsetTop);
+			// console.log("target: " + target);
+			var speed = (target - oDivOffsetTop) / 6;
+			speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+			if (oDivOffsetTop == target) {
+				clearInterval(timer);
+			} else {
+				oDiv.style.top = oDivOffsetTop + speed + "px";
+				oInput.value = oDiv.style.top;
+			}
+		}, 30);
+	}
+</script>
+</html>

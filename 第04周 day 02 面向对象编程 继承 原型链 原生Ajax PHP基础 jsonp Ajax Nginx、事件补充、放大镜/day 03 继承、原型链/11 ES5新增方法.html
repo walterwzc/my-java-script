@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+		//var arr = [3,4,2,5,6,7,9];
+		// arr.forEach(function(item,index,arr){
+		// })
+
+		//1.循环调用参数函数;
+		//2.传入参数函数对应的实参;
+
+		// Array.prototype.myForEach = function(callback){
+		// 	//console.log("执行")
+		// 	//callback == cb;
+		// 	for(var i = 0 ; i < this.length ; i++){
+		// 		callback(this[i],i,this);
+		// 	}
+		// }
+
+		// function cb(item,index,arr){
+		// 	console.log(item,index,arr);
+		// }
+
+		// arr.myForEach(cb);
+
+		//["a", "b", "c", "d", "e"].forEach(console.log);
+
+		//var arr = [300,400,200,500,600,700,900];
+		// var res = arr.map(function(item,index,arr){
+		// 	//console.log(item,index,arr)
+		// 	return item * 1.2;
+		// })
+		// console.log(res);
+
+		//map方法 最终目标 => 返回一个 由 callback 返回值组成的数组;
+
+		// Array.prototype.myMap = function(callback){
+		// 	var arr = [];
+		// 	for(var i = 0 ; i < this.length ; i++){
+		// 		arr.push(callback(this[i],i,this));				
+		// 	}
+		// 	return arr;
+		// }
+
+		// var res = arr.myMap(function(item){
+		// 	return item * 1.2
+		// })
+
+		// console.log(res);
+
+		//var arr = [300,400,200,500,600,700,900];
+
+		// filter
+
+		// var res = arr.filter(function(item,index,arr){
+		// 	//return true;
+		// 	return item > 500;
+		// })
+
+		// Array.prototype.myFilter = function(callback){
+		// 	var arr = [];
+		// 	for(var i = 0 ; i < this.length ; i++){
+		// 		if(callback(this[i],i,this)){
+		// 			arr.push(this[i]);					
+		// 		}				
+		// 	}
+		// 	return arr;
+		// }
+
+		// var res = arr.myFilter(function(item,index,arr){
+		// 	//return true;
+		// 	return item > 500;
+		// })
+
+		// console.log(res);
+
+
+		//var arr = [300,400,200,500,600,700,900];
+
+		// var res = arr.reduce(function(prev,next,index,arr){
+		// 	console.log(next);
+		// 	return prev + next;
+		// })
+
+
+		// Array.prototype.myReduce = function(callback){
+		// 	if(this.length == 1){
+		// 		return this[0];
+		// 	}
+		// 	if(this.length == 0){
+		// 		return null;
+		// 	}
+		// 	var result = this[0];
+		// 	for(var i = 1; i < this.length ; i++){
+		// 		result = callback(result,this[i],i,this)
+		// 	}
+		// 	return result;
+		// }
+	 //    var res = arr.myReduce(function(prev,next,index,arr){
+	 //    	console.log(prev);
+		// 	return prev * next;
+		// })
+
+		// console.log(res);
+
+		// var arr = [300,400,200,500,600,700,900];
+		// var res = arr.some(function(item){
+		// 	return item == 351;
+		// })
+
+		//console.log(res); 	
+
+		// Array.prototype.anyone = function(callback){
+		// 	for(var i = 0 ; i < this.length ; i++){
+		// 		if(callback(this[i],i,this)){
+		// 			return true;
+		// 		}
+		// 	}
+		// 	return false;
+		// }
+
+		// var arr = [300,400,200,500,600,700,900];
+		// var res = arr.every(function(item){
+		// 	return typeof item == "number";
+		// })
+		// console.log(res);
+
+		//console.log("      d   jdjd           ".trim());
+
+		// var obj = {
+		// 	a:134,
+		// 	b:250,
+		// 	c:444
+
+		// }
+		// console.log(Object.keys(obj));
+		// console.log(Object.values(obj));
+
+		//Object.defineProperty()
+
+
+		var obj = {
+			d:new Date().getTime(),
+			name:"测试对象",
+			data:"",
+			scope:""
+		}
+		Object.defineProperty(obj,"d",{
+			writable:false,
+			configurable:false
+		})
+		Object.defineProperty(obj,"name",{
+			enumerable:false,
+		})
+		// obj.d = 10;
+		// console.log(obj.d);
+
+
+		// for(var i in obj){
+		// 	console.log(i);
+		// }
+		// delete obj.d;
+
+		// console.log(obj);
+
+		// Object.defineProperty(obj,"data",{
+		// 	set:function(value){
+		// 		//console.log(this);
+		// 		//this.data = value;
+		// 		this.scope = value;
+		// 		document.write(value)
+		// 	},
+		// 	get:function(value){
+		// 		return this.scope;
+		// 	}
+		// })
+
+		// obj.data = "hddd";
+
+
+		// console.log(obj.data)
+	</script>
+</head>
+<body>
+	
+	<input type="text" id="txt">
+	<div id="box"></div>
+	<ul>
+		<li>点击1</li>
+		<li>点击2</li>
+		<li>点击3</li>
+		<li>点击4</li>
+	</ul>
+</body>
+
+<script>
+	// var model = {
+	// 	data:"",
+	// 	scope:[]
+	// }
+	// var oBox = document.getElementById("box");
+	// Object.defineProperty(model,"data",{
+	// 	set:function(value){
+	// 		oBox.innerHTML = value;
+	// 		// this.scope = value;
+	// 		this.scope.push(value);
+	// 	}
+	// })
+	// model.data = 123;
+	// var oTxt = document.getElementById("txt");
+
+	// oTxt.oninput = function(){
+	// 	model.data = this.value;
+	// }
+
+
+</script>
+<script>
+	//var aLi = document.getElementsByTagName('li');
+	// aLi = [].slice.call(aLi);
+	// //console.log(aLi);
+	// aLi.forEach(function(ele,index){
+	// 	ele.onclick = function(){
+	// 		alert(index);
+	// 	}
+	// })
+
+</script>
+</html>

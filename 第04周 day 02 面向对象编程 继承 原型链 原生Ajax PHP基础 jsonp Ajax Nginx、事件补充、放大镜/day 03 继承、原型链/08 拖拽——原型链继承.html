@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>继承</title>
+	<style>
+		#box,#box2{
+			width: 100px;
+			height: 100px;
+			position: absolute;
+			left: 0;
+			top: 0;
+			background: #ddd;
+		}
+		#box2{
+			background: #000;
+			left: 300px;
+		}
+	</style>
+</head>
+<body>
+	<div id="box">的点点滴滴</div>
+	<div id="box2">的点点滴滴</div>
+</body>
+<script>
+	
+	// 1.init => 选元素; 绑定事件;
+	// 2.运动 => 元素移动;
+	function Drag(selector_ele){
+		//是否传递参数;
+		//new Drag(); => 1. 想要实现拖拽功能; => 传递参数;
+		//new Drag(); => 2. 继承;            => 不传递参数;
+		if(selector_ele){
+			this.init(selector_ele);
+		}
+	}
+	// Drag.prototype.init = function(){
+	// }	
+	Drag.prototype = {
+		constructor:Drag,
+		
+		init : function(selector_ele){
+			//选择元素绑定事件;
+			this.ele = document.querySelector(selector_ele);
+			//绑定事件;
+			this.ele.onmousedown = this.evtStart.bind(this);	
+		},
+		evtStart : function(event){
+			var evt = event || window.event;
+			this.offsetX = evt.offsetX;
+			this.offsetY = evt.offsetY;
+			this.background = getComputedStyle(this.ele,false)["background"];
+			this.ele.style.background = "red";
+			//拖拽开始;
+			document.onmousemove = this.moveEle.bind(this);
+			document.onmouseup = this.evtEnd.bind(this);
+			evt.preventDefault();
+		},
+		evtEnd : function(){
+			//拖拽结束;
+			document.onmousemove = null;
+			this.ele.style.background = this.background
+
+		},
+		moveEle : function(event){
+			//拖拽进行中;
+			//console.log(2);
+			var evt = event || window.event;
+			var left = evt.clientX - this.offsetX;
+			var sTop = evt.clientY - this.offsetY;
+			this.ele.style.left = left + "px"
+			this.ele.style.top = sTop + "px"
+			this.ele.style.background = "green";
+		}
+	};
+	//console.log(Drag.prototype);
+	function DragSon(){
+		
+	};
+	DragSon.prototype = new Drag();
+	DragSon.prototype.constructor = DragSon;
+	
+	var drag = new Drag();
+	//console.log(drag);
+	drag.init("#box");
+
+	var dragSon = new DragSon();
+	dragSon.init("#box2");
+
+	console.log(dragSon);
+
+</script>
+</html>

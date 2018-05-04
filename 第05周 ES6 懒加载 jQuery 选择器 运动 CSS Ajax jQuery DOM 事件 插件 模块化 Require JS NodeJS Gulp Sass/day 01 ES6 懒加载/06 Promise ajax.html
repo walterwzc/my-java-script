@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+
+	<script>
+		
+		// 传统方式，如果想要在一个事件完成之后再执行另外的时间，要在事件之中嵌套事件。
+		// setTimeout(function(){  //p1
+		// 	console.log(1);
+		// 	setTimeout(function(){//p2
+		// 		console.log(2);
+		// 		setTimeout(function(){//p3
+		// 			console.log(3)
+		// 		},3000)
+		// 	},2000)
+		// },1000);
+
+
+		// 采用promise方式：
+		// var promise = new Promise(function(success,failed){
+		// 	setTimeout(function(){
+		// 		console.log(1);
+		// 		success();
+		// 	},1000)
+		// })
+
+		// promise
+		// .then(function(){
+		// 	return new Promise(function(success){
+		// 		setTimeout(function(){
+		// 			console.log(2)
+		// 			success();
+		// 		},2000)
+		// 	})
+		// })
+		// .then(function(){
+		// 	return new Promise(function(){
+		// 		setTimeout(function(){
+		// 			console.log(3)
+		// 		},3000)
+		// 	})
+		// })
+
+
+		// ajaxGet("url",function(){
+		// 	//代码
+		// 	//代码
+		// 	//代码
+		// 	//代码
+		// 	//代码
+		// 	//代码
+		// 	//代码
+		// 	ajaxGet("url",function(){
+		// 		//代码
+		// 		//代码
+		// 		//代码
+		// 		//代码
+		// 		//代码
+		// 		//代码
+		// 		//代码
+		// 	})
+		// })
+		
+		// function ajaxGet(url,callback){
+		// 	let xhr = new XMLHttpRequest();
+		// 	xhr.open("GET",url);
+		// 	xhr.send(null);
+		// 	xhr.onload = function(){
+		// 		if(xhr.status == 200){
+		// 			callback(ajax.responseText);
+		// 		}
+		// 	}
+		// }
+
+		var $ = {}
+		$.get = function(url){
+			let xhr = new XMLHttpRequest();
+			xhr.open("GET", url);
+			xhr.send(null);
+			var promise = new Promise(function(success,failed){
+				xhr.onload = function(){
+					if(xhr.status == 200){
+						success(xhr.responseText);
+					}
+				}
+				// xhr.onerror = function(){
+				// 	failed(xhr.status);
+				// }
+				success("hellow")
+			});
+			return promise;
+		}
+		var url = "http://www.baidu.com";
+
+		var pro = $.get(url);
+
+		pro.then(function(res){
+			//then 就相当于 ==== callback;
+			return  $.get("dddd");
+		})
+		.then(function(){
+			// 因为上一个
+			console.log("之前一个promise failed 了， 这里的代码还会执行么？");
+		})
+		pro.catch(function(){
+			console.log("发生了一些问题，请稍后");
+			//location.href = "404.html";
+		})
+
+		console.log(pro.then(function(a){
+			//console.log(pro == res)
+			return new Promise(function(){
+
+			});
+		}));
+
+
+		// Promies then的返回值 => 如果说没有return 的话，默认返回当前的promise ;
+		// 如果有 return的话 返回 新的promise;
+
+
+	</script>	
+</head>
+<body>
+	<div id="box">
+		
+	</div>	
+</body>
+<script>
+
+</script>	
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+		
+		function fn(a){
+			a.url = "www.baidu.com";
+			a = new Object();
+			a.url = "123456";
+		}
+		var b = new Object();
+		fn(b);
+
+		console.log(b);
+
+		function ajax(){
+			var promise = new Promise(function(){
+				//异步代码
+			})
+			return promsie;
+		}	
+
+		ajax(url).then()
+
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>属性继承</title>
+	
+	<script>
+	
+		// 例1， 父类中都为 静态属性，不传入参数
+		// function Father(){
+		// 	this.name = "hello";
+		// 	this.attr = "world";
+		// 	this.show = function(){
+		// 		console.log(this.name + this.attr);
+		// 	}
+		// }
+
+	
+		// 	// father {
+		// 	// 	name:"hello",
+		// 	// 	attr:"world",
+		// 	// 	show:function...
+		// 	// }
+
+	
+		// function Son(){
+		// 	Father.call(this);
+		// }
+		
+		// 	// Son{
+		// 	// 	name:"hello",
+		// 	// 	attr:"world",
+		// 	// 	show:function...
+		// 	// }
+	
+	
+
+		// var father = new Father();
+		// var son = new Son();
+
+		// father.show();
+		// son.show();
+		// console.log(father,son);
+	
+
+		// 例2， 父类中属性为 参数传入赋值
+		// function Father(name,attr){
+		// 	this.name = name;
+		// 	this.attr = attr;
+		// 	this.show = function(){
+		// 		alert(this.name + this.attr);
+		// 	}
+		// }
+
+		// /*
+		// 	father {
+		// 		name:"hello",
+		// 		attr:"world",
+		// 		show:function...
+		// 	}
+
+		// */
+		// // function Son(name,attr){
+		// // 	Father.call(this,name,attr);
+		// // }
+		// // function Son(){
+		// // 	//console.log(arguments);
+		// // 	Father.apply(this,arguments);
+		// // }
+		// function Son(name, attr){
+		// 	console.log(arguments);
+		// 	Father.apply(this, arguments);
+		// }
+		// /*
+		// 	Son{
+		// 		name:undefined,
+		// 		attr:undefined,
+		// 		show:function...
+		// 	}
+	
+		// */
+
+		// var father = new Father("nihao","hello");
+		// var son = new Son("nihao2","hello2");
+	
+		// console.log(father, son);
+
+		// 子类继承 父类构造函数的原型 里的内容;
+
+
+		// 例3. 使用浅拷贝的方法，子类获得父类原型之中的方法，或者是属性。
+		// function Father(name,attr){
+		// 	this.name = name;
+		// 	this.attr = attr;
+			
+		// }
+
+		// Father.prototype.show = function(){
+		// 	console.log("father: " + this.name + this.attr);
+		// }
+
+		// function Son(){
+		// 	Father.apply(this,arguments)
+		// }
+		// //Son.prototype = Father.prototype;
+
+		// for(var attr in Father.prototype){
+		// 	Son.prototype[attr] = Father.prototype[attr];
+		// }
+
+		// Son.prototype.show = function(){
+		// 	console.log("son: " + "show不太好");
+		// }
+
+		// var father = new Father("hello","你好");
+		// var son = new Son("hello2","你好2");
+
+		// father.show();
+		// son.show();
+
+
+		// console.log(father,son);
+
+
+	</script>
+</head>
+<body>
+	
+</body>
+</html>
+

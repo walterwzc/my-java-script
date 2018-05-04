@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script src="src/require.js"></script>
+<script>
+	//路径根据index来; 
+	//全局变量很可恶; =>只要使用requirejs 那么所有的全局变量都没有; 
+
+	// 不能够直接使用 require 来加载js模块，而是要先配置requirejs.config，将全局的模块配置放在其中
+	// require(["src/jquery-3.2.1.js"], function (jq) {
+	// 	console.log(jq);
+	// })
+
+	requirejs.config({
+		paths: {
+			"jquery": "src/jquery-3.2.1" //去掉了jquery.js 的js后缀;
+		}
+	});
+	//所有的模块  都是xxx.js;
+
+	// 第一个参数为所加载的模块
+	require(["jquery"], function (jq) {
+		console.log(jq);
+	})
+</script>
+
+</html>

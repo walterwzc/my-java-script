@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+		//数组赋值
+		//var a = 10,b = 20,c = 30,d,e=60;
+		let	 [a,b,c,[d,e],f] = [1,2,4,[5,6],7,8];
+		console.log(d,e);
+		let {id,attr,name} = {id:"12", attr:"hello", name:"world"};
+		// let {id,attr,name} = {"12", "hello", "world"};
+		console.log(id,attr,name)
+
+		// let [a,b] = [10,20]
+		// let [c,d] = [a,b]
+
+		// console.log(c,d);
+		// var [r1,r2,r3] = exec();
+		// function exec(){
+		//     return ["结果a","结果b","结果c" ];
+
+		//     // 如下写法错误，在中括号的大括号被当做一个对象的值赋予给r1变量。
+		//      // return {
+		//      // 	r1:"结果a",
+		//      // 	r2:"结果b",
+		//      // 	r3:"结果c"
+		//      // };
+		// }
+
+		// console.log(r1,r2,r3);
+
+		// function foo({time,attr,name}){
+		// 	console.log(time,attr,name)
+		// }
+
+		// foo({
+		// 	attr:"hello",
+		// 	name:"world",
+		// 	time:new Date().toLocaleString()
+		// })
+		//webpack => 默认参数;
+
+		// function foo(time=10,att=20){
+		// 	console.log(att)
+		// }
+		// foo();
+
+		//var str = "hello world";
+
+		//console.log(str);
+
+		// let item = "hello world";
+
+		// let str = ` <ul>
+		// 				<li>${item}</li>
+		// 				<li>${10 * 20 * 30}</li>
+		// 				<li></li>
+		// 				<li></li>
+		// 				<li></li>
+		// 			</ul>`//反引号;
+
+		// console.log(str);
+	</script>
+</head>
+<body>
+	
+	
+
+	
+</body>
+<script src="template.js"></script>
+<script type="text">
+
+</script>
+<script>
+	
+	var section = `
+			<ul>
+				<% for(var i = 0 ; i < data.name.length ; i++){ %>
+					<li><%= data.name[i] %></li>
+				<% } %>
+			</ul>
+	`;
+
+	var res = test(section, {name:["hello","world","i'm","template"]})
+
+	console.log(res);
+
+</script>
+</html>

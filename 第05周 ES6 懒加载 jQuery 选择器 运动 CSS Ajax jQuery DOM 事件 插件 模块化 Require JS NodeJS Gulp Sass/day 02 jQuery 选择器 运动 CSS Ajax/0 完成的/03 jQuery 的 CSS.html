@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="jquery-3.2.1.js"></script>
+	<script>
+		$(function(){
+			//alert(1);				
+			$(".box").find("li") //我选择到了哪里; .box li
+			.css({
+				color:"#9dd"
+			})
+			.end() // .box 
+			.css({
+				background:"#f00"
+			})
+		})
+	</script>
+</head>
+<body>
+	
+	<div class="box">
+		<ul>
+			<li>hello world</li>
+			<li>hello world</li>
+			<li>hello world</li>
+			<li>hello world</li>
+		</ul>
+	</div>
+
+</body>
+</html>

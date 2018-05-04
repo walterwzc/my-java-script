@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+		
+		// 创建一个script 标签 利用script 的src 去获取jsonp跨域数据 ; 
+		//利用script解析字符串的特性，让这个jsonp 跨域数据 去调用 全局函数;
+		// function hello(res){
+		// 	console.log(res);
+		// }
+		// var script = document.createElement("script");
+		// script.src = "http://www.wookmark.com/api/json/popular?callback=hello";
+		// document.documentElement.appendChild(script);
+
+		function jsonp(url,string_callback,fn_callback,str_data){
+			// function callback(res){
+			// 	console.log(res);
+			// }	
+			//创建一个全局函数等待调用;
+			//1.函数名 => 全局函数 (和别人的全局函数名重合咋办!!!!);
+			//2.怎么去创建一个全局函数;
+
+			//创建函数名 => 绝对不能重复的;
+			var fn_name =("jsonp_callback_" + Math.random()).replace(/\./g,"");
+			//console.log(fn_name);
+			//制造全局函数 被window调用;
+			window[fn_name] = function(res){
+				// 被调用之后，任务已经完成，从window对象中删除该全局函数
+				fn_callback(res);
+				delete window[fn_name];
+			}
+			//拼接 jsonp 的链接;
+			url =url+ "?" + string_callback + "=" +fn_name;
+			//console.log(url);
+			//删除掉旧的script标签; 
+			var old_script = document.querySelector("[json_script_data]");
+			// console.log(old_script)
+
+			// 删除上一次请求生成的标签，而保留本次创建的标签。
+			if(old_script){
+				old_script.remove();
+			}
+			//创建新的script标签; 使用拼接好的url; 给script标签做一个标记;
+			var script = document.createElement("script");
+			script.src = url;
+			script.setAttribute("json_script_data",fn_name);
+			document.documentElement.appendChild(script);
+		}
+
+
+		(function(){
+			jsonp("http://www.wookmark.com/api/json/popular","callback",nihao1,"page=2");
+			jsonp("http://www.wookmark.com/api/json/popular","callback",nihao2);
+			jsonp("http://www.wookmark.com/api/json/popular","callback",nihao3);
+			jsonp("http://www.wookmark.com/api/json/popular","callback",nihao4);
+			function nihao1(res){
+				console.log(res);
+			}
+			function nihao2(res){
+				console.log(res);
+			}
+			function nihao3(res){
+				console.log(res);
+			}
+			function nihao4(res){
+				console.log(res);
+			}
+		})();
+		
+
+
+	</script>
+<!-- 	<script src="http://www.wookmark.com/api/json/popular?callback=hello"></script> -->
+</head>
+<body>
+	
+</body>
+</html>

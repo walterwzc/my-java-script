@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		li{
+			list-style-type: none;
+		}
+		#nav{
+			height: 40px;
+		}
+		#nav ul{
+			height: 40px;
+			background: #000;
+			color: #fff;
+		}
+		#nav ul:after{
+			content: "";
+			display: block;
+			clear: both;			
+		}
+
+		#nav ul li{
+			width:20%;
+			height: 40px;
+			line-height: 40px; 
+			box-sizing: border-box;
+			border-right: 1px solid #ddd;
+			float: left;
+			text-align: center;
+		}
+		#nav ul.active{
+			position : fixed;
+			left :0;
+			top: 0;
+			box-shadow: 0 10px 4px rgba(0,0,0,.3);
+			background: #fff;
+			color: #999;
+		}
+		.content{
+			height:1000px;
+			background: #ddd;
+		}
+		.footer{
+			height: 200px;
+			background: #f99;
+		}
+
+		header{
+			height: 200px;
+			background: #b6b6b6;
+		}
+	</style>
+</head>
+<body>
+	<header></header>
+	<nav id="nav">
+		<ul>
+			<li>首页</li>
+			<li>首页</li>
+			<li>首页</li>
+			<li>首页</li>
+			<li>首页</li>
+		</ul>
+	</nav>
+	<div class="content">
+		<p>这是一点文字</p>
+		<p>这是一点文字</p>
+		<p>这是一点文字</p>
+		<p>这是一点文字</p>
+		<p>这是一点文字</p>
+		<p>这是一点文字</p>
+		<p>这是一点文字</p>
+		<p>这是一点文字</p>
+		<p>这是一点文字</p>
+		<p>这是一点文字</p>
+		<p>这是一点文字</p>
+	</div>
+	<div class="footer"></div>
+</body>
+<script>
+	//当卷动上去的页面高度大于等于了 导航的高度，
+	//那么让导航跟着我走;
+	onscroll = function(){
+		var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+		//效果更改 => 逻辑点;  更新判定条件;
+		if(scrollTop >= nav.offsetTop){ 
+			//我不去改变 大框的定位 因为如果改变了结构会导致整个页面 向上移动;
+			//设置宽度, 必须要加"px"，否则会设置失败;
+			nav.children[0].style.width = nav.offsetWidth + "px";
+			nav.children[0].className = "active";
+		}else{
+			nav.children[0].className = "";
+		}
+	}
+
+
+</script>
+</html>

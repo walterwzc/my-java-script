@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>瀑布流</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+
+		.container {
+			margin: 0 auto;
+			position: relative;
+			overflow: hidden;
+		}
+
+		.box {
+			width: 280px;
+			padding: 5px;
+			box-sizing: border-box;
+			float: left;
+		}
+
+		.box img {
+			width: 100%;
+			box-shadow: 0 0 10px #000;
+			border-radius: 5px;
+		}
+
+		header h2 {
+			text-align: center;
+			line-height: 50px;
+			text-shadow: 0 3px 5px #ddd;
+		}
+
+		.loading {
+			background: rgb(18, 124, 199);
+			text-align: center;
+			height: 80px;
+		}
+
+		.loading img {
+			height: 100%;
+		}
+	</style>
+</head>
+
+<body>
+	<header>
+		<h2>非常炫酷的瀑布流</h2>
+	</header>
+	<div class="container">
+	</div>
+	<div class="loading">
+		<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1515153952369&di=c86cba79058b277ef1303683d79f062a&imgtype=0&src=http%3A%2F%2Fwww.qicaizz.com%2Fd%2Ffile%2Fjzzs%2Fjzzz%2F2015-11-14%2F41c302677bc8c86ad6177ab7b0dc83de.gif"
+		 alt="">
+	</div>
+</body>
+
+<script src="ajax.js"></script>
+<script>
+
+	// jsonp("http://www.wookmark.com/api/json/popular","callback",function(){
+	// })
+	function Waterfall() {
+		this.init();
+	}
+
+	Waterfall.prototype = {
+		constructor: Waterfall,
+		init: function () {
+			this.ele = document.querySelector(".container")//瀑布流父级;
+			this.box = [];
+			this.cHeight = document.documentElement.clientHeight;
+			// 设置一个延时器，在页面开始加载1s之后触发。
+			this.timer = null;
+			// 向后台发送的参数： 第几页
+			this.page = 0;
+
+			this.load_json();
+			window.onscroll = this.window_scroll.bind(this);
+		},
+
+		window_scroll: function () {
+			clearTimeout(this.timer)
+			var _this = this;
+			this.timer = setTimeout(function () {
+				var scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+				// 当屏幕滚动的高度 + 屏幕的高度 > 盒子中最后一张图片的offsetTop时，那么开始加载新的图片。
+				if (_this.cHeight + scrollTop > _this.box[_this.box.length - 1].offsetTop) {
+					_this.page++;
+					_this.load_json();
+				}
+			}, 1000)
+		},
+
+		load_json: function () {
+			//加载数据;
+			var _this = this;
+			jsonp("http://www.wookmark.com/api/json/popular", "callback", function (res) {
+				// 如果发送的请求已经不能够拿回结果，到了最后一页，那么让其显示第一页的结果
+				if (res == "") {
+					_this.page = 0;
+					_this.load_json();
+				}
+				_this.rendering_page(res);
+			}, "page=" + this.page)
+		},
+
+		rendering_page: function (res) {
+			var frag = document.createDocumentFragment();
+			var _this = this;
+			res.forEach(function (item) {
+				var div = document.createElement("div");
+				div.className = "box";
+				var img = new Image();
+				img.src = item.preview;
+
+				//宽度缩小比例;
+				var prop = 280 / item.width;
+				div.style.height = item.height * prop + "px";
+				//console.log(item.width / item.height)
+				_this.box.push(div);
+				div.appendChild(img);
+				frag.appendChild(div)
+			})
+			this.ele.appendChild(frag);
+			// console.log(document.querySelectorAll(".box")[0].offsetWidth);
+			this.rank_img();
+		},
+
+		rank_img: function () {
+			var cWidth = document.documentElement.clientWidth;
+			// 开始渲染页面的时候，一个页面能够放入几张图片
+			var num = Math.floor(cWidth / 280);
+			this.ele.style.width = 280 * num + "px";
+			//console.log(num);
+			//选中所有的图片进行排列;
+			//分两类，一类是第一排，一类是第二排;
+			var height_arr = [];
+			for (var i = 0; i < this.box.length; i++) {
+				// 先排列第一排的图片
+				if (i < num) {
+					//console.log(aBox[i]);
+					height_arr.push(this.box[i].offsetHeight);
+				} else {
+					var min_height = Math.min.apply(false, height_arr);
+					// 找到一排之中最矮的图片的下标
+					var min_index = height_arr.indexOf(min_height);
+
+					// 对放图片的数组中的图片，在放入页面的时候，位置，进行重新的排列。
+					this.box[i].style.position = "absolute";
+					this.box[i].style.top = min_height + "px";
+					this.box[i].style.left = this.box[min_index].offsetLeft + "px";
+					//更新数组最小值  => 拼接之后最矮的元素已经不是最矮的了;
+					height_arr[min_index] = height_arr[min_index] + this.box[i].offsetHeight;
+				}
+			}
+			//console.log(height_arr);
+
+			this.ele.style.height = this.box[this.box.length - 1].offsetTop + "px";
+		}
+	}
+	new Waterfall();
+</script>
+
+</html>

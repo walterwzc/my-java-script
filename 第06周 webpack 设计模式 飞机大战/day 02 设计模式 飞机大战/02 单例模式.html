@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>单例模式</title>
+	<script>
+		
+		//单个实例;
+
+		//1. 第一次调用 ,我没有对象,我构建一个对象给你返回;
+		//   构建的对象是不删除的;
+		//2. 如果说不是第一次调用 ，返回保存的对象;
+
+		// return 对象的的返回值的优先级 是高于 new 自动返回的对象的优先级的;
+
+		function Singleton(){
+			if(Singleton.instance instanceof Object){
+				return Singleton.instance; //如果存在;
+			}else{
+				return Singleton.instance = Singleton.prototype;
+				//如果不存在找到想要的地方返回回去;
+			}
+		}
+
+		Singleton.prototype = {
+			constructor:Singleton,
+			sayHelle(){
+				alert("hello world");
+			}
+		}
+
+		let a = new Singleton();
+		let b = new Singleton();
+		let c = new Singleton();
+		let d = new Singleton();
+		// a == b;
+		// b == c;
+		// c == d;
+		console.log(a,b,c,d)
+		console.log(a==b)
+
+		//只创建一个对象;
+
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

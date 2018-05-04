@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+		var arr = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "A", "B", "C", "D", "E", "F"];
+		var res = "";
+		for(var i = 0 ; i < 4 ; i++){
+			if(Math.random() >= 0.5){
+				res += "<i>"
+				res += arr[Math.round(Math.random() * (arr.length - 1))];
+				res += "</i>"
+			}else{
+				res += arr[Math.round(Math.random() * (arr.length - 1))];
+			}
+		}
+		console.log(res);
+		document.write(res);
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

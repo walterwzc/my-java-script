@@ -1,0 +1,1 @@
+console.log("i'm model1 hello everyond")

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Move Box</title>
+	<style>
+		* {margin: 0; padding: 0;}
+		#box {position: absolute; height :300px; width: 300px; margin: 100px 0 0 100px; background: #f99;} 
+	</style>
+</head>
+<body>
+	<div id="box">
+		
+	</div>
+</body>
+<script>
+	var box = document.getElementById("box");
+	window.onmousemove = function(event) {
+		var oEvent = event || window.event;
+		console.log("clientX:" + oEvent.clientX);
+		console.log("clientY:" + oEvent.pageY);
+		console.log(box);
+		box.style.left = oEvent.clientX + "px";
+		box.style.top = oEvent.clientY + "px";
+	}
+</script>
+</html>

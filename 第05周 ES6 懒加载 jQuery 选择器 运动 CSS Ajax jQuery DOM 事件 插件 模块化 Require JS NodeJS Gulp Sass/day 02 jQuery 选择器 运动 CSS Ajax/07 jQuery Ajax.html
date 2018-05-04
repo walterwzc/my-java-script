@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+
+		header,
+		section,
+		footer {
+			color: #fff;
+			font-size: 80px;
+			text-align: center;
+		}
+
+		header {
+			line-height: 300px;
+			height: 300px;
+			background: #088;
+		}
+
+		header div {
+			width: 100px;
+			height: 100px;
+			background: #fff;
+		}
+
+		section {
+			line-height: 600px;
+			height: 600px;
+			background: #066;
+		}
+
+		footer {
+			line-height: 400px;
+			height: 400px;
+			background: #033;
+		}
+	</style>
+</head>
+
+<body>
+	<header></header>
+	<section>我是身体部分</section>
+	<footer>我是脚部</footer>
+</body>
+<script src="libs/jquery-3.2.1.js"></script>
+
+<script>
+	//load get post;
+	$(function () {
+		//专门用来加载html的;
+
+		// $("header").load("/data/data.html",{data:123},function(){
+		// 	// $("button").click(function(){
+		// 	// 	alert(1);
+		// 	// })
+		// });
+
+		//jquery dom => jQuery.fn.init;  => 局部方法;(只对当前jquerydom生效);
+
+		//$("header").load("/data/data.html h2",function(res,status,deferred){
+		// },"json");
+
+
+		// 1. url (1.2 选择器(是被加载文件data.html 中 进行选择))? (1.5. 发送的数据 )? (2. callback)?  (3.接收到的数据进行强制数据类型转换)?
+
+		//1.5 => {} => POST;
+		//1.5 => "" => GET;
+		//console.log($("button"));
+
+		// $("button").click(function(){
+		// 	alert(1);
+		// })
+		
+		// $("header").click(function(){
+		// 	alert(1);
+		// })
+
+		//jQuery; 在jQuery对象上即可生效; 全局方法;
+		//"?pageSize=20&contentId=6372959_3&day=2018-01-05?page=2"
+		// 1. url (1.2 选择器)? (1.5. 发送的数据 )? 2. callback  (3.接收到的数据进行强制数据类型转换)?
+		// var data = {
+		// 	pageSize:"20",
+		// 	contentId:"6372959_3",
+		// 	day:"2018-01-05",
+		// 	page:"2"
+		// }
+
+		// var defer = $.get("/zcool",data,function(res){
+		// 	//console.log(res);
+		// },"text");
+		// // $.post();
+
+		// console.log(defer);
+		// var defer = $.get("/d",data)
+		// //defer
+		// .always(function(a,b,c){
+		// 	console.log(a,b,c,"always")
+		// })
+		// .done(function(a,b,c){
+		// 	console.log(a,b,c,"done")
+		// })
+		// .catch(function(a,b,c){
+		// 	console.log(a,b,c,"catch")
+		// })
+		// .fail(function(a,b,c){
+		// 	console.log(a,b,c,"fail")
+		// })
+		// .then(function(a,b,c){
+		// 	console.log(a,b,c,"then succ")
+		// },function(a,b,c){
+		// 	console.log(a,b,c,"then failed")
+		// })
+
+		// 请求成功;
+
+		// always 执行;
+
+		// done 执行;
+
+		// then => succ;执行 
+
+		// 参数顺序 => responseText , status , deferred; 
+
+		// 请求失败的时候;
+
+		// always 执行;
+
+		// catch  执行;
+
+		// then fail 执行;
+
+		// 参数顺序 => deferred , status , ErrorType; 
+
+		// 代表所有ajax请求的方法;
+
+		// var defer = $.ajax("/zcool");
+
+		// defer.done(function(res){
+		// 	console.log(res)
+		// })
+
+
+		// var data = {
+		// 	pageSize:"20",
+		// 	contentId:"6372959_3",
+		// 	day:"2018-01-05",
+		// 	page:"2"
+		// }
+
+		// $(document).ajaxSend(function(){
+		// 	alert("传输中")
+		// })
+
+		// $.ajaxSetup({
+		// 		url:"/zcool",
+		// 		type:"GET",
+		// 		data:data,
+		// 		dataType:"jsonp",//*
+		// 		cache:true, //缓存;、、*
+		// 		context:"123", //  *可以设置回调函数中的指针;
+		// 		jsonp:"hhhh",
+		// 		statusCode: {404: function() {//*
+		// 					  	  alert('page not found')
+		// 				},
+		// 				304: function() {
+		// 					  	  alert('别来烦我了，你走!!!')
+		// 				}
+		//   	}
+		// })
+
+		// var defer = $.ajax({
+		// 	global:false,
+		// 	success:function(res,status,defer){
+		// 		alert(this);
+		// 		console.log(res);
+		// 	},
+		// 	error:function(defer,status,errorType){
+		// 		console.log(defer);
+		// 	}
+		// });
+
+
+	})
+</script>
+
+</html>

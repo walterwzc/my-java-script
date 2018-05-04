@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+		//自定义对象;
+
+		// JS给你提供的对象; => 内置对象;
+		// API 
+		// Math Date String RegExp Number Array Boolean;
+		// window;
+		// alert(); document.write()
+
+		//时间对象: new Date();
+
+		//记录时分秒; => 1970 年 一 月 一 日;
+
+		// 1000 ms === 1s;
+
+		var d = new Date();
+		//时间戳; => 标识操作独一无二 + 用户id ;
+		//console.log(d.getTime());
+
+		//校准时间; => 设置方面功能; set系列方法;
+
+		//获取时间; => 获取时间方面功能; get系列方法;
+
+		//1. 方法概述;
+
+		//2. 参数;
+
+		//3. 返回值; 当前时间对象;
+
+
+		//年 月 日 星期几
+		// console.log(d.getFullYear());
+		// console.log(d.getMonth()); //月份从0开始计数;
+		// console.log(d.getDate());
+		// console.log(d.getDay());
+
+
+		// //时分秒毫秒;
+		// console.log(d.getHours());
+		// console.log(d.getMinutes());
+		// console.log(d.getSeconds());
+		// console.log(d.getTime());//1970 年一月一日到现在的毫秒数;
+
+
+		//set => 返回值;
+
+		//console.log(d.setTime(0)); //1970 年一月一日到设置时间返回的毫秒数;
+
+		//console.log(d.setFullYear(2000));
+		// console.log(d.setTime(-8*60*60*1000));
+		// console.log(d);
+
+		var d2 = new Date("2017/1/1 10:10:10"); // 兼容不稳定; 
+		console.log(d);
+		console.log(d2);
+		console.log(d.toTimeString());
+		// dir可以打印详细的对象中的属性
+		console.dir(d);
+
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

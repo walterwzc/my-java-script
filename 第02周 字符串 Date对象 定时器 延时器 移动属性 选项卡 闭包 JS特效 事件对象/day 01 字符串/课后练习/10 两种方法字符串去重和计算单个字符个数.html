@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+		//在字符串之中查看某个字母究竟出现了多少次;
+		var str = "aabbcxsdexdfskAdddsfwe";
+		//1.因为是出现的次数所以一定有计数器;
+		//2.遍历每个字母; 放进循环之中;
+		// function howMany(str,word){
+		// 	str = str.toLowerCase();
+		// 	var count = 0;
+		// 	for(var i = 0 ; i < str.length ;i++ ){
+		// 		//console.log(str[i])
+		// 		if(word == str[i]){
+		// 			count ++;
+		// 		}
+		// 	}
+		// 	console.log(count);
+		// }
+		// howMany(str,"a");
+		//统计出现过多少个字母; 每个字母出现过多少次;
+		// 1. 字母去重;(里面出现多少个字母);
+
+		//  res (去重之后的字符串) str(元字符串);
+		// 2. res的每个字符，在str中去比对 ； 有的话计数器加1；
+
+
+		// var arr = [1,2,2,3,3,4,5,2,1,1,11];
+		
+		// function noRepeat(arr){
+		// 	var newArr = [];
+		// 	for(var i = 0 ; i < arr.length ; i++){
+		// 		if(newArr.indexOf(arr[i]) == -1){
+		// 			newArr.push(arr[i]);
+		// 		}
+		// 	}
+		// 	return newArr;
+		// }
+
+		function snoRepeat(str){
+			str = str.toLowerCase();
+			var newStr = "";
+			for(var i = 0 ; i < str.length ; i++){
+				if(newStr.indexOf(str[i]) == -1){
+					newStr += str[i];
+				}
+			}
+			return newStr;
+		}
+
+		function howMany(str,word){
+			str = str.toLowerCase();
+			var count = 0;
+			for(var i = 0 ; i < str.length ;i++ ){
+				//console.log(str[i])
+				if(word == str[i]){
+					count ++;
+				}
+			}
+			return count;
+		}
+
+		// var str = "ababab";
+		// //console.log(snoRepeat(str))
+		var sRes = snoRepeat(str); //去重之后的字符串;
+
+		for(var i = 0 ; i < sRes.length ; i++){
+			console.log(sRes[i],howMany(str,sRes[i]))
+		}
+
+
+		// var obj = {
+		// 	key:"value",
+		// 	key:"value3"
+		// }	
+
+		// for(var i in obj){
+		// 	console.log(i);
+		// 	console.log(obj[i]);
+		// }
+
+		var str = "aabbcxsdexdfskadddsfwe";	
+		var obj = {};
+		for(var i = 0 ; i < str.length ; i++){
+			//console.log(str[i]);
+			//obj[str[i]] = "";
+			if(str[i] in obj){ //在对象之中已经存在这个属性了;
+				obj[str[i]] = obj[str[i]] + 1;
+			}else{
+				obj[str[i]] = 1;
+			}
+		}
+		//console.log(obj);
+		for(var i in obj){
+			console.log(i,obj[i]);
+		}
+
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+		//事件触发源;
+
+
+	</script>
+	<style>
+		.box{
+			width: 100px;
+			height: 100px;
+			background: #f99;
+			margin-bottom: 10px;
+			margin-left: auto;
+			margin-right: auto;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="box"></div>
+		<div class="box"></div>
+		<div class="box"></div>
+		<div class="box"></div>
+		<div class="box"></div>
+		<div class="box"></div>
+	</div>
+</body>
+<script>
+		
+	var aBox = document.querySelectorAll(".box");
+	var oContainer = document.querySelector(".container");
+
+	//事件的源头是固定，在冒泡过程中事件源头属性非常有用;
+	//阻止事件冒泡的根本涵义;
+	//别人触发的事件我不执行;
+
+	// 触发事件的人  event.target;
+	// 我?          this;
+	// for(var i = 0 ; i < aBox.length ; i++){
+	// 	aBox[i].onclick = function(event){
+	// 		var evt = event || window.event;
+	// 		//console.log(evt.target ,"是事件源头我是container");
+	// 		this.style.background = "#000"
+	// 	}
+	// }
+	// oContainer.onclick = function(event){
+	// 	var evt = event || window.event;
+	// 	//console.log(evt.target ,"是事件源头我是container");
+	// 	if(this == event.target){
+	// 		this.style.background = "#ddd";
+	// 	}
+	// }
+	// document.onclick = function(event){
+	// 	var evt = event || window.event;
+	// 	//console.log(evt.target , "是事件源头我是document");
+	// }
+
+	//事件委托;
+
+	
+
+</script>
+</html>

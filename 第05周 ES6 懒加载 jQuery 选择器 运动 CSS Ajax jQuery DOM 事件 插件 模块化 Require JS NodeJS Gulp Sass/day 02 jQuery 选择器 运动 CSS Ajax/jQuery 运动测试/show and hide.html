@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>jQuery show and hide</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0
+        }
+
+        .button {
+            width: 50px;
+            height: 30px;
+        }
+
+        .box {
+            width: 100px;
+            height: 100px;
+            background: #ddd;
+            margin-left: 100px;
+            margin-top: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <button class="button" id="boxButton1">hide</button>
+    <br/>
+    <button class="button" id="boxButton2">show</button>
+    <br/>
+    <button class="button" id="boxButton3">toggle</button>
+    <br/>
+    <button class="button" id="boxButton4">fadeTo</button>
+    <br/>
+    <div class="box"></div>
+</body>
+<script src="jquery-3.2.1.js"></script>
+<script>
+    $("#boxButton1").on("click", function () {
+        $(".box").hide(1000, "linear");
+    });
+
+    $("#boxButton2").on("click", function () {
+        $(".box").show(2000, "swing");
+    });
+
+    $("#boxButton3").on("click", function () {
+        $(".box").toggle("show");
+    });
+
+    $("#boxButton4").on("click", function () {
+        $(".box").fadeTo("fast", 0.25, function () {
+            alert("Animation Done.");
+        });
+    });
+</script>
+
+</html>

@@ -1,0 +1,8 @@
+
+$("li", options)
+类似于element.getElementsByTagName();
+options 为执行上下文。
+
+
+$("li" ,options).on("click", $.proxy(this.chose_hard, this))
+=> 能够在chose_hard的方法，使用this的时候，总是指向Engine对象。

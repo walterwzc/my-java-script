@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+		
+	</script>
+	<style>
+		ul{
+			background: #b6b6b6;
+		}
+		ul li{
+			height: 30px;
+			line-height: 30px;
+			margin-bottom: 10px;
+			background: #ddd;
+		}
+	</style>
+</head>
+<body>
+	<ul id="list">
+		<li class="li">hello world1</li>
+		<li class="li">hello world2</li>
+		<li class="li">hello world3</li>
+		<li class="li">hello world4</li>
+		<li class="li">hello world5</li>
+		<li class="li">hello world6</li>
+		<li>hello world7</li>
+		<span>hello</span>
+		<strong>world</strong>
+	</ul>
+</body>
+	
+<script>
+		//事件冗余; 
+		// var aLi = document.getElementsByTagName("li");
+		// var oList = document.getElementById("list");
+		// // for(var i = 0 ; i < aLi.length ; i++){
+		// // 	aLi[i].onclick = function(){
+		// // 		alert(this.innerHTML);
+		// // 	}
+		// // }
+
+		// oList.onclick = function(event){
+		// 	var evt = event || window.event;
+		// 	if(evt.target.nodeType == 1 ){
+		// 		alert(evt.target.innerHTML);
+		// 	}
+		// }
+
+
+		var aLi = document.querySelectorAll(".li");
+		var oList = document.getElementById("list");
+		// for(var i = 0 ; i < aLi.length ; i++){
+		// 	aLi[i].onclick = function(){
+		// 		alert(this.innerHTML);
+		// 	}
+		// }
+
+		// oList.onclick = function(event){
+		// 	var evt = event || window.event;
+		// 	aLi = [].slice.call(aLi);
+		// 	if(aLi.indexOf(evt.target) != -1){
+		// 		//要触发的元素;
+		// 		alert("hello world")
+		// 	}
+		// }
+
+		//事件委托的封装;
+		oList.onclick = delegation (aLi, function() {
+			console.log(this);
+		});
+
+		function delegation(children, callback){
+			return function(event){
+				var evt = event || window.event;
+				children = [].slice.call(children);
+				if(children.indexOf(evt.target) != -1){
+					//要触发的元素;
+					callback.call(evt.target);
+				}
+			}
+		}
+
+</script>
+
+</html>

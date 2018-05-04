@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.content{	
+			list-style: none;
+			width:80%;
+			margin: 0 auto;
+			height: 400px;
+			overflow: hidden;
+		}
+
+		.content img{
+			width: 20%;
+			vertical-align: top;
+			transition: 1s all;
+		}
+		.btn span{
+			padding: 3px 7px;
+			line-height: 20px;
+			background: #ddd;
+		}
+	</style>
+</head>
+<body>
+	
+	<div class="container">
+			
+		<div class="btn">
+			<span>1</span>
+			<span>2</span>
+			<span>3</span>
+			<span>4</span>
+		</div>
+
+		<div class="content">
+			
+		</div>
+	</div>
+
+</body>
+<script src="ajax.js"></script>
+<script>
+	//加载 => json；
+	function Pagination(){
+		this.init();
+	}
+	Pagination.prototype = {
+		constructor:Pagination,
+		init:function(){
+			this.ele = document.querySelector(".content");
+			this.btn = document.querySelectorAll("span");
+			this.index = 0;
+			for(var i = 0 ; i < this.btn.length ; i++){
+				this.btn[i].index = i;
+				this.btn[i].onclick = this.changeIndex.bind(this);
+			}
+			this.load();
+		},
+		changeIndex: function(event){
+			var target = event.target;
+			this.index = target.index;
+			//console.log(this.index);
+			this.rendring();
+		},
+		load:function(){
+			//加载数据;
+			this.get("data.json",this.rendring.bind(this));
+		},
+		get:function(url,callback){
+			var xhr = new XMLHttpRequest();
+			xhr.open("GET",url);
+			xhr.send(null);
+			xhr.onreadystatechange = function(){
+				if(xhr.readyState == 4 && xhr.status == 200){
+					try{
+						var json = JSON.parse(xhr.responseText);
+						callback(json);
+					}catch(e){
+						callback(xhr.responseText);
+					}
+				}
+			}
+		},
+		rendring:function(res){
+			//console.log(res)
+			//res = res.slice(0,5)
+			if(!this.res){
+				this.res = res;
+			}
+			console.log(this.res);
+			var rendringArr;
+			rendringArr = this.res.slice(this.index * 5,(this.index + 1) * 5)
+			
+			this.ele.innerHTML = "";
+			var _this = this;
+			rendringArr.forEach(function(item){
+				if(item.preview){
+					var img = new Image();
+					img.src = item.preview;
+					_this.ele.appendChild(img);
+				}
+			})	
+			var li = document.getElementById("img_container")
+			//console.log(res);
+		}
+	}
+
+	new Pagination();
+</script>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>dom操作声明在body之后</title>
+	<script>
+		// 函数如果放在全局的标签之中那么它就有全局的作用域，如果将其放在onload函数或者是匿名函数之中，那么该函数的作用域就只有函数的作用域。
+		// 所以就不能够在onclick属性中，进行调用。
+		// onload = function(){
+		// 	function addLine() {
+		// 		console.log('AAAAAAA');
+		// 	}
+		// }
+
+		// addLine()也是函数的作用域，不能够调用。
+		// (function(){
+		// 	function addLine() {
+		// 		console.log('AAAAAAA');
+		// 	}
+		// })();
+		
+		// 1. 浏览器从上到下解析到此处时，因为页面还没有渲染，所以无法找到 btn id，所以会报一个 not defined的错误，如果将这段代码放在body之下，即可以正常运行。
+		// btn.onclick = function(){
+		// 	console.log('BBBBBBB');
+		// }
+
+		// 2. 如果要写在
+		onload = function() {
+			btn.onclick = function(){
+				console.log('BBBBBBB');
+			}
+		}
+	</script>
+</head>
+<body>
+	<button onclick="addLine()" id="btn">添加文字</button>
+</body>
+<script>
+		//
+		btn.onclick = function(){
+			console.log('BBBBBBB');
+		}
+
+		// function addLine() {
+		// 	console.log('AAAAAAA');
+		// }
+
+		// 如果使用的是onclick属性，那么在生成这个DOM的时候，该函数就会绑定在DOM之上。
+		// var dom = {
+		// 	onclick : function(){
+		// 		console.log('AAAAAAA');
+		// 	}
+		// }
+
+		// 如果使用的是domID.onclick()方法增加事件，那么这个是在生成DOM之后给DOM增加的一个属性，因为其在后面，那么这个属性会覆盖上面的属性，从而起到作用。
+		// dom.onclick = function(){
+		// 	console.log('BBBBBBB');
+		// }
+</script>
+</html>

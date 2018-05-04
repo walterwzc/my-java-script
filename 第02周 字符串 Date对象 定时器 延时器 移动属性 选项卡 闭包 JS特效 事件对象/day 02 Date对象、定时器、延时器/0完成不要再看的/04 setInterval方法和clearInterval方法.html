@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+			//定时器;
+			var timer = setInterval(function(){
+				console.log(1);
+			},1000);
+			var timer2 = setInterval(function(){
+				console.log(2);
+			},1000);
+			var timer3 = setInterval(function(){
+				console.log(3);
+			},1000);
+
+			//setInterval => (Function , interval => ms);
+			// 每间隔一定时间 => 去调用函数;
+
+			//返回值;
+			//他是当前页面开启的第几个计时器;
+
+
+			// 关闭定时器的方法;
+
+			clearInterval(timer2);
+			console.log(timer,timer2,timer3);
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

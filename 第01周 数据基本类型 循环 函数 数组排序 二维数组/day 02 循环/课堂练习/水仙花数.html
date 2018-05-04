@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>4未数的水仙花数</title>
+	
+</head>
+<body>
+	<h2>四位数的水仙花数：</h2>
+</body>
+<script>
+		var ge, shi, bai, qian;
+		for (var i = 1000; i <= 9999; i++) {
+			qian = parseInt(i / 1000);
+			bai = parseInt((i - qian * 1000) / 100);
+			shi = parseInt((i - qian * 1000 - bai * 100) / 10);
+			ge = i % 10;
+			if (ge ** 4 + shi ** 4 + bai ** 4 + qian ** 4 == i) {
+				console.log(i, qian, bai, shi, ge);
+				document.write(i + "<br>");
+			}
+			// console.log(i, qian, bai, shi, ge); 
+		}
+	</script>
+</html>

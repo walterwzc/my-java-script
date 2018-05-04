@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="dahuiji.css" />
+
+</head>
+
+<body>
+	<div id="body_main" class="main">
+		<ul id="options" class="options">
+			<li value="1">超级困难</li>
+			<li value="2">非常困难</li>
+			<li value="3">比较困难</li>
+			<li value="4">就选我吧</li>
+		</ul>
+	</div>
+</body>
+<script src="js/jquery-3.2.1.js"></script>
+<script>
+	(function($, window, document) {
+		class Engine {
+			constructor() {
+				this.init();
+			}
+
+			init() {
+				this.options = $("#options");
+				// console.log(this.options);
+				$("li", this.options).on("click", $.proxy(this.choose_hard, this));
+			}
+
+			choose_hard(e) {
+				let target = e.target;
+				this.hardLevel = $(target).attr("value");
+				// console.log(this.hardLevel);
+				this.options.remove();
+				this.start_animate();
+			}
+
+			start_animate() {
+				logo.show();
+
+				let $loading = createDiv("loading");
+				$loading.css({
+					display: "none"
+				})
+				.fadeIn();
+				let i = 0;
+				let timer = setInterval(function() {
+					$loading.css({
+						background: `url(images/loading${++i % 3 + 1}.png) no-repeat`
+					});
+				}, 800);
+
+				let bg = 0;
+				this.pauseTimer = setInterval(function() {
+					$("#body_main").css({
+						"backgroundPositionY": "+=10"
+					});
+				}, 80);
+
+				let _this = this;
+				setTimeout(function() {
+					clearInterval(timer);
+					logo.hide();
+					$loading.remove();
+				_this.start();
+				}, 1000);
+			}
+
+			start() {
+				// console.log("start");
+				plain.init();
+			}
+			pause() {
+				clearInterval(this.pauseTimer);
+			}
+		}
+
+		let plain = {
+			x: 0,
+			y: 0,
+			bullet: [],
+			init: function() {
+				this.$ele = createDiv("my-warplain");
+				this.move();
+				$(document).on("mousemove", $.proxy(this.move, this));
+			},
+			move: function(e) {
+				// 鼠标事件
+				if (e instanceof Object) {
+					this.x = e.clientX -this.$ele.width() / 2;
+					this.y = e.clientY - this.$ele.height() / 2;
+
+					let min = $("#body_main").offset().left;
+					let max = min + $("#body_main").width() - this.$ele.width();
+
+					this.x = this.x <= min ? min: this.x;
+					this.x = this.x >= max ? max : this.x;
+
+					// 鼠标移出游戏区，暂停游戏
+					if (e.clientX < min || e.clientX > max + this.$ele.width()) {
+
+					} 
+
+					// 暂停后开始游戏
+					if (e.clientX >= min && e.clientX <= max - this.$ele.width()) {
+
+					}
+					// else 为初始的设置
+				} else {
+					let html_width = $("html").width();
+					let html_height = $("html").height();
+					this.x = (html_width - this.$ele.width()) / 2;
+					this.y = (html_height - this.$ele.height()) / 2;
+				}
+
+				this.$ele.css({
+					left: this.x,
+					top: this.y
+				});
+			},
+			fire: function() {
+
+			},
+			destroy: function() {
+
+			}
+		}
+
+		let createDiv = (className) => {
+			let $div = $("<div></div>");
+			$div.addClass(className);
+			$("body").append($div);
+			return $div;
+		}
+
+		let logo = {
+			ele: $("<div></div>"),
+			show: function() {
+				this.ele.addClass("logo");
+				this.ele.css({
+					"display": "none"
+				});
+				$("body").append(this.ele);
+				this.ele.fadeIn();
+			},
+			hide: function() {
+				this.ele.fadeOut();
+			}
+		}
+
+		new Engine();
+	})(jQuery, window, document);
+</script>
+
+</html>

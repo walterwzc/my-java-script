@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+		/*
+
+
+		
+			
+
+
+
+			6.* 求1+2!+3!+...+20!的值
+
+		
+
+
+		*/
+
+		/*
+			
+			1：+ 加; 	
+					// 1. 逻辑运算 (加法运算)；
+					// 2. 字符串拼接(优先级 => 但凡是有字符串那么把运算全部转换为字符串);
+
+			alert( 1 + 2);
+			alert("hello "+ "world");
+		
+
+			var world = "world";
+			alert( 123 + 456 + "hello " );
+			alert("hello "+ "world" + (123 + 456));
+		
+		*/
+
+		/*
+			2. isNaN 没有彻底弄懂
+			isNaN();
+			
+			//1.将传入的数据强制转换为 数字类型;
+			//2.判定这个转换后的结果是否为NaN;
+
+			// 1.是NaN => true;
+			// 2.不是NaN => false;
+
+			//alert(isNaN("123")) 
+
+			// 1. string "123" => number 123;
+			// 2. number 123 比对是不是 NaN; => false;
+
+			//alert(isNaN("123abc"));
+
+			//alert(isNaN(NaN));
+
+			//alert(NaN + 1);
+
+		*/
+
+		/*
+			1.for循环的使用不清楚，不太会用
+			2.continue:跳出本次循环；
+				
+			for(var i = 0; i < 10 ; i++){
+				if(i == 4){
+					continue;
+				}
+				console.log(i);
+			}
+		*/
+
+		/*
+		//7.输出100-200之间所有的素数
+
+		//整除 ; % 一个数等于0;
+
+		for(var i = 100 ; i <= 200; i++){
+			//console.log(i);
+			var num = i; //那么num就是当前的数字;
+			var flag = true; //标识变量; 当前数字是否是素数; 
+
+			//检验过程;
+			for(var j = 2; j < i; j++){
+				//如果他被整除了那么他不是素数；
+				if( num  % j == 0){
+					//被整除了;
+					flag = false;
+					break;
+				}
+			}
+			if(flag){
+				console.log(num);
+			}
+		}
+
+		*/
+		/*
+				// 求出 0 + 1/1-1/2+1/3-1/4…..1/100的和;
+				var res = 0;
+				for(var i = 1; i <= 100 ;i ++){
+					if(i % 2){
+						res += 1 / i;
+					}else{
+						res -= 1 / i;
+					}
+				}
+				console.log(res);
+		*/
+
+		/*
+			空菱形问题
+
+		*/
+
+		//打印6行;
+
+		/*
+		for(var i = 0 ; i < 6; i ++){
+			//打印空格; 打印 5 4 3 2 1 0 个空格;
+			for(var k = 5 ; k > i ; k --){
+				document.writeln("&nbsp;&nbsp;")
+			}
+			//每行打印 1 3 5 7 9 11 .... i * 2 + 1 颗星星 
+			//打印 1 3 5 7 9 ... 颗星星;
+			for(var j = 0 ; j < i * 2 + 1 ; j++){
+
+				if( j == 0 || j == i * 2){
+					document.writeln("u");
+				}else{
+					document.writeln("&nbsp;&nbsp;");
+				}
+			}
+			document.write("</br>");
+		}
+		for(var i = 5 ; i >= 0; i --){
+			//打印空格; i = 5 4 3 2 1 0 
+			for(var k = 5 ; k > i ; k --){
+				document.writeln("&nbsp;&nbsp;")
+			}
+			//打印  11 9 7 5 3 1  颗星星;
+			for(var j = 0 ; j < i * 2 + 1 ; j++){
+					if( j == 0 || j == i * 2){
+						document.writeln("u");
+					}else{
+						document.writeln("&nbsp;&nbsp;");
+					}					
+			}
+			document.write("</br>");
+		}
+	*/
+
+	//	9. a + aa +  aaa 
+
+	//22222
+
+	// var num = 0;
+	// for(var i = 0 ; i < 1; i++){
+	// 	num += 10 ** i * 2;
+	// }
+	// console.log(num);
+	// var num = 0;
+	// for(var i = 0 ; i < 2; i++){
+	// 	num += 10 ** i * 2;
+	// }
+	// console.log(num);
+	// var num = 0;
+	// for(var i = 0 ; i < 3; i++){
+	// 	num += 10 ** i * 2;
+	// }
+	// console.log(num);
+	// var num = 0;
+	// for(var i = 0 ; i < 4; i++){
+	// 	num += 10 ** i * 2;
+	// }
+	// console.log(num);
+	// var num = 0;
+	// for(var i = 0 ; i < 5; i++){
+	// 	num += 10 ** i * 2;
+	// }
+	// console.log(num);
+	// var num = 0;
+	// for(var i = 0 ; i < 5; i++){
+	// 	num += 10 ** i * 2;
+	// }
+	// console.log(num);
+	// var num = 0;
+	// for(var i = 0 ; i < 6; i++){
+	// 	num += 10 ** i * 2;
+	// }
+	// console.log(num);
+	// var num = 0;
+	// for(var i = 0 ; i < 7; i++){
+	// 	num += 10 ** i * 2;
+	// }
+	// console.log(num);	
+
+
+	// for(var j = 1 ; j <= 10; j ++){
+	// 	var num = 0;
+	// 	for(var i = 0 ; i < j; i++){
+	// 		num += 10 ** i * 2;
+	// 	}
+	// 	console.log(num);
+	// }
+
+	// var num = 0;
+	// for(var i = 0 ; i < 10; i++){
+	// 	num += 10 ** i * 2;
+	// 	console.log(num);
+	// }
+		
+	//求1+2!+3!+...+20!的值
+
+
+	// var res = 1;//最终结果;
+	// for(var i = 1 ; i <= 10 ; i++){
+	// 	//console.log(i);
+	// 	res *= i;
+	// }
+	// console.log(res);
+
+	// var res = 1;//最终结果;
+	// for(var i = 1 ; i <= 5 ; i++){
+	// 	//console.log(i);
+	// 	res *= i;
+	// }
+	// console.log(res);
+
+	// var res = 1;//最终结果;
+	// for(var i = 1 ; i <= 4 ; i++){
+	// 	//console.log(i);
+	// 	res *= i;
+	// }
+	// console.log(res);
+	// 	var res = 1;//最终结果;
+	// for(var i = 1 ; i <= 3 ; i++){
+	// 	//console.log(i);
+	// 	res *= i;
+	// }
+	// console.log(res);
+
+	var sum = 0;
+
+	for(var j = 1 ; j <= 20 ; j ++){
+		var res = 1;//最终结果;
+		for(var i = 1 ; i <= j ; i++){
+			//console.log(i);
+			res *= i;
+		}
+		//console.log(res);
+		sum += res;
+	}
+	console.log(sum);
+
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

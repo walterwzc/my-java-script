@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="style1.css" id="link">
+	<script>
+		
+	</script>
+</head>
+<body>
+	<button>宝强皮肤</button>
+	<button id="btn">VIP至尊林志玲皮肤</button>
+	<button>VIP至尊郭德纲皮肤</button>
+	<button>VIP至尊林志颖皮肤</button>
+	<button>VIP至尊赵丽颖皮肤</button>
+	
+</body>
+<script>
+	var oBtn = document.getElementById("btn");
+	var oLink = document.getElementById("link");
+	var skin = ["style1.css","style2.css","style3.css","style4.css","style5.css"];
+	// oBtn.onclick = function(){
+	// 	oLink.href = 
+	// }
+	var aBtn = document.getElementsByTagName("button");
+
+	for(var i = 0 ; i < aBtn.length ; i++){
+		(function(n){
+			aBtn[i].onclick = function(){
+
+				oLink.href = skin[n];
+
+			}
+		})(i)
+	}
+
+</script>
+</html>

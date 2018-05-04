@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>桶排序</title>
+</head>
+<body>
+    
+</body>
+<script>
+    var array = [88, 54, 12 , 32, 1, 34, 45, 67, 79, 34 ,56];
+    var max = array[0];
+    for (var i = 0; i < array.length; i++) {
+        if (array[i] > max) {
+            max = array[i];
+        }
+    }
+    console.log("max= "+ max);
+    var muTong = new Array(max);
+
+    for (var j = 0; j < array.length; j++) {
+        muTong[array[j]] = "water";
+    }
+
+    console.log(muTong);
+
+    var result = [];
+    for (var full in muTong) {
+        result.push(full);
+    }
+
+    console.log(result);
+</script>
+</html>

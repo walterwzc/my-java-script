@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script src="src/require.js"></script>
+<script>
+	requirejs.config({
+		paths:{
+			"move":"src/move"
+		},
+		shim:{
+			"move":{
+				exports:"move"
+			}
+		}
+	})
+	require(["move"],function(a){
+		console.log(a);
+	})
+
+	//console.log(move);
+	//1.加载插件?  
+	//2.不规范的插件怎么办:
+		//1.更改插件 => 最为推荐的方法;
+		//根据不同的模块化规范，找到对应的关键变量判定当前的模块化规范，执行对应的代码。
+		//2.shim => 官方不推荐;
+</script>
+</html>

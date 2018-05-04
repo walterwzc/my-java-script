@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		div{
+			padding: 100px;
+			border:3px solid #ddd;
+		}
+	</style>
+</head>
+<body>
+		
+	<div id="div4">
+		<div id="div3">
+			<div id="div2">
+				<div id="div1"></div>
+			</div>
+		</div>
+	</div>
+	
+</body>
+
+<script>
+	function $(select){
+		return document.getElementById(select);
+	}	
+
+	var oDiv1 = $("div1");
+	var oDiv2 = $("div2");
+	var oDiv3 = $("div3");
+
+	oDiv1.onclick = function(event){
+		var evt = event || window.event;
+		
+		if(evt.stopPropagation){
+			evt.stopPropagation();
+		}else{
+			evt.cancelBubble = true;
+		}
+		alert("hello 你好 我是div1,我是最里面的事件呦!");
+	}
+	oDiv2.onclick = function(){
+		alert("hello 你好 我是div2,我是最里面的事件的爸爸呦!");
+	}
+	oDiv3.onclick = function(){
+		alert("hello 你好 我是div3,我是最里面的事件的爷爷呦!");
+	}
+
+	document.onclick = function(){
+		alert("hello 你好 我是document,我是所有元素的祖宗!");
+
+
+	}
+
+
+</script>
+
+</html>

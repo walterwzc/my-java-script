@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>form submit</title>
+    <link rel="stylesheet" href="bootstrap.css">
+    <style>
+        .success {
+            border: 1px solid #0f0;
+        }
+        .moderate {
+            border: 1px solid #00f;
+        }
+        .low {
+            border: 1px solid yellow;
+        }
+        .error {
+            border: 1px solid #f00;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <form action="###" name="userInfo" method="post" class="col-lg-4 col-lg-offset-4">
+                <h4>用户注册</h4>
+                <div class="form-group">
+                    <label for="username">请输入用户名(邮箱格式)：</label>
+                    <input type="text" class="form-control" id="username" value="asdfsdaf@qq.com">
+                </div>
+                <div class="form-group">
+                    <label for="userpwd">请输入密码：</label>
+                    <input type="text" class="form-control" id="userpwd">
+                </div>
+                <div class="form-group">
+                    <label for="confirmpwd">请确认密码：</label>
+                    <input type="text" class="form-control" id="confirmpwd">
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-success" id="clickSubmit">提交</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+
+<script>
+    var userName = document.getElementById("username");
+    var userPwd = document.getElementById("userpwd");
+    var confirmPwd = document.getElementById("confirmpwd");
+    var clickSubmit = document.getElementById("clickSubmit");
+    var validDom = [userName, userPwd, confirmPwd];
+
+    userName.onblur = function() {
+        var nameValue = userName.value;
+        var nameReg = /^\w{6,20}@[a-z]{2,6}\.\w{2,10}$/gi;
+        if (nameReg.test(nameValue)) {
+            statusUpdate(this, "邮箱格式输入正确:", "success");
+            this.pass = true;
+        } else {
+            statusUpdate(this, "请输入正确的邮箱格式:", "error");
+            this.pass = false;
+        }
+    }
+
+    userPwd.onblur = function() {
+        var pwdValue = this.value;
+        var pwdReg = /^[^/\\:\*\?"<>\|]{6,20}$/g;
+        var pwdCount = 0;
+        // 6位字符以上
+        if (pwdReg.test(pwdValue)) {
+            // 包含字母
+            if(/[a-z]/gi.test(pwdValue)) {
+                pwdCount++;
+            } 
+            // 包含数字
+            if(/\d/g.test(pwdValue)) {
+                pwdCount++;
+            }
+            // 包含符号
+            if(/[!@#\$%\^&\*_\-\+=\.]/g.test(pwdValue)) {
+                pwdCount++;
+            }
+            switch (pwdCount) {
+                case 1:
+                    statusUpdate(this, "输入的密码复杂度较低", "low");
+                    break;
+                case 2:
+                    statusUpdate(this, "输入的密码复杂度中等", "moderate");
+                    break;
+                case 3:
+                    statusUpdate(this, "输入的密码复杂度高", "success");
+                    break;
+                default:
+                    break;
+            }
+            // console.log("pwdCount: " + pwdCount);
+            if (pwdCount >= 1) {
+                this.pass = true;
+            }
+        } else {
+            // console.log("failed");
+            statusUpdate(this, "请输入字字母、数字、字符6-20位的密码", "error");
+            this.pass = false;
+        }
+    }
+
+    confirmPwd.onblur = function() {
+        if (userPwd.value == confirmPwd.value) {
+            statusUpdate(confirmPwd, "两次输入密码一致", "success");
+            this.pass = true;
+        } else {
+            statusUpdate(confirmPwd, "两次输入的密码不同，请重新输入", "error");
+            this.pass = false;
+        }
+    }
+
+    clickSubmit.onclick = function(event) {
+        event = event || window.event;
+        var flag = true;
+        for (var i = 0; i < validDom.length; i++) {
+            if (validDom[i].pass == false) {
+                flag = false;
+                break;
+            }
+        }
+
+        if (flag == false) {
+            event.preventDefault();
+        }
+    }
+
+    function statusUpdate(dom, info, clazz) {
+        var originClassName = dom.className;
+        if (/success|moderate|low|error/g.test(originClassName)) {
+            originClassName = originClassName.replace(/success|moderate|low|error/g, clazz);
+        } else {
+            originClassName += " " + clazz;
+        }
+        dom.className = originClassName;
+        dom.previousElementSibling.innerHTML = info;
+    }
+
+    // console.log(userName.previousElementSibling);
+
+    // var nameReg = /\w{6,20}@[a-z]{2,6}\.\w{2,10}/gi;
+    // var testString = "wzasdf2903@asdf.com; saddsfala3@qq.comcom; )&*^*.com"
+    // console.log(testString.match(nameReg));
+</script>
+</html>

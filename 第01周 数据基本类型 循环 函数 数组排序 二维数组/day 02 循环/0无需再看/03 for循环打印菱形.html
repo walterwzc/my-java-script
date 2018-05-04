@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+		for(var i = 0 ; i < 6 ; i++){
+			//document.write(i * 2 + 1);
+			for(var k = 5 ; k > i; k -- ){
+				document.writeln("&nbsp;&nbsp;");
+			}
+			for(var j = 0 ; j < i * 2 + 1 ; j ++){
+				//打印u进行改动;
+				if(j == 0 || j == i * 2){
+					//开头结尾;
+					document.writeln("u");
+				}else{
+					document.writeln("&nbsp;&nbsp;");
+				}
+			}
+			document.write("<br>");
+		}
+		for(var i = 5 ; i >= 0 ; i--){
+			//console.log(i * 2 + 1);
+			for(var k = 5 ; k > i; k--){
+				document.writeln("&nbsp;&nbsp;");
+			}
+			for(var j = 0 ; j < i * 2 + 1 ; j ++){
+				if(j == 0 || j == i * 2){
+					//开头结尾;
+					document.writeln("u");
+				}else{
+					document.writeln("&nbsp;&nbsp;");
+				}
+			}
+			document.writeln("</br>");
+		}
+
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

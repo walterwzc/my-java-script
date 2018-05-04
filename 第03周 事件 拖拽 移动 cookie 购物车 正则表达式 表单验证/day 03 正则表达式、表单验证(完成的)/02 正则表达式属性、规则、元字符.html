@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>正则</title>
+	
+	<script>
+		//规则表达式; RegExp;
+
+		//正则是必须的么？；   可有可无的;
+
+		var str = "11d5d5d5a3dsd1df41d422d2d5d55d4d4d4d555555";
+
+		// var arr = [];
+		// var s = "";
+		// for(var i = 0 ; i < str.length ; i++){
+		// 	if(str[i] > 0 && str[i]< 9){
+		// 		//console.log(str[i]);
+		// 		s += str[i];
+		// 	}else{
+		// 		if(s){
+		// 			arr.push(s);
+		// 		}
+		// 		s = "";
+		// 	}
+		// }
+		// if(s){
+		// 	arr.push(s);
+		// }
+
+		// console.log(arr);
+
+		//console.log(str.match(/\d+/g));	
+
+
+		// var reg = /规则/修饰符;
+		// var reg = new RegExp(规则,修饰符);
+
+
+		//什么是正则的规则;
+
+		var reg = /s+/gi;
+
+		// \d  => 所有数字;
+
+		var str = "kjdkdjdjassdjdjSSSSdjdSSdSSSsss";
+
+		console.log(str.match(reg)); 
+		// g => 全局匹配;
+		// i => 忽略大小写;
+		// match 返回值是全部返回结果 没有了 正则的三个属性;
+
+		//修饰符 ： 正则匹配的规则;
+
+		//量词 : 表示匹配多少个;  + (任意个) 1  ~  +∞
+
+		// 正则 里有三个属性;
+
+		// 1. 匹配到的内容;
+
+		// 2. index => 在字符串之中的下标;
+
+		// 3. input => 在那条字符串里进行的匹配;
+
+
+		// match => 字符串的方法；
+
+		// 参数 => 正则;
+
+		// 返回所有的匹配的内容;
+
+		// /\d+/g 在全局内匹配 任意位的 数字;
+
+		// 规则 =>  
+		// 931673916@qq.com  yangh_uaizhi@sina.com huaizhi@163.com  hhhhhhzhi@gmail.com
+
+		// 数字字母下划线  6 ~ 20位  @ 数字字母 2 ~ 10位  . 数字字母 
+
+
+		// wyz   
+
+		// 挑出所有吴彦祖;
+
+		var str = "cywyzbjwyzcdwyzqfgdgzgcxcxgwyzgpwyz";
+
+		// 1.元字符; => [];
+		
+		// 所有规则的集合;
+
+		// var reg = /cywyz|bjwyz|xgwyz|gpwyz/g;
+		// var reg = /[a-z][a-z]wyz/g;
+		// var reg = /[a-z][a-z]wyz/g;
+
+		// \d  === [0-9]
+
+		console.log(str.match(reg));
+
+		// 元字符里的所有内容都可以作为匹配条件;	 
+
+		// 元字符 只能代表一个字符;
+
+		// 100 以内的数字;
+
+		// ? => 可有可无;
+		
+		// var reg = /1?[0-9]?[0-9]/;
+
+		// .  => 任意字符; 
+
+		//var reg = /g..gle/;
+
+		// . 在正则之中代表字符的 . 的话  需要转义字符  \;
+
+		// var reg = /google\.com/   
+
+		//非数字; [^ 非 ]
+		
+		//var reg = /[^0-9]/ 
+
+		//以 0 1 2 3 4 开头 后面是任意位数字母 ;
+
+		//var reg = /[01234][a-z]+/
+
+		//规则;
+		// []  => 元字符;
+		// [^]
+		// .
+		// \ 
+		// ?
+
+		//规则 - 量词;
+		// + 
+
+		//匹配小说 去标签;
+
+
+
+
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

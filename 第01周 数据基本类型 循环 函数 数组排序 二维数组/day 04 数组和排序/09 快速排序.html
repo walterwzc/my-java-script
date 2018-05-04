@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+		//快速排序法;
+		function quickSort(arr){
+			//递归的终止条件;
+			if(arr.length <= 1){return arr};
+			// 递归运算规则;
+			//制造中间点;
+			var midIndex = parseInt(arr.length / 2); //中间项的下标;
+			var mid = arr[midIndex];//中间的项
+
+			var left = [];//存放比中间项小的数字;
+			var right = [];//存放比中间项大的数字;
+
+			//把大小分开;
+			for(var i = 0 ; i < arr.length ; i++){
+				if(arr[i] == mid){ continue; }//不把mid放进left 或者right 数组;
+				//是否比中间点大;
+				if(arr[i] > mid){
+					right.push(arr[i]);
+				}else{
+					left.push(arr[i]);
+				}
+			}
+			//返回运算结果;
+			return quickSort(left).concat([mid], quickSort(right));
+		}
+
+		console.log(quickSort([99,88,77,13,5,9,44]));
+
+
+
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

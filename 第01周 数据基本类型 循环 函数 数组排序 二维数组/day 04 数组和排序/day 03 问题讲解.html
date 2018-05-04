@@ -1,0 +1,150 @@
+	
+	<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+		
+	/*	
+
+		堆栈
+		
+		var a = 10;
+		
+		var b = function(){
+	
+		}
+
+
+		没有完全弄懂匿名函数的调用和执行过程 匿名函数？
+
+		(function(){ //限定作用域的一个东西;
+
+			var a = 10;
+
+		})()
+
+
+
+		onload具体作用忘了 
+
+		闭包;
+
+		1、求m-n之间数字的和    
+
+		2、编写函数digit(num, k)，函数功能是：求整数num从右边开始的第k位数字的值，如果num位数不足k位则返回0 
+
+		3.编写一个函数，在页面上输出一个N行M列的表格，表格内容填充0~100的随机数字
+
+	*/
+
+	// function sum(m,n){ // 1 m = 10 ; n = 1  2. m = 1 n = 10;
+	// 	//1.判断谁大谁小;
+	// 	var max,min;
+	// 	if( m > n){
+	// 		max = m;
+	// 		min = n;
+	// 	}else{
+	// 		max = n;
+	// 		min = m;
+	// 	}
+	// 	//2.求出m 和n之间所有数字;
+	// 	var res = 0;
+	// 	for(var i = min ; i <= max ; i++){
+	// 		console.log(i);
+	// 		res += i;
+	// 	}
+	// 	return res;
+	// }
+
+	// function digit(num,k){
+
+	// 	//  13456   3;
+	// 	// k = 1    % 10;  parseInt(6 / 1 )
+	// 	// k = 2    % 100;  parseInt(56 / 10 )
+	// 	// k = 3    % 1000; parseInt(456/100 )
+	// 	// k = 4    % 10000; parseInt(3456/1000 )
+	// 	return parseInt(num % (10 ** k) / 10 ** ( k - 1 ))
+	// 	// 13456 % 1000 
+	// 	// 456 / 100
+	// 	// parseInt(4.56)
+	// 	// 4
+	// }
+
+	// function list(m,n){
+	// 	// m 行是 tr; 
+	// 	//n 列是 td;
+	// 	document.write("<table><tbody>")
+	// 	for(var i = 0 ; i < m ; i ++){
+	// 		document.write("<tr>");
+	// 		//在tr之间去写td;
+	// 		for(var j = 0 ; j < n ; j ++){
+	// 			document.write("<td>");
+
+	// 			document.write(Math.round(Math.random() * 100));
+
+	// 			document.write("</td>");
+	// 		}
+
+	// 		document.write("</tr>");
+	// 	}
+	// 	document.write("</tbody></table>")
+
+	// }
+
+	// list(5,3)
+
+	// onload = function(){
+
+
+
+	// }
+
+	
+
+		// var a = 1;
+		// function b() {
+		//     a = 10;
+		// }
+		// b();
+		// alert(a);
+
+
+		//问：首先我想先确认一下console.log（b（））和b（）的区别
+
+		// console.log(b());
+
+		// b();
+		    
+		// console（b（））在这里是输出函数的返回值，因为return后面无内容，那么肯定是undefined，然后b（）所传达出来的是什么信息呢？a=10？还是undefined？这里的return对b（）有什么影响吗？
+
+
+		// ———————————————华丽的分割线—————————————
+
+
+		// 第二个例子
+		// var a = 1;
+		// function b() {
+		//     a = 10;
+		//     function a(){
+		    	
+		//     }
+		// } 
+		// b(); 
+		// alert(a);
+
+		// 问：function a() {}会被编译成 var a=function (){}？有什么意义吗？他会导致a=10失效？
+
+		// ———————————————华丽的分割线—————————————
+
+		// 然后就是对于两种声明提前的概念，以下是两种声明提前吗，内部的声明提前对于函数来说都适用吗？
+
+	
+
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>多属性运动</title>
+    <!-- <script src="mymove.js"></script> -->
+    <script src="move.js"></script>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background: #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+</body>
+<script>
+    var box = document.getElementsByClassName("box")[0];
+    box.onmouseover = function() {
+        move(this, {width: 500, height: 500, opacity: 30}, function() {
+            console.log("mouse over is finished");
+        });
+    }
+
+    box.onmouseout = function() {
+        move(this, {width: 100, height: 100, opacity: 100}, function() {
+            console.log("mouse out is finished");
+        });
+    }
+</script>
+</html>

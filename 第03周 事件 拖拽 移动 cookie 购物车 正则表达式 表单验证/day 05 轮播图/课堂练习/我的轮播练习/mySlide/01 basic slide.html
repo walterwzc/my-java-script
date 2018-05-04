@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>基础轮播图</title>
+	<style>
+	*{
+		margin: 0 ;
+		padding: 0;
+	}
+
+	.container{
+		width: 1130px;
+		height: 300px;
+		margin:20px auto;
+		overflow: hidden;
+	}
+
+	.show{
+		width: 4520px;
+		position: relative;
+	}
+
+	.show li{
+		width: 1130px;
+		height: 300px;
+		list-style: none;
+		float: left;
+	}
+
+	.show img{
+		width: 100%;
+		height: 100%;
+	}
+
+	.control{
+		width: 100%;
+		height: 52px;
+		position: relative;
+		z-index: 999;
+		top: 50%;
+		margin-top: -16px;
+	}
+
+	.control span{
+		display: block;
+		height: 300px;
+		width: 200px;
+	}
+
+	#left{
+		float: left;
+	}
+
+	#right{
+		float: right;
+	}
+
+	#right img{
+		float: right;
+	}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<!-- 显示区域 -->
+		<ul class="show" id="show">
+			<li style="z-index: 1"><img src="http://img.zcool.cn/community/012e7d5a446078a801206ed3a24189.jpg@1380w" alt=""></li>
+			<li ><img src="http://img.zcool.cn/community/01c6395a444a28a801206ed3314b02.jpg@1380w" alt=""></li>
+			<li><img src="http://img.zcool.cn/community/01af025a444a3ca801206ed34592dd.jpg@1380w" alt=""></li>
+			<li style="z-index: 1"><img src="http://img.zcool.cn/community/012e7d5a446078a801206ed3a24189.jpg@1380w" alt=""></li>
+		</ul>
+		
+	</div>
+
+	<!-- 操作区域 -->
+	<div class="control">
+		<span id="left"><img src="http://static.zcool.cn/git_z/z/widget/slider/images/svg/left_arrow.svg?v=1" alt=""></span>
+		<span id="right"><img src="http://static.zcool.cn/git_z/z/widget/slider/images/svg/right_arrow.svg?v=1" alt=""></span>
+	</div>
+</body>
+
+<!-- <script src="js/mymove.js"></script> -->
+<script src="js/move2.js"></script>
+<script>
+	
+	var $ = document.querySelectorAll.bind(document);
+
+	var oBtnR = $("#right")[0];
+	var oShow = $("#show")[0];
+	var aShow = oShow.children;
+
+	var index = 1;
+
+	oBtnR.onclick = function(){
+		if(index == aShow.length - 1){
+			index = 1;
+			oShow.style.left = 0;
+		}else{
+			index ++;
+		}
+
+		// move(oShow,{
+		// 	left:-index * aShow[0].offsetWidth
+        // });
+        
+        move(oShow, "left", -index * aShow[0].offsetWidth);
+
+		console.log(index);
+	}
+
+</script>
+</html>

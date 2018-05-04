@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.container{
+			width: 1280px;
+			height: 350px;
+			margin: 0 auto;
+		}
+
+		.goodslist ul{
+			width: 1280px;
+			margin: 0 auto;
+		}
+		.goodslist ul:after{
+			content: "";
+			display: block;
+			clear: both;
+		}
+		.goodslist ul li{
+			list-style: none;
+			width: 20%;
+			height: 300px;
+			float: left;
+			box-sizing: border-box;
+			padding: 3px;
+		}
+		.goodslist ul li img{
+			width: 100%;
+			padding-bottom: 20px;
+		}
+	</style>
+</head>
+<body>
+	<header>
+		<button id="login">点击登陆</button>	
+	</header>
+	<div class="container">
+	</div>
+	<div class="goodslist">
+		<ul>
+			<li>
+				<img src="http://img.zcool.cn/community/01b4145a563102a80120121fe3b432.jpeg@260w_195h_1c_1e_1o_100sh.jpg" alt="">
+				<p>这是一个商品标题</p>
+				<button>加入购物车</button>
+			</li>
+			<li>
+				<img src="http://img.zcool.cn/community/01b4145a563102a80120121fe3b432.jpeg@260w_195h_1c_1e_1o_100sh.jpg" alt="">
+				<p>这是一个商品标题</p>
+				<button>加入购物车</button>
+
+			</li>
+			<li>
+				<img src="http://img.zcool.cn/community/01b4145a563102a80120121fe3b432.jpeg@260w_195h_1c_1e_1o_100sh.jpg" alt="">
+				<p>这是一个商品标题</p>
+				<button>加入购物车</button>
+			</li>
+			<li>
+				<img src="http://img.zcool.cn/community/01b4145a563102a80120121fe3b432.jpeg@260w_195h_1c_1e_1o_100sh.jpg" alt="">
+				<p>这是一个商品标题</p>
+				<button>加入购物车</button>
+			</li>
+			<li>
+				<img src="http://img.zcool.cn/community/01b4145a563102a80120121fe3b432.jpeg@260w_195h_1c_1e_1o_100sh.jpg" alt="">
+				<p>这是一个商品标题</p>
+				<button>加入购物车</button>
+			</li>
+		</ul>
+	</div>
+</body>
+<script>
+	// 加载并配置requirejs
+</script>
+<script src="src/require.js"></script>
+<script src="src/index.js"></script>
+</html>

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>升级版轮播图</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+
+		html {
+			height: 100%;
+		}
+
+		body {
+			height: 100%;
+		}
+
+		.container {
+			width: 100%;
+			height: 100%;
+			overflow: hidden;
+		}
+
+		.container ul {
+			height: 100%;
+			position: relative;
+		}
+
+		.container ul li {
+			list-style: none;
+			width: 100%;
+			height: 100%;
+			background-position: center;
+			position: absolute;
+			left: 100%;
+		}
+
+		.container ul li:nth-of-type(1) {
+			background-image: url(images/bg1.png);
+		}
+
+		.container ul li:nth-of-type(2) {
+			background-image: url(images/bg2.png);
+		}
+
+		.container ul li:nth-of-type(3) {
+			background-image: url(images/bg3.png);
+		}
+
+		.container ul li:nth-of-type(4) {
+			background-image: url(images/bg4.png);
+		}
+
+		.btn {
+			width: 100%;
+			position: absolute;
+			top: 85%;
+			height: 15px;
+			z-index: 999;
+			text-align: center;
+			margin-left: -15px;
+		}
+
+		.btn span {
+			display: inline-block;
+			width: 15px;
+			height: 15px;
+			margin-left: 15px;
+			border-radius: 50%;
+			background: #fff;
+		}
+
+		.btn span.active {
+			background: #f99;
+			box-shadow: 0 0px 5px #fff;
+		}
+	</style>
+</head>
+
+<body>
+
+	<div class="container">
+		<ul class="show">
+			<li style="left: 0"></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+		<div class="btn">
+			<span class="active"></span>
+			<span></span>
+			<span></span>
+			<span></span>
+		</div>
+	</div>
+</body>
+
+<script src="move.js"></script>
+<script>
+	// 1. 从左向右;   入场的下标 较 出场的 下标 大的;
+
+	// 2. 从右向左;   入场的下标 较 出场的 下标 小的;
+
+
+	// function right(){
+	// 	var outElement = //; 出场元素;  left 0 => - clientWidth;
+	// 	var enterElement = //入场元素; left clientWidth => 0;
+
+	// }
+		
+
+	// function left(){
+	// 	var outElement = //; 出场元素;  left 0 => clientWidth 
+	// 	var enterElement = //入场元素; left -clientWidth = 0;
+	// }
+
+	var $ = document.querySelectorAll.bind(document);
+	var aSpan = $(".btn")[0].children; //按钮；
+	var aShow = $(".show")[0].children;//图片;
+	//入场元素 => 当前点击的下标; this.spanIndex;
+	//出厂元素 => 当前显示的下标; index;
+	var index = 0;
+
+	for (var i = 0; i < aSpan.length; i++) {
+		aSpan[i].spanIndex = i;
+		aSpan[i].onclick = function () {
+			if (this.spanIndex == index) {
+				return 0;
+			}
+			// console.log("入场元素"+ this.spanIndex);
+			// console.log("出厂元素"+index);
+			// 给span加上active;
+			for (var i = 0; i < aSpan.length; i++) {
+				aSpan[i].className = "";
+			}
+			this.className = "active";
+
+			// 如果点击的下标大于当前的下标，将图片向右移动。
+			// 当前图片的下标 和 小按钮的下标是一致的
+			if (this.spanIndex > index) {
+				right(aShow[index], aShow[this.spanIndex]);
+			} else {
+				left(aShow[index], aShow[this.spanIndex]);
+			}
+			console.log(this.spanIndex, index);
+			// 重新赋值 按钮的下标 到 当前图片的下标
+			index = this.spanIndex;
+		}
+	}
+
+	var cWidth = document.documentElement.clientWidth;
+
+	function right(outElement, enterElement) {
+		// var outElement = 0//; 出场元素;  left 0 => - clientWidth;
+		// var enterElement =0 //入场元素; left clientWidth => 0;
+		// console.log("right 出场元素left 0 => - clientWidth;  入场元素; left clientWidth => 0;" )
+		for (var i = 0; i < aShow.length; i++) {
+			aShow[i].style.zIndex = 0;
+		}
+		outElement.style.zIndex = 1;
+		enterElement.style.zIndex = 1;
+
+		// 开始运动之前，重置入场、出场图片的位置，出场元素从当前屏幕(left: 0;) 向 左移动 负的 整张图片
+		outElement.style.left = 0;
+
+		// 将出场的元素向左移动
+		move(outElement, {
+			left: -cWidth
+		});
+
+		// 开始运动之前，重置入场、出场图片的位置，入场元素从当前屏幕的右侧(left: cWidth + "px";) 向 左移动 正的 整张图片
+		enterElement.style.left = cWidth + "px";
+
+		// 将入场的元素向左移动
+		move(enterElement, {
+			left: 0
+		});
+	}
+
+	function left(outElement, enterElement) {
+		// var outElement =0 //; 出场元素;  left 0 => clientWidth 
+		// var enterElement = 0//入场元素; left -clientWidth = 0;
+		// console.log("left 出场元素;  left 0 => clientWidth ; 入场元素; left -clientWidth = 0" )
+		for (var i = 0; i < aShow.length; i++) {
+			aShow[i].style.zIndex = 0;
+		}
+
+		outElement.style.zIndex = 1;
+		enterElement.style.zIndex = 1;
+		outElement.style.left = 0;
+
+		move(outElement, {
+			left: cWidth
+		});
+
+		enterElement.style.left = -cWidth + "px";
+		move(enterElement, {
+			left: 0
+		});
+	}
+
+</script>
+
+</html>

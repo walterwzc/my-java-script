@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+			
+		/*
+			用户名密码格式要求？   
+			1.密码位数在 6~12位之间。
+			2.用户名要求必须以小写字母开头。
+			3.用户名6~20位；
+			4.密码必须存在大小写字母和 特殊符号 !@#$% 中的一
+		*/	
+
+	</script>
+</head>
+<body>
+		
+	<p>用户名:
+		<input type="text" id="userId">
+		<span></span>
+	</p>
+	<p>密&nbsp;&nbsp;&nbsp;码:<input type="text" id="pass"></p>
+
+</body>
+<script>
+		//文本框失去焦点的时候去验证用户名;
+
+		//1.文本框失去焦点事件;
+		//2.在事件之中验证;
+
+		userId.onblur = function(){
+			//console.log(this.value);
+			//用户名要求必须以小写字母开头。
+			//用户名6~20位；
+			var vaildeString = this.value;
+			//console.log(vaildeString[0])
+			if(vaildeString.charCodeAt(0) >= 97 && vaildeString.charCodeAt(0) <= 122){
+				//开头为小写字母;
+				if(vaildeString.length >= 6 && vaildeString.length <= 20){
+					//通过验证;
+					this.style.borderColor = "green";
+					this.nextElementSibling.innerHTML = "";
+				}else{
+					errorTip(this,"用户名6~20位")
+				}
+			}else{
+				//验证失败;
+				//alert("请以小写字母开头");
+				errorTip(this,"请以小写字母开头")
+			}
+		}
+		function errorTip(el,tip){
+			// this.nextElementSibling.innerHTML = "请以小写字母开头";
+			// this.style.borderColor = "red";
+			el.nextElementSibling.innerHTML = tip;
+			el.style.borderColor = "red";
+		}
+
+		//1.密码位数在 6~12位之间。
+		//2.密码必须存在大小写字母和 特殊符号 !@#$% 
+
+		pass.onblur = function(){
+			var vaildeString = this.value;
+			if(vaildeString.length >= 6 && vaildeString.length <= 12){
+				//符合位数需求;
+				//密码必须存在大小写字母和 特殊符号 !@#$% 
+				var flag = false;
+				var count = 0;//计数器;				
+				for(var i = 0 ; i < vaildeString.length ; i++){
+					if(vaildeString[i].charCodeAt() >= 97 && vaildeString[i].charCodeAt() <= 122){
+						flag = true;
+						break;
+					}
+				}
+				if(flag){
+					count ++;
+				}
+
+				flag = false;
+
+				for(var i = 0 ; i < vaildeString.length ; i++){
+					if(vaildeString[i].charCodeAt() >= 65 && vaildeString[i].charCodeAt() <= 90){
+						flag = true;
+						break;
+					}
+				}
+
+				if(flag){
+					count ++;
+				}
+
+				flag = false;
+
+				for(var i = 0 ; i < vaildeString.length ; i++){
+					if(vaildeString[i].charCodeAt() >= 33 && vaildeString[i].charCodeAt() <= 47){
+						flag = true;
+						break;
+					}
+				}
+
+				if(flag){
+					count ++;
+				}
+
+				console.log(count);
+
+
+			}
+
+		}
+
+		function ascii(min,max,string){ //符合规定返回true; 不符合规定返回false;
+				var flag = false;
+				for(var i = 0 ; i < vaildeString.length ; i++){
+					if(vaildeString[i].charCodeAt() >= min && vaildeString[i].charCodeAt() <= max){
+						flag = true;
+						break;
+					}
+				}
+				return falg;
+		}
+
+
+
+</script>
+</html>

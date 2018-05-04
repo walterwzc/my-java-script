@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<!-- <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script> -->
+	<script src="jquery-3.2.1.js"></script>
+	<script>
+		//什么时候 CDN更快? 项目上线的时候;
+			
+		// window.onload = function(){
+
+		// }
+
+		//console.dir(jQuery); //jquery的核心对象; 
+							 //jquery dom 对象;
+
+		//jQuery
+		//所有文档加载完成就可以调用了;
+
+		//jquery 选择器; => jquery想要选择dom对象的时候 => jQuery();
+
+		//console.dir(jQuery(document));
+
+		// 事件处理函数作为参数传递进去;
+		// jQuery(document).ready(function(){
+		// 	alert("jquery dom ready!");
+		// });
+
+		//jQuery == $;
+
+		// $(document).ready(function(){
+		// 	alert("jquery dom ready!");
+		// });	
+
+		//$(document).ready == $
+
+
+		// !!!!! $(function(){}) ==> 不是jQuery提供给我们的函数 ，而是jQuery提供给我们的方法简写;
+ 
+		// $(function(){
+		// 	alert("jquery dom ready");
+		// })
+
+
+		//选择器;
+
+		$(function(){
+			//alert(1);
+			//var oBox = document.getElementById("box");
+			//console.log(oBox);
+			//oBox.style.width = 300 + "px";
+
+			//console.log($("#box"));
+			//$("#box").style.width = 100+"px";
+
+			//jQuery 参数判断;
+			//传递对象，设置多组值：
+			// $("#box").css({
+			// 	width:"100"
+			// })
+			// $("#box").css({
+			// 	width:"150px"
+			// })
+			// $("#box").css({
+			// 	width:"+=150px"
+			// })
+
+			// //传递数组 获取多组值;
+			// var css = $("#box").css(["width","height","opacity"])
+
+
+			var $box = $("#box");
+
+			// $box.css("width","200px");
+			// $box.css("width");
+
+			// console.log(css);
+			//jQuery dom 和 原生 DOM对象 方法不直接通用;
+
+			//console.log($box[0],$box.get(0));
+
+			//选择多个ID;
+
+			//console.log($box);
+
+			//css 及 css3 选择器;
+
+			// var $box = $(".box");
+			// console.log($box);
+			// $box.css({
+			// 	background:"red"
+			// })
+			// $box.click(function(){
+			// 	alert(1);
+			// })
+
+			$("#box").css({
+				width:"500px"
+			})
+			// $("#box ul li").css({
+			// 	background:"red"
+			// })
+
+			// $("#box>ul>li").css({
+			// 	background:"red"
+			// })
+
+			//$("#box~.box").html("我是#box的兄弟")
+
+			//find 方法 => 找到所有符合规则的后代;
+			// $("#box").find("li").css({
+			// 	background:"red"
+			// })
+			//children => 直接子集才会被选中;
+			// $("#box").children("ul").css({
+			// 	background:"red"
+			// })
+
+			// $("#box").parent().css({
+			// 	background:"red"
+			// })
+
+			// $("#box").parents().css({
+			// 	background:"red"
+			// })
+
+			// $("#box").parentsUntil("html").css({
+			// 	background:"red"
+			// })
+
+			// $("#box").next().css({
+			// 	background:"red"
+			// })
+
+			// $("#box").nextAll().css({
+			// 	background:"red"
+			// })
+
+			// $("#box").nextUntil(".active").css({
+			// 	background:"red"
+			// })
+
+			// $(".end").prev().css({
+			// 	background:"red"
+			// })
+
+			// 选择器名 [属性 | 属性=属性名]....[属性 | 属性=属性名]
+			//$("div[data-id=456][class]").html("我是属性选择器;")
+
+			//过滤器;
+			//$(".box").html("hello world");
+			// $(".box:first").html("hello world");
+			// $(".box:last").html("hello world");
+
+			// $(".box:odd").css({
+			// 	background:"#b6b6b6"
+			// })
+
+			// $(".box:even").css({
+			// 	background:"#f10"
+			// })
+
+			// $(".box:eq(2)").css({
+			// 	background:"#f10"
+			// })
+
+			// $(".box:not([data-id])").css({
+			// 	background:"#f10"
+			// })
+
+			// $(".box").eq(2).css({
+			// 	background:"#f10"
+			// })
+
+			// $(".box").not("[data-id]").css({
+			// 	background:"#f10"
+			// })
+
+			// $(".box:contains(hello world)").css({
+			// 	background:"#f10"
+			// })
+			// $(".box:empty").css({
+			// 	background:"#f99"
+			// })
+
+			// $(".box:has(li)").css({
+			// 	background:"#f88"
+			// })
+
+			//判断系列;
+			console.log($("#box").is(".box"));
+			console.log($("#box").is(".boxs"));
+			console.log($("#box").hasClass("box"));
+
+			//编程风格; => 连缀; (一行式代码);
+
+			
+
+		})
+		
+
+	</script>
+	<style>
+		#box{
+			width: 100px;
+			height: 100px;
+			background: #ddd;
+			margin-top: 10px;
+		}
+	</style>
+</head>
+<body>
+	hello world
+
+	<div id="box" class="box">
+			
+		<ul>
+			<li>hello world
+				
+				<ul>
+					<li>我是内部的li</li>
+					<li>我是内部的li</li>
+					<li>我是内部的li</li>
+					<li>我是内部的li</li>
+				</ul>
+
+			</li>
+			<li>hello world</li>
+			<li>hello world</li>
+			<li>hello world</li>
+		</ul>
+
+	</div>
+
+	<div id="box" class="box">
+		hello world
+	</div>
+	<div id="box" class="box active"></div>
+	<div id="box" class="box">
+
+	</div>
+	<div id="box" class="box" data-id='456'>
+
+	</div>
+	<div id="box" class="box" data-id='123'>
+
+	</div>
+	<div id="box"  class="box end">
+
+	</div>	
+</body>
+</html>

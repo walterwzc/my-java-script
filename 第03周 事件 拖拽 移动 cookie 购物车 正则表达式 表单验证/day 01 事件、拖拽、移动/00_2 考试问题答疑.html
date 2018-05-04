@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+
+	<script>
+		
+		var timer = null; 
+		for(var i = 0 ; i < 10 ; i++){ 
+			(function(n){ // 0 ~ 9 
+			    clearTimeout(timer)
+			    timer = setTimeout(function(){
+					console.log(n)
+		        },1000)
+			})(i)
+		 }
+
+		 /*
+			1.	完成几个 DOM 元素类名操作的工具方法：
+			addClass(dom, name)：给 dom 元素添加类名 name
+			removeClass(dom, name)：把 dom 元素的类名 name 删除
+			hasClass(dom, name)：判断 dom 元素是否有类名 name;
+
+			function addClass(dom, name){
+				dom.setAttribute("class",dom.className +" "+name);
+			}
+			function removeClass(dom,name){
+				var str = dom.getAttribute("class")
+				if(str.indexOf(name) != -1){
+					str = str.replace(name,"");
+					dom.setAttribute("class",str);				
+				}
+			}
+			function hasClass(dom, name){
+				var str = dom.getAttribute("class")
+				if(str.indexOf(name) != -1){
+					return true;			
+				}else{
+					return false;
+				}
+			}	
+			
+			2.	完成 getChildAttributes 函数，它接受一个 DOM 元素作为参数和一个属性名作为参数，你需要返回这个 DOM 的 直接 子元素的特定属性列表。例如：
+			<ul id='list'>
+			  <li data-name="Jerry" class="item"><span>1</span></li>
+			  <li data-name="Lucy" class="item"><span>2</span></li>
+			  <li data-name="Tomy"><span>3</span></li>
+			</ul>
+			getChildAttributes(el, 'data-name') // => ['Jerry', 'Lucy', 'Tomy']
+			getChildAttributes(el, 'class') // => ['item', 'item', null]
+			只需要完成 getChildAttributes 的编写,并简述思路;
+			function getChildAttributes(dom,name){
+				var child = dom.children;
+				var arr = [];
+				for(var i = 0 ; i < child.length ; i++){
+					var attrName = child[i].getAttribute(name);
+					if(attrName){
+						arr.push(attrName);
+					}
+				}
+				return arr;
+			}
+		 */
+
+		 object.fn = function(){
+		 	
+		 }
+
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

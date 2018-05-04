@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+		var goodsList = [
+				{
+					img:"https://img10.360buyimg.com/mobilecms/s500x500_jfs/t13765/353/1178544549/103859/e7bd4b77/5a1bae62N9ad8c823.jpg",//一个链接就是一张图片的内容; key => value  图片 => 图片内容;
+					title:"联想（ThinkPad）黑侠E570 GTX（1NCD）游戏笔记本（i5-7200U 4G 500G+128G SSD GTX950M 2G独显 FHD Win10）",
+					price:"5299"
+				},
+				{
+					img:"https://img11.360buyimg.com/mobilecms/s500x500_jfs/t10606/208/1470258310/185232/93e534e/59e1f960N2c0feec7.jpg",
+					title:"五丰 美仑达 精品琯溪蜜柚 白心柚子2粒装 2kg-2.5kg 简致塑袋装",
+					price:"11.11"
+				},
+				{
+					img:"https://img12.360buyimg.com/mobilecms/s500x500_jfs/t15022/307/325565719/47929/55490f09/5a30dd1bN7cee370d.jpg",
+					title:"可爱多 【京东配送】 婴儿柔湿巾新生儿宝宝儿童手口湿纸巾盖装80抽*5包共400抽",
+					price:"19.99"
+				},
+				{
+					img:"https://img13.360buyimg.com/mobilecms/s500x500_jfs/t12850/345/591043357/154468/3fecebd1/5a0e9b56N99d14ccd.jpg",
+					title:"【官方正品 限时抢购】品牌自营 专柜同款 冬季保暖新款加厚反绒款短筒雪地靴 驼色 37",
+					price:"99"
+				}
+		];
+		//数组对象使用;
+		for(var i = 0 ; i < goodsList.length ; i++){
+			//console.log(goodsList[i]); //数据类型 => Object { } 
+			console.log(goodsList[i].img,goodsList[i].title,goodsList[i].price);
+		}
+	</script>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		li{
+			list-style: none;
+		}
+		.goodsList{
+			width:1200px;
+			margin: 0 auto;
+		}
+		.list:after{
+			content: "";
+			display: block;
+			clear: both;
+		}
+		.list li{
+			width: 300px;
+			box-sizing: border-box;
+			padding: 10px 5px;
+			float: left;
+			height: 400px;
+		}
+		.list li img{
+			width: 100%;
+		}
+		.list li p{
+			line-height: 30px;
+			color: red;
+			font-size: 20px;
+			padding-left: 30px;
+		}
+		.list li p span{
+			font-size: 14px;	
+		}
+
+	</style>
+</head>
+<body>
+	
+	<div class="goodsList">
+		<ul class="list" id="list">
+			
+		</ul>		
+	</div>
+</body>
+
+<script>
+	
+	//数据来自于那？；
+
+	var html = "";
+
+	for(var i = 0 ; i < goodsList.length ; i++){
+			html += '<li>'+
+						'<img src="'+goodsList[i].img+'" alt="">'+
+						'<h3>'+goodsList[i].title+'</h3>'+
+						'<p><span>￥</span>'+goodsList[i].price+'</p>'+
+					'</li>'
+	}
+
+	list.innerHTML = html;
+
+
+
+
+</script>
+</html>

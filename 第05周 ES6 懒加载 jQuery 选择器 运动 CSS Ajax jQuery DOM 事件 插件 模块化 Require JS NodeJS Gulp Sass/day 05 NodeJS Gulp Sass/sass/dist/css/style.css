@@ -1,0 +1,66 @@
+@charset "UTF-8";
+/* 待编译代码 */
+* {
+  padding: 0;
+  margin: 0; 
+}
+
+/* 声明一块代码 => 用来省事的 */
+body {
+  background: #6df; 
+}
+
+.box1 {
+  width: 18.75rem;
+  height: 12.5rem;
+  background: #80e3ff;
+
+  /* 因为浏览器内核不同 所以兼容前缀不同 */
+  -webkit-transition: background 3s;
+  -o-transition: background 3s;
+  -ms-transition: background 3s;
+  -moz-transition: background 3s;
+  transition: background 3s; 
+}
+
+  .box1 span {
+    width: 20px;
+    color: red;
+    display: block;
+    margin-left: auto;
+    margin-right: auto; 
+  }
+  .box1:hover {
+    background: #004f66; 
+  }
+
+.btn {
+  background: #ddd;
+  padding: 20px 50px;
+  border: none;
+  color: #999;
+  font-size: 20px;
+  border-radius: 5%; 
+}
+  .btn:hover {
+    background: #000; 
+  }
+
+/* 
+1.变量； 数组 ； => nth(数组,下标（从1开始）);
+
+2.函数  === js 函数定义;
+
+@function T($arguments){ @return 123 };
+
+T();
+
+3.混合; mixin ;
+
+不传参数的 ， 传参数的， 默认参数;
+
+4.结构
+
+父子级进行大括号的嵌套;  & => 代表当前的父级;
+ 
+ */

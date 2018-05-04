@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>菱形</title>
+	<script>
+		for (var i = 0; i <=5; i++) {
+			for (var k = 5; k > i; k--) {
+				document.writeln("&nbsp;&nbsp;");
+			}
+
+			for (var j = 0; j < i * 2 + 1; j++) {
+				// document.writeln("U");
+				// if (j == 0) {
+				// 	document.writeln("U");
+				// }
+				if (j % 2 == 0) {
+					document.writeln("U");
+				} else {
+					document.writeln("&nbsp;&nbsp;");
+				}
+			}
+			document.writeln("<br/>");
+		}
+
+		for (var i = 0; i <= 5; i++) {
+			for (var k = 0; k < i; k++) {
+				document.writeln("&nbsp;&nbsp;");
+			}
+
+			for (var j = 0; j < 11 - 2 * i; j++) {
+				document.writeln("U");
+			}
+			document.writeln("<br/>");
+		}
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

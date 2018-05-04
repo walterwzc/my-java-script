@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.header{
+			height: 80px;
+		}
+		.header .first>li{
+			list-style: none;
+			line-height: 80px;
+			width: 25%;
+			box-sizing: border-box;
+			border-right: 1px solid #b6b6b6;
+			border-bottom: 1px solid #b6b6b6;
+			float: left;
+			text-align: center;
+			position: relative;
+		}
+		.second{
+			width: 600px;
+			height: 100px;
+			position: absolute;
+			top:80px;
+			left:0;
+			background: #000;
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<div class="header">
+		<ul class="first" id="list">
+			<li>首页
+				<div class="second">
+					<ul>
+						
+					</ul>
+				</div>
+			</li>
+			<li>首页</li>
+			<li>首页
+				<div class="second">
+					<ul>
+						
+					</ul>
+				</div>
+
+			</li>
+			<li>首页</li>
+		</ul>
+	</div>
+</body>
+<script>
+	
+	var oList = document.getElementById("list");
+	var aFirst = oList.children;
+
+	for(var i = 0 ; i < aFirst.length ; i++){
+		aFirst[i].onmouseover = function(){
+			if(this.children.length > 0){
+				this.children[0].style.display = "block";
+			}
+		}
+		aFirst[i].onmouseout = function(){
+			if(this.children.length > 0){
+				this.children[0].style.display = "none";
+			}
+		}
+	}
+
+</script>
+</html>

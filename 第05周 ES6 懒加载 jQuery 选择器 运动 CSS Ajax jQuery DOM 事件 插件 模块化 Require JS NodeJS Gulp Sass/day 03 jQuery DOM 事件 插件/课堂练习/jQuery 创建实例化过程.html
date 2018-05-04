@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>创建进化过程</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // var jq = function(selector, context) {
+    //     // 创建对象的时候，构造函数调用了自身，那么第二次会变为 new new jq(selector, context)， 这样循环下去。
+    //     return new jq(selector,context);
+    // }
+
+    // jq.prototype = {
+    //     constructor: jq,
+
+    //     getName: function() {
+    //         console.log("hello world!");
+    //     }
+    // }
+
+    // jq();
+
+
+
+
+
+    // var jQuery = function(selector, context) {
+    //     return new jQuery.fn.init(selector, context);
+    // }
+
+    // jQuery.fn = jQuery.prototype = {
+    //     constructor: jQuery,
+    //     init: function() {
+    //         return this;
+    //     },
+    //     sayHi: function() {
+    //         console.log("hello world");
+    //     }
+    // }
+
+    // jQuery.fn.init.prototype = jQuery.prototype;
+
+    // jQuery().sayHi();
+
+
+
+    var jQuery = function(selector, context) {
+        return new jQuery.prototype.init(selector, context);
+    }
+
+    jQuery.prototype = {
+        constructor: jQuery,
+        init: function() {
+            return this;
+        },
+        sayHi: function() {
+            console.log("hello world");
+        }
+    }
+
+    jQuery.prototype.init.prototype = jQuery.prototype;
+
+    jQuery().sayHi();
+</script>
+</html>

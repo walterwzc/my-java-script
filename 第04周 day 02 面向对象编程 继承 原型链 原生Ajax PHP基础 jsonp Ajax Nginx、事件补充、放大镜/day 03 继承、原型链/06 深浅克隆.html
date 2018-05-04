@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>对象的深浅克隆</title>
+</head>
+<body>
+	
+	
+	
+
+</body>
+<script>
+		// var obj = {
+		// 	a : 10,
+		// 	b : 20,
+		// 	c : 30
+		// }
+		// //地址！;
+		// var obj2 = obj;
+
+		// obj2.a = 30;
+
+		// console.log(obj);
+
+		var obj = {
+			a : {
+				b:"c"
+			},
+			b : 20,
+			c : 30
+		}
+		//地址！;
+
+		// 只能够复制简单属性
+		// var obj2 = {};
+		// for(var attr in obj){
+		// 	obj2[attr] = obj[attr];
+		// }
+		// obj2.a = 30;
+		// console.log(obj,obj2);
+
+		function cloneObject(obj){
+			var o = new Object();
+			for(var attr in obj){
+				if(obj[attr] instanceof Object){
+					o[attr] = cloneObject(obj[attr]);
+				}else{
+					o[attr] = obj[attr];
+				}
+			}
+			return o;
+		}
+		var obj2 = cloneObject(obj);
+		obj2.a.b = "10";
+		console.log(obj2,obj);
+
+
+
+</script>
+</html>

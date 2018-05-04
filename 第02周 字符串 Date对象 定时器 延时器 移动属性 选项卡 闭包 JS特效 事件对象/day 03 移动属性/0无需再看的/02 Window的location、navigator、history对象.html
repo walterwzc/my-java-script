@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+			
+		//window == BOM;
+
+		//window.alert(1);
+
+		// var a = 10;
+		// window.a = 10;
+		// window.alert = function(){
+		// 	console.log("hello ")
+		// }
+		// alert(123);
+
+		// console.log(window.location);
+		// console.log(window.location.href);
+
+		//window.location.href = "http://www.baidu.com";
+		//console.log(window.location.hash);
+		//alert(window.navigator.appName);
+		//alert(window.navigator.appName);
+		//alert(window.navigator.platform);
+		//alert(window.navigator.userAgent);
+
+	</script>
+</head>
+<body>
+	<button id="btn">按钮</button>
+	<a href="002-2.html">跳转</a>
+	<button id="btn2">前进</button>
+</body> 
+<script>
+	//页面刷新;
+	btn.onclick = function(){
+		window.location.reload(true);
+	}
+	//window.location.reload();
+	btn2.onclick = function(){
+		window.history.forward()
+	}
+
+</script>
+</html>

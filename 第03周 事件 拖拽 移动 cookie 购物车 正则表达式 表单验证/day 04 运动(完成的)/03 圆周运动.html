@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>圆周运动</title>
+	<style>
+		.ball{
+			width: 10px;
+			height: 10px;
+			border-radius: 5px;
+			position: absolute;
+			background: #000;
+		}
+	</style>
+</head>
+<body>
+	
+	<div class="ball"></div>
+
+</body>
+
+<script>
+	
+	var r = 100; // 半径
+	var deg = 180; // 角度;
+	var offset = 200;	
+	var div = document.getElementsByClassName("ball")[0];
+	for(var i = 0 ; i < 60 ; i++){
+		var sec = document.createElement("div");
+		deg = i * 6;
+		var left = Math.sin(Math.PI / 180 * deg) * r;
+		var stop =  Math.cos(Math.PI / 180 * deg ) * r;
+
+		sec.className = "ball"
+		sec.style.left = left+ offset + "px";
+		sec.style.top = stop+ offset + "px";
+		sec.style.background ="rgba(0,0,0,.3)"
+
+		document.body.appendChild(sec);
+	}
+
+	setInterval(function(){
+		deg -= 6;
+		var left = Math.sin(Math.PI / 180 * deg) * r;
+		var top =  Math.cos(Math.PI / 180 * deg ) * r;
+		// var div = document.createElement("div");
+		// div.className = "ball";
+		div.style.left = left + offset + "px";
+		div.style.top = top + offset + "px";
+		document.body.appendChild(div);
+	},1000)
+
+</script>
+</html>

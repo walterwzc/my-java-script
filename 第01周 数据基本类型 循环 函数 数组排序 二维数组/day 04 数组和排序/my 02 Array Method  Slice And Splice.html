@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Array Test</title>
+</head>
+<body>
+    
+</body>
+<script>
+    var arr = [85, 24, 63, 45, 17, 31, 96, 50];
+    var pivotIndex = Math.floor(arr.length / 2) ;
+    var pivot = arr.splice(pivotIndex, 0, 11, 22, 33);
+    console.log('pivotIndex: ' + pivotIndex);
+    console.log(pivot);
+    console.log(arr);
+    console.log('-----------------------------------------');
+    var arr = new Array(6)
+    arr[0] = "George"
+    arr[1] = "John"
+    arr[2] = "Thomas"
+    arr[3] = "James"
+    arr[4] = "Adrew"
+    arr[5] = "Martin"
+
+    console.log(arr.slice(2, 5))
+    console.log(arr);
+    console.log('slice方法能够返回一个新的数组，数组中的内容为大于、等于2，小于5');
+    console.log(arr.splice(2, 3));
+    console.log(arr);
+    console.log('splice方法能够切割原数组，将从2开始，切割3个元素出来形成新的数组，原来的数组改变');
+</script>
+</html>

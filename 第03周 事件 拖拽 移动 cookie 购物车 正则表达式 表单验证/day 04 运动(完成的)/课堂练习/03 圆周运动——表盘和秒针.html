@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>02 圆周运动——秒针</title>
+    <style>
+        .ball {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #ddd;
+            position: absolute;
+
+        }
+
+        #xCross {
+            height: 2px;
+            position: absolute;
+            background: #000;
+            top: 255px;
+        }
+
+        #yCross {
+            width: 2px;
+            position: absolute;
+            background: #000;
+            left: 305px;
+        }
+    </style>
+    <script>
+        window.onload = function() {
+            var xCross = document.getElementById("xCross");
+            var yCross = document.getElementById("yCross");
+            // console.log(document.documentElement.clientWidth);
+            // console.log(document.documentElement.clientHeight);
+            xCross.style.width = document.documentElement.clientWidth + "px";
+            yCross.style.height = document.documentElement.clientHeight + "px";
+        }
+    </script>
+</head>
+<body>
+    <div class="ball"></div>
+    <div id="xCross"></div>
+    <div id="yCross"></div>
+</body>
+<script>
+    var degree = -90;
+    var radius = 150;
+    var offsetLeft = 300;
+    var offsetTop = 250;
+
+    for (var i = 0; i < 60; i++) {
+        var ballDiv = document.createElement("div");
+        var degreeCircle = 6 * i;
+        var topValue = Math.sin(Math.PI / 180 * degreeCircle) * radius;
+        var leftValue = Math.cos(Math.PI / 180 * degreeCircle) * radius;
+
+        ballDiv.className = "ball";
+        ballDiv.style.top = offsetTop + topValue + "px";
+        ballDiv.style.left = offsetLeft + leftValue + "px";
+
+        document.body.appendChild(ballDiv);
+    }
+
+    var movingball = document.getElementsByClassName("ball")[0];
+    setInterval(function() {
+        degree += 6;
+        var topValue = Math.sin(Math.PI / 180 * degree) * radius;
+        var leftValue = Math.cos(Math.PI / 180 * degree) * radius;
+        movingball.style.backgroundColor = "#f00";
+        // movingball.style.zIndex = 2;
+
+        movingball.style.top = offsetTop + topValue + "px";
+        movingball.style.left = offsetLeft + leftValue + "px";
+
+        document.body.appendChild(movingball);
+    }, 1000);
+</script>
+</html>

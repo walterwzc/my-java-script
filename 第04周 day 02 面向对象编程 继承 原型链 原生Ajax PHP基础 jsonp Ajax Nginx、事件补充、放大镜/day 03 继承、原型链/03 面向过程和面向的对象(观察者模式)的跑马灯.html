@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		li{
+			list-style: none;
+			text-align: center;
+			line-height: 20px;
+			height: 20px;
+			margin-bottom: 10px;
+			background: #ddd;
+		}
+	</style>
+</head>
+<body>
+	<ul>
+		<li>点我我就订阅了彩色灯</li>
+		<li>点我我就订阅了彩色灯</li>
+		<li>点我我就订阅了彩色灯</li>
+		<li>点我我就订阅了彩色灯</li>
+		<li>点我我就订阅了彩色灯</li>
+	</ul>
+	<button id="btn">点击按钮</button>
+</body>
+<script>
+
+	// var aLi = document.getElementsByTagName('li');
+	// for(var i = 0 ; i < aLi.length ; i++){
+	// 	aLi[i].onclick = function(){
+	// 		if(this.getAttribute("data")){
+	// 			this.removeAttribute("data");
+	// 			this.style.background = "#ddd";
+	// 		}else{
+	// 			this.setAttribute("data","reding")
+	// 			this.style.background = "#b6b6b6";
+	// 		}
+	// 	}
+	// }
+
+	// var oBtn = document.getElementById("btn");
+
+	// oBtn.onclick = function(){
+	// 	for(var i = 0 ; i < aLi.length ; i++){
+	// 		(function(i){
+	// 			if(aLi[i].getAttribute("data") == "reding"){
+
+	// 				setInterval(function(){
+	// 					aLi[i].style.background = "#" +(parseInt((Math.random() * 4095)).toString(16));
+	// 				},500)
+	// 			}
+	// 		})(i)
+	// 	}	
+	// }
+
+
+	function RunHorseLights(liSelector, btnSelector){
+		this.init(liSelector, btnSelector);		
+	}
+
+	RunHorseLights.prototype.init = function(liSelector, btnSelector){
+		//选择元素;
+		this.li = document.querySelectorAll(liSelector);
+		this.btn = document.querySelectorAll(btnSelector)[0];
+		this.subscribeList = []; //订阅名单;
+		for(var i = 0 ; i < this.li.length ; i++){
+			this.li[i].onclick = this.subscribeLi.bind(this);
+		}
+		this.btn.onclick = this.publish.bind(this);
+	}
+
+	RunHorseLights.prototype.subscribeLi = function(event){
+		// console.log("click");
+		this.subscribeList.push(new Li(event.target));
+		// console.log(new Li(event.target));
+		// console.log(this.subscribeList);
+	}
+
+	RunHorseLights.prototype.publish = function(){
+		// console.log("publish");
+		for(var i = 0 ; i < this.subscribeList.length ; i++){
+			this.subscribeList[i].runhorselights();
+		}
+	}
+
+	function Li(oLi){
+		this.oLi = oLi;
+	}
+
+	Li.prototype.runhorselights = function(){
+		//跑马灯;
+		// console.log(this.oLi)
+		var _this = this;
+		setInterval(function() {
+			_this.oLi.style.backgroundColor = "#" + (parseInt((Math.random() * 4095)).toString(16));
+		}, 500);
+	}
+
+
+	new RunHorseLights("li", "#btn");
+
+
+	// 也可以将观察者模式 直接写在一个对象之中。
+	// var observer = {
+
+	// }
+</script>
+</html>

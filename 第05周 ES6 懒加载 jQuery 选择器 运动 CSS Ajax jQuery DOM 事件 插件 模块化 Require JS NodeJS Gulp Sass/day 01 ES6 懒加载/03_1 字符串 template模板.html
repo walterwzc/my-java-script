@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="template.js"></script>
+	
+
+	<script>
+		var template = `<ul>
+		                <% for(var i=0; i < data.names.length; i++) { %>
+		                   <li><%= data.names[i] %></li>
+		                <% } %>
+		               </ul>       
+             		   `;
+		console.log(test(template, {names:["张三","李四","tony stark","hulk"]}));
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

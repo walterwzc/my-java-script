@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>多个变长的DIV</title>
+    <style>
+        * {padding: 0; margin: 0;}
+        div {
+            height: 100px;
+            width: 200px;
+            background: #ddd;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+</body>
+<script>
+    var aDiv = document.getElementsByTagName("div");
+    for (var i = 0; i < aDiv.length; i++) {
+        aDiv.timer = null;
+        aDiv[i].onmouseover = function() {
+            clearInterval(dom.timer);
+            dom.timer = setInterval(function() {
+                var nowOffsetWidth = dom.offsetWidth;
+                var speed = 0;
+                if (nowOffsetWidth <= target) {
+                    speed = 30;
+                } else {
+                    speed = -30;
+                }
+                if (nowOffsetWidth == target) {
+                    clearInterval(dom.timer);
+                } else {
+                    dom.style.width = nowOffsetWidth + speed + "px";
+                }
+            }, 30);
+            move(this, 500);
+        }
+
+        aDiv[i].onmouseout = function() {
+            move(this, 200);
+        }
+    }
+
+    function move(dom, target) {
+        clearInterval(dom.timer);
+        dom.timer = setInterval(function() {
+            var nowOffsetWidth = dom.offsetWidth;
+            var speed = 0;
+            if (nowOffsetWidth <= target) {
+                speed = 30;
+            } else {
+                speed = -30;
+            }
+            if (nowOffsetWidth == target) {
+                clearInterval(dom.timer);
+            } else {
+                dom.style.width = nowOffsetWidth + speed + "px";
+            }
+        }, 30);
+    }
+</script>
+</html>
